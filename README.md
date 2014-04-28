@@ -16,10 +16,10 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 5. Copy the included 7zip folder to C:\7zip
 
 6. Make sure the following directories exist in each rebirth folder:
-* Players
-* Missions
-* Demos
-* Screenshots
+    * Players
+    * Missions
+    * Demos
+    * Screenshots
 
 7. Delete the DELETE_ME files in the folders that already existed
 
