@@ -1,4 +1,4 @@
-; This is revision 20.
+; This is revision 21.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -533,7 +533,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.20'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.21'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -649,7 +649,7 @@ begin
       if componentlist.IndexOf('d1xa') <> -1 then
         componentlist.Delete(componentlist.IndexOf('d1xa'));
       if componentlist.IndexOf('d1xa\addon1') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1x\addon1'));
+        componentlist.Delete(componentlist.IndexOf('d1xa\addon1'));
       if componentlist.IndexOf('d1xa\mission1') <> -1 then
         componentlist.Delete(componentlist.IndexOf('d1xa\mission1'));
       if componentlist.IndexOf('d1xa\addon1\nosound') <> -1 then
