@@ -1,4 +1,4 @@
-; This is revision 18.
+; This is revision 19.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -48,7 +48,9 @@ Name: "install"; Description: "DXX-Rebirth"; Flags: iscustom
 
 [Components]
 Name: "d1x"; Description: "D1X-Rebirth (For Descent)"; Types: install; Flags: checkablealone disablenouninstallwarning
+Name: "d1x\demo"; Description: "Shareware demo files for Descent 1"; Flags: dontinheritcheck disablenouninstallwarning; ExtraDiskSpaceRequired: 462000
 Name: "d2x"; Description: "D2X-Rebirth (For Descent 2)"; Types: install; Flags: checkablealone disablenouninstallwarning
+Name: "d2x\demo"; Description: "Shareware demo files for Descent 2"; Flags: dontinheritcheck disablenouninstallwarning; ExtraDiskSpaceRequired: 672000
 Name: "d2x\vertigo"; Description: "Vertigo Expansion for D2 (You must already have the Vertigo files)"; Flags: dontinheritcheck disablenouninstallwarning
 Name: "d1xa"; Description: "Downloadable Content for D1X"; Flags: dontinheritcheck disablenouninstallwarning
 Name: "d1xa\retro1"; Description: "Retro Mod for D1 (For competitive play)"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1322248
@@ -76,7 +78,7 @@ Name: "d2xa\addon2\german2"; Description: "German Briefings for D2X"; Flags: dis
 [Files]
 ;D1X Files
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D1X-Rebirth"; Excludes: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D1X-Rebirth"; Excludes: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Only copy over directories if they don't already exist
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
@@ -84,6 +86,9 @@ Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\D1X-Rebi
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 ;Copy over the retro icon if the component is selected
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico"; DestDir: "{app}\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
+;D1 Demo Files
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
 Source: "{code:Descent}\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -120,13 +125,17 @@ Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\D1X-Rebirth\Demos"; Compon
 
 ;D2X Files
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D2X-Rebirth"; Excludes: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D2X-Rebirth"; Excludes: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 ;Copy over the retro icon if the component is selected
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico"; DestDir: "{app}\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
+;D2 Demo Files
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 ;D2 Main Files
 Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -296,14 +305,20 @@ var
   DataDirPage1: TInputDirWizardPage;
   DataDirPage2: TInputDirWizardPage;
   WhichInstallPage: TInputOptionWizardPage;
-  downloadPage: TWizardpage;
+  downloadPage: TWizardPage;
+  DownloadFileCheck: TOutputProgressWizardPage;
   update: boolean;
   CancelWithoutPrompt: boolean;
   folder1: string;
   folder2: string;
   vertigo1: string;
   filecheckran: boolean;
+  numcomponents: integer;
+  componentlist: TStringList;
+  comp: string;
+  checkruns: integer;
 
+procedure CheckDownload(filename: string; url: string; location: string); forward;
 
 procedure ExitProcess(exitCode:integer);
   external 'ExitProcess@kernel32.dll stdcall';
@@ -396,6 +411,7 @@ begin
  itd_init;
  ITD_LoadStrings(ExpandConstant('{pf}\Sherlock Software\InnoTools\Downloader\languages\itd_en.ini'));
 
+ checkruns := 0;
 
  //Where the new installer should be saved to, can be anywhere.
  NewInstallerPath:=ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
@@ -404,6 +420,8 @@ begin
   textfile from the server which says what the latest version is}
  progress:=CreateOutputProgressPage(ITD_GetString(ITDS_Update_Caption),
     ITD_GetString(ITDS_Update_Description));
+
+ DownloadFileCheck := CreateOutputProgressPage('Get Download Information', 'Checking selected download links for file sizes.');
 
  //Create the ITD GUI so that we have it if we decide to download a new intaller version
  
@@ -513,7 +531,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.18'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.19'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -616,8 +634,40 @@ begin
         MsgBox('You didn'+chr(39)+'t select anything to install.', mbError, MB_OK); //...spit out an error. ;)
         result := false;
         exit;
-      end 
-      result := true; // Otherwise if we're on the components selection page, just keep going.
+      end
+      
+      // This section gets the number of downloaded components selected and stores it in numcomponents
+      comp := WizardSelectedComponents(false);
+      componentlist := TStringList.Create;
+      componentlist.CommaText := comp;
+      if componentlist.IndexOf('d1x') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1x'));
+      if componentlist.IndexOf('d1x\demo') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1x\demo'));
+      if componentlist.IndexOf('d1xa') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1xa'));
+      if componentlist.IndexOf('d1xa\addon1') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1x\addon1'));
+      if componentlist.IndexOf('d1xa\mission1') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1xa\mission1'));
+      if componentlist.IndexOf('d1xa\addon1\nosound') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d1xa\addon1\nosound'));
+      if componentlist.IndexOf('d2x') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2x'));
+      if componentlist.IndexOf('d2x\demo') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2x\demo'));
+      if componentlist.IndexOf('d2xa') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2xa'));
+      if componentlist.IndexOf('d2x\vertigo') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2x\vertigo'));
+      if componentlist.IndexOf('d2xa\addon2') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2xa\addon2'));
+      if componentlist.IndexOf('d2xa\mission2') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2xa\mission2'));
+      if componentlist.IndexOf('d2xa\addon2\nosound') <> -1 then
+        componentlist.Delete(componentlist.IndexOf('d2xa\addon2\nosound'));
+      numcomponents := componentlist.Count;
+    result := true; // Otherwise if we're on the components selection page, just keep going.
   end
   if CurPageID = wpReady then
   begin
@@ -626,64 +676,69 @@ begin
     //Check all the subcomponents, and add the ones that are selected.
       if yes = false then //if we're not updating, then the download page needs to be after the install screen
       begin
-      downloadPage := itd_downloadafter(wpReady); //Put the download page after the installation so we can download the AddOns directly to their final locations.
-      end
-      if IsComponentSelected('d1xa\retro1') = true then
-      begin
-        itd_addfile('http://descentchampions.org/retromod/d1x-rebirth-retro.exe',expandconstant('{app}\D1X-Rebirth\d1x-rebirth-retro.exe'));
-      end
-      if IsComponentSelected('d1xa\mission1\rangeranarchy1') = true then
-      begin
-        itd_addfile('http://dl.dropboxusercontent.com/s/y528r1klv40jyzf/D1%20Anarchy%20Ranger%20Pack.zip',expandconstant('{tmp}\rangeranarchy_d1_missions.zip'));
-      end
-      if IsComponentSelected('d1xa\mission1\rangercoop1') = true then
-      begin
-        itd_addfile('http://dl.dropboxusercontent.com/s/31jaajymgstnl0i/D1%20Coop%20Ranger%20Pack.zip',expandconstant('{tmp}\rangercoop_d1_missions.zip'));
-      end
-      if IsComponentSelected('d1xa\mission1\dcl1') = true then
-      begin
-        itd_addfile('http://descentchampions.org/missions/dcl_d1_missions.zip',expandconstant('{tmp}\dcl_d1_missions.zip'));
-      end
-      if IsComponentSelected('d1xa\addon1\sc551') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa',expandconstant('{app}\D1X-Rebirth\d1xr-sc55-music.dxa'));
-      end
-      if IsComponentSelected('d1xa\addon1\opl31') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa',expandconstant('{app}\D1X-Rebirth\d1xr-opl3-music.dxa'));
-      end
-      if IsComponentSelected('d1xa\addon1\german1') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa',expandconstant('{app}\D1X-Rebirth\d1xr-briefings-ger.dxa'));
-      end
-      if IsComponentSelected('d2xa\retro2') = true then
-      begin
-        itd_addfile('http://descentchampions.org/retromod/d2x-rebirth-retro.exe',expandconstant('{app}\D2X-Rebirth\d2x-rebirth-retro.exe'));
-      end
-      if IsComponentSelected('d2xa\mission2\rangeranarchy2') = true then
-      begin
-        itd_addfile('http://dl.dropboxusercontent.com/s/qndz7o8b0qvmgmi/D2%20Anarchy%20Ranger%20Pack.zip',expandconstant('{tmp}\rangeranarchy_d2_missions.zip'));
-      end
-      if IsComponentSelected('d2xa\mission2\rangercoop2') = true then
-      begin
-        itd_addfile('http://dl.dropboxusercontent.com/s/idfaamsfmpdvylp/D2%20Coop%20Ranger%20Pack.zip',expandconstant('{tmp}\rangercoop_d2_missions.zip'));
-      end
-      if IsComponentSelected('d2xa\mission2\dcl2') = true then
-      begin
-        itd_addfile('http://descentchampions.org/missions/dcl_d2_missions.zip',expandconstant('{tmp}\dcl_d2_missions.zip'));
-      end
-      if IsComponentSelected('d2xa\addon2\sc552') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa',expandconstant('{app}\D2X-Rebirth\d2xr-sc55-music.dxa'));
-      end
-      if IsComponentSelected('d2xa\addon2\opl32') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa',expandconstant('{app}\D2X-Rebirth\d2xr-opl3-music.dxa'));
-      end
-      if IsComponentSelected('d2xa\addon2\german2') = true then
-      begin
-        itd_addfile('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa',expandconstant('{app}\D2X-Rebirth\d2xr-briefings-ger.dxa'));
-      end
+        downloadPage := itd_downloadafter(wpReady); //Put the download page after the installation so we can download the AddOns directly to their final locations.
+      end;
+      DownloadFileCheck.Show; // Show our custom progress page
+      try
+        if IsComponentSelected('d1xa\retro1') = true then
+        begin
+            CheckDownload('d1x-rebirth-retro.exe', 'http://descentchampions.org/retromod/d1x-rebirth-retro.exe', 'D1');
+        end;
+        if IsComponentSelected('d1xa\mission1\rangeranarchy1') = true then
+        begin
+          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://dl.dropbox.com/s/y528r1klv40jyzf/D1%20Anarchy%20Ranger%20Pack.zip?dl=1', 'tmp');
+        end;
+        if IsComponentSelected('d1xa\mission1\rangercoop1') = true then
+        begin
+          CheckDownload('D1 Coop Ranger Pack.zip', 'http://dl.dropbox.com/s/31jaajymgstnl0i/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
+        end;
+        if IsComponentSelected('d1xa\mission1\dcl1') = true then
+        begin
+          CheckDownload('dcl_d1_missions.zip', 'http://descentchampions.org/missions/dcl_d1_missions.zip', 'tmp');
+        end;
+        if IsComponentSelected('d1xa\addon1\sc551') = true then
+        begin
+          CheckDownload('d1xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', 'D1');
+        end
+        if IsComponentSelected('d1xa\addon1\opl31') = true then
+        begin
+          CheckDownload('d1xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', 'D1');
+        end
+        if IsComponentSelected('d1xa\addon1\german1') = true then
+        begin
+          CheckDownload('d1xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', 'D1');
+        end
+        if IsComponentSelected('d2xa\retro2') = true then
+        begin
+            CheckDownload('d2x-rebirth-retro.exe', 'http://descentchampions.org/retromod/d2x-rebirth-retro.exe', 'D2');
+        end;
+        if IsComponentSelected('d2xa\mission2\rangeranarchy2') = true then
+        begin
+          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://dl.dropbox.com/s/qndz7o8b0qvmgmi/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
+        end;
+        if IsComponentSelected('d2xa\mission2\rangercoop2') = true then
+        begin
+          CheckDownload('D2 Coop Ranger Pack.zip', 'http://dl.dropbox.com/s/idfaamsfmpdvylp/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
+        end;
+        if IsComponentSelected('d2xa\mission2\dcl2') = true then
+        begin
+          CheckDownload('dcl_d2_missions.zip', 'http://descentchampions.org/missions/dcl_d2_missions.zip', 'tmp');
+        end;
+        if IsComponentSelected('d2xa\addon2\sc552') = true then
+        begin
+          CheckDownload('d2xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', 'D2');
+        end
+        if IsComponentSelected('d2xa\addon2\opl32') = true then
+        begin
+          CheckDownload('d2xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', 'D2');
+        end
+        if IsComponentSelected('d2xa\addon2\german2') = true then
+        begin
+          CheckDownload('d2xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', 'D2');
+        end;
+      finally
+        DownloadFileCheck.Hide; // Make sure to hide the page when we're done
+      end;
   result := true;
   end
   else
@@ -979,6 +1034,60 @@ begin
     begin
         MsgBox('Your Descent 2 .hog file is an unrecognized size, and may be corrupted. Installation will continue, but if you experience problems, this may be the reason.', mbInformation, MB_OK);
     end;
+end;
+
+// Check the files to download before actually downloading them.
+procedure CheckDownload(filename: string; url: string; location: string);
+var size:cardinal; // Size of file
+  wedone:boolean; // Check whether we're still retrying
+  exitnow:boolean; // Placeholder for the message box result
+  datmsg:integer; // The message box informing the user there was a problem
+begin
+  checkruns := checkruns + 1; // Increment for each downloadable component
+  wedone := false;
+  DownloadFileCheck.SetProgress(checkruns,numcomponents);
+  DownloadFileCheck.SetText('Getting information for...', filename);
+  // Make sure we put the downloaded files in the right place
+  if location = 'D1' then
+    location := expandconstant('{app}\D1X-Rebirth\');
+  if location = 'D2' then
+    location := expandconstant('{app}\D2X-Rebirth\');
+  if location = 'tmp' then
+    location := expandconstant('{tmp}\');
+  if itd_GetFileSize(url, size) = true then // If we can see the file
+  begin
+    itd_addfilesize(url, location + filename, size); // Add it to the list of downloads
+  end
+  else
+  begin
+    while (wedone = false) do
+    begin
+      datmsg := MsgBox('The information for the file ''' + filename + ''' could not be retrieved. Click Ignore to skip this file, Retry to attempt to get the information again, or Abort to cancel setup.', mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3);
+      if (datmsg = IDABORT) then //if they click abort
+      begin
+          exitnow := ExitSetupMsgBox(); //exit setup
+          if exitnow = true then
+          begin
+              CancelWithoutPrompt := true;
+              wedone := true;
+              DelTree(expandconstant('{tmp}'), true, true, true);
+              ExitProcess(5);
+          end;
+      end;
+      if (datmsg = IDRETRY) then //if they click retry
+      begin
+          if itd_GetFileSize(url, size) = true then
+          begin
+            wedone := true;
+          end;
+      end;
+      if (datmsg = IDIGNORE) then
+      begin
+          wedone := true;
+      end;
+    end;
+  end;
+  wedone := false;
 end;
 
 // Decide under what curcumstances, certain pages should be skipped.
