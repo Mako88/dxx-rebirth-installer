@@ -433,6 +433,8 @@ begin
  {If the download of the new installer fails, we still want to give the
   user the option of continuing with the original installation}
  itd_setoption('UI_AllowContinue','1');
+ itd_setoption('Debug_Messages','1');
+ itd_setoption('ITD_NoCache','1');
 
 
   // Ask if they want to install just Rebirth, or copy the data files as well.
@@ -686,11 +688,11 @@ begin
         end;
         if IsComponentSelected('d1xa\mission1\rangeranarchy1') = true then
         begin
-          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D1%20Anarchy%20Ranger%20Pack.zip?dl=1', 'tmp');
+          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D1%20Anarchy%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d1xa\mission1\rangercoop1') = true then
         begin
-          CheckDownload('D1 Coop Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D1 Coop Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d1xa\mission1\dcl1') = true then
         begin
@@ -699,26 +701,26 @@ begin
         if IsComponentSelected('d1xa\addon1\sc551') = true then
         begin
           CheckDownload('d1xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', 'D1');
-        end
+        end;
         if IsComponentSelected('d1xa\addon1\opl31') = true then
         begin
           CheckDownload('d1xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', 'D1');
-        end
+        end;
         if IsComponentSelected('d1xa\addon1\german1') = true then
         begin
           CheckDownload('d1xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', 'D1');
-        end
+        end;
         if IsComponentSelected('d2xa\retro2') = true then
         begin
             CheckDownload('d2x-rebirth-retro.exe', 'http://descentchampions.org/retromod/d2x-rebirth-retro.exe', 'D2');
         end;
         if IsComponentSelected('d2xa\mission2\rangeranarchy2') = true then
         begin
-          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d2xa\mission2\rangercoop2') = true then
         begin
-          CheckDownload('D2 Coop Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D2 Coop Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d2xa\mission2\dcl2') = true then
         begin
@@ -727,11 +729,11 @@ begin
         if IsComponentSelected('d2xa\addon2\sc552') = true then
         begin
           CheckDownload('d2xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', 'D2');
-        end
+        end;
         if IsComponentSelected('d2xa\addon2\opl32') = true then
         begin
           CheckDownload('d2xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', 'D2');
-        end
+        end;
         if IsComponentSelected('d2xa\addon2\german2') = true then
         begin
           CheckDownload('d2xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', 'D2');
