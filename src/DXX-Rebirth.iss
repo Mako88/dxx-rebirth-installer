@@ -1,4 +1,4 @@
-; This is revision 19.
+; This is revision 20.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -531,7 +531,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.19'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.20'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -686,11 +686,11 @@ begin
         end;
         if IsComponentSelected('d1xa\mission1\rangeranarchy1') = true then
         begin
-          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://dl.dropbox.com/s/y528r1klv40jyzf/D1%20Anarchy%20Ranger%20Pack.zip?dl=1', 'tmp');
+          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D1%20Anarchy%20Ranger%20Pack.zip?dl=1', 'tmp');
         end;
         if IsComponentSelected('d1xa\mission1\rangercoop1') = true then
         begin
-          CheckDownload('D1 Coop Ranger Pack.zip', 'http://dl.dropbox.com/s/31jaajymgstnl0i/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D1 Coop Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d1xa\mission1\dcl1') = true then
         begin
@@ -714,11 +714,11 @@ begin
         end;
         if IsComponentSelected('d2xa\mission2\rangeranarchy2') = true then
         begin
-          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://dl.dropbox.com/s/qndz7o8b0qvmgmi/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d2xa\mission2\rangercoop2') = true then
         begin
-          CheckDownload('D2 Coop Ranger Pack.zip', 'http://dl.dropbox.com/s/idfaamsfmpdvylp/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
+          CheckDownload('D2 Coop Ranger Pack.zip', 'http://www.descentrangers.com/assets/rangermissionpacks/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
         end;
         if IsComponentSelected('d2xa\mission2\dcl2') = true then
         begin
