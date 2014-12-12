@@ -1,4 +1,4 @@
-; This is revision 21.
+; This is revision 23.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -26,7 +26,7 @@ AppVersion={#MyAppVersion}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName=C:\Games
+DefaultDirName={sd}\Games
 DefaultGroupName={#MyAppName}
 OutputBaseFilename=DXX-Rebirth_Setup
 Compression=lzma
@@ -35,10 +35,11 @@ VersionInfoVersion=0.58.1
 VersionInfoTextVersion=0.58.1
 DirExistsWarning=no
 AppendDefaultDirName=no
+UninstallFilesDir={app}\DXX-Rebirth
+
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
@@ -76,165 +77,169 @@ Name: "d2xa\addon2\opl32"; Description: "OPL3 Soundtrack for D2X"; Flags: exclus
 Name: "d2xa\addon2\german2"; Description: "German Briefings for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 11674
 
 [Files]
+;Old installation files
+Source: "{app}\D1X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
+Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
 ;D1X Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D1X-Rebirth"; Excludes: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog,C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Excludes: "\Missions,\Players,\Demos,d1x-rebirth-retro.ico,\descent.hog,\descent.pig"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Only copy over directories if they don't already exist
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico"; DestDir: "{app}\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
 ;D1 Demo Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
-Source: "{code:Descent}\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Data\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Data\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Descent\descent.hog"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Descent\descent.pig"; DestDir: "{app}\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; AfterInstall: FileCheck1
+Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Data\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Data\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Descent\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Descent\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; AfterInstall: FileCheck1
 ;D1 Missions
-Source: "{code:Descent}\*.hog"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.msn"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.rdl"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Missions\*"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Levels\*"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Newlevel\*"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.msn"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.rdl"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Missions\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Levels\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Newlevel\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;This makes sure that if we copied descent.hog to Missions above, we delete it.
-Source: "{code:Descent}\descent.hog"; DestDir: "{app}\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist deleteafterinstall 
+Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist deleteafterinstall 
 ;D1 Players
-Source: "{code:Descent}\*.eff"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.plr"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.plx"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.ngp"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.sg*"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\*.mg*"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.eff"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.plr"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.plx"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.ngp"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.sg*"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Players\*.mg*"; DestDir: "{app}\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.eff"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.plr"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.plx"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.ngp"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.sg*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.mg*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.eff"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.plr"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.plx"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.ngp"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.sg*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Players\*.mg*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Players"; Components: "d1x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D1 Demos
-Source: "{code:Descent}\*.dem"; DestDir: "{app}\D1X-Rebirth\Demos"; Components: "d1x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\D1X-Rebirth\Demos"; Components: "d1x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Demos"; Components: "d1x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Demos"; Components: "d1x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
 
 
 ;D2X Files
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\D2X-Rebirth"; Excludes: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog,C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Excludes: "\Missions,\Players,\Demos,\Screenshots,\d2x-rebirth-retro.ico,\d2demo.ham,\d2demo.hog,\d2demo.pig"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
+;Only copy over directories if they don't exist
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico"; DestDir: "{app}\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
 ;D2 Demo Files
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 ;D2 Main Files
-Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\d2demo.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.s11"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.s22"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\alien1.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\alien2.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\fire.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\groupa.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\ice.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\water.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\intro-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\intro-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\other-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\other-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\robots-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\robots-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\intro-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\intro-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\other-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\other-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\robots-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\robots-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\d2demo.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.s11"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.s22"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\alien1.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\alien2.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\fire.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\groupa.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\ice.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\water.pig"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\intro-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\intro-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 SOW File
 Source: "{code:DescentTwo}\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist
 Source: "{code:DescentTwo}\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist; AfterInstall: FileCheck2
 ;D2 Missions
-Source: "{code:DescentTwo}\*.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Missions\*"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Levels\*"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Missions\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Levels\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;Make sure if we copied descent2.hog in the line above, we delete it.
-Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist deleteafterinstall
+Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist deleteafterinstall
 ;D2 Players
-Source: "{code:DescentTwo}\*.eff"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.plr"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.plx"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.ngp"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.sg*"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\*.mg*"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.eff"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.plr"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.plx"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.ngp"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.sg*"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Players\*.mg*"; DestDir: "{app}\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.eff"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.plr"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.plx"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.ngp"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.sg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.mg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.eff"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.plr"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.plx"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.ngp"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: PlayerFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.sg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Players\*.mg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Players"; Components: "d2x"; Check: SaveGames; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 Demos
-Source: "{code:DescentTwo}\*.dem"; DestDir: "{app}\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Demos\*.dem"; DestDir: "{app}\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;Vertigo
-Source: "{code:Vertigo}\d2x-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; BeforeInstall: CheckVertigo
-Source: "{code:Vertigo}\d2x-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\hoard.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\hoard.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.hog"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\hoard.ham"; DestDir: "{app}\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; BeforeInstall: CheckVertigo
+Source: "{code:Vertigo}\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 ;7-zip for SOW
@@ -242,43 +247,43 @@ Source: "C:\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
 
 
 [Icons]
-Name: "{group}\{#MyAppName1}"; Filename: "{app}\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x";
-Name: "{group}\{#MyAppName2}"; Filename: "{app}\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x";
-Name: "{group}\{#MyAppName3}"; Filename: "{app}\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro1";
-Name: "{group}\{#MyAppName4}"; Filename: "{app}\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro2";
+Name: "{group}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x";
+Name: "{group}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x";
+Name: "{group}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro1";
+Name: "{group}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro2";
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}";
-Name: "{userdesktop}\{#MyAppName1}"; Filename: "{app}\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName2}"; Filename: "{app}\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName3}"; Filename: "{app}\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro1"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro2"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro1"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro2"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\D1X-Rebirth\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName1, "&", "&&")}}"; Components: "d1x"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\D2X-Rebirth\{#MyAppExeName2}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName2, "&", "&&")}}"; Components: "d2x"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\D1X-Rebirth\{#MyAppExeName3}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName3, "&", "&&")}}"; Components: "d1xa\retro1"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\D2X-Rebirth\{#MyAppExeName4}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName4, "&", "&&")}}"; Components: "d2xa\retro2"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName1, "&", "&&")}}"; Components: "d1x"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName2, "&", "&&")}}"; Components: "d2x"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName3, "&", "&&")}}"; Components: "d1xa\retro1"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName4, "&", "&&")}}"; Components: "d2xa\retro2"; Flags: nowait postinstall skipifsilent unchecked
 ;Extract .sow file
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien1.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien2.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.ham"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.s11"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.s22"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""fire.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""groupa.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""ice.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""water.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract; AfterInstall: FileCheck2
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien1.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien2.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.ham"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.s11"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""descent2.s22"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""fire.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""groupa.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""ice.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""water.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract; AfterInstall: FileCheck2
 ;Extract downloaded mission packs
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D1X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy1}"; Components: "d1xa\mission1\rangeranarchy1"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D1X-Rebirth\Missions"" ""{tmp}\rangercoop_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop1}"; Components: "d1xa\mission1\rangercoop1"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D1X-Rebirth\Missions"" ""{tmp}\dcl_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl1}"; Components: "d1xa\mission1\dcl1"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy2}"; Components: "d2xa\mission2\rangeranarchy2"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\rangercoop_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop2}"; Components: "d2xa\mission2\rangercoop2"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\D2X-Rebirth\Missions"" ""{tmp}\dcl_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl2}"; Components: "d2xa\mission2\dcl2"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy1}"; Components: "d1xa\mission1\rangeranarchy1"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\rangercoop_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop1}"; Components: "d1xa\mission1\rangercoop1"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\dcl_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl1}"; Components: "d1xa\mission1\dcl1"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy2}"; Components: "d2xa\mission2\rangeranarchy2"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\rangercoop_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop2}"; Components: "d2xa\mission2\rangercoop2"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\dcl_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl2}"; Components: "d2xa\mission2\dcl2"
 
 [Messages]
 ConfirmUninstall=Are you sure you want to remove %1?
@@ -317,6 +322,10 @@ var
   componentlist: TStringList;
   comp: string;
   checkruns: integer;
+  RebirthFolderExisted: boolean;
+  D1FolderExisted: boolean;
+  D2FolderExisted: boolean;
+  msgresult : integer;
 
 procedure CheckDownload(filename: string; url: string; location: string); forward;
 
@@ -412,6 +421,9 @@ begin
  ITD_LoadStrings(ExpandConstant('{pf}\Sherlock Software\InnoTools\Downloader\languages\itd_en.ini'));
 
  checkruns := 0;
+ RebirthFolderExisted := false;
+ D1FolderExisted := false;
+ D2FolderExisted := false;
 
  //Where the new installer should be saved to, can be anywhere.
  NewInstallerPath:=ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
@@ -442,7 +454,7 @@ begin
     'Install Descent Data', '',
     'Select what files from the old Descent installation should be copied over. (If updating Rebirth, leave everthing unchecked).',
     False, False);
-  SampleDataPage.Add('Required Game Files');
+  SampleDataPage.Add('Required Game Files (Must be checked if installing Vertigo)');
   SampleDataPage.Add('Missions');
   SampleDataPage.Add('Pilot Files');
   SampleDataPage.Add('Savegames');
@@ -464,8 +476,8 @@ begin
 
   // The page that is displayed when they're installing both D1X and D2X
   DataDirPage := CreateInputDirPage(WhichInstallPage.ID,
-  'Descent Data Directory', '',
-  'Please select the location where the original Descent files are installed.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
+  'Descent Data Directories', '',
+  'Please select the locations where the original Descent files are installed.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
   False, '');
   DataDirPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
   DataDirPage.Add('Descent 2 location.');
@@ -482,7 +494,7 @@ begin
 
   // Page that's shown when just D2X is being installed.
   DataDirPage2 := CreateInputDirPage(WhichInstallPage.ID,
-  'Descent Data Directory', '',
+  'Descent 2 Data Directory', '',
   'Please select the location where the original Descent 2 files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
   False, '');
   DataDirPage2.Add(''); // Select a location for data.
@@ -533,7 +545,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.21'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.23'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -673,8 +685,27 @@ begin
   end
   if CurPageID = wpReady then
   begin
-     ForceDirectories(ExpandConstant('{app}\D1X-Rebirth'));
-     ForceDirectories(ExpandConstant('{app}\D2X-Rebirth'));
+      if DirExists(ExpandConstant('{app}\DXX-Rebirth')) then
+      begin
+        RebirthFolderExisted := true;
+      end;
+      if DirExists(ExpandConstant('{app}\D1X-Rebirth')) then
+      begin
+        D1FolderExisted := true;
+      end;
+      if DirExists(ExpandConstant('{app}\D2X-Rebirth')) then
+      begin
+        D2FolderExisted := true;
+      end;
+      if IsComponentSelected('d1x') = true then
+      begin
+        ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth'));
+      end;
+      if IsComponentSelected('d2x') = true then
+      begin
+        ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth'));
+      end;
+
     //Check all the subcomponents, and add the ones that are selected.
       if yes = false then //if we're not updating, then the download page needs to be after the install screen
       begin
@@ -741,10 +772,31 @@ begin
       finally
         DownloadFileCheck.Hide; // Make sure to hide the page when we're done
       end;
+      if D1FolderExisted or D2FolderExisted then
+      begin
+         MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will now move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
+      end;
   result := true;
   end
   else
     result := true;   // And keep going if we're on any other page as well.
+end;
+
+//Use this to delete the original install directory if needed.
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssPostInstall then begin
+    if D1FolderExisted then begin 
+      DelTree(ExpandConstant('{app}\D1X-Rebirth'), true, true, true);
+    end;
+    if D2FolderExisted then begin 
+      DelTree(ExpandConstant('{app}\D2X-Rebirth'), true, true, true);
+    end;
+    if D1FolderExisted or D2FolderExisted then begin
+      DeleteFile(ExpandConstant('{app}\unins000.exe'));
+      DeleteFile(ExpandConstant('{app}\unins000.dat'));
+    end;
+  end;
 end;
 
 // These functions are used in the [Files] section, to check whether or not to copy files from somewhere else on the computer. 
@@ -776,7 +828,7 @@ end;
 // These two functions are used to tell the [Files] section where to look for data on the hard drive.
 function DescentTwo(Param: String): String;
 begin
-if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefor gives an error.
+if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
   begin
     if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then  // If we're installing both...
     begin
@@ -845,6 +897,23 @@ begin
   end
   else
     result := false;
+end;
+
+//Procedure for deleting the folders auto-created at start of install if the install is cancelled.
+procedure DeleteFolders();
+begin
+    if D1FolderExisted = false then
+    begin
+      DelTree(expandconstant('{app}\DXX-Rebirth\D1X-Rebirth'), true, true, true);
+    end;
+    if D2FolderExisted = false then
+    begin
+      DelTree(expandconstant('{app}\DXX-Rebirth\D2X-Rebirth'), true, true, true);
+    end;
+    if RebirthFolderExisted = false then
+    begin
+      DelTree(expandconstant('{app}\DXX-Rebirth'), true, true, true);
+    end;
 end;
 
 //Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
@@ -939,7 +1008,9 @@ vertigo1 := Vertigo('');
                         begin
                             CancelWithoutPrompt := true;
                             cdin := true;
-                            WizardForm.Close;
+                            DelTree(expandconstant('{tmp}'), true, true, true);
+                            DeleteFolders();
+                            ExitProcess(5);
                         end;
                     end;
                     if (vmsg = IDRETRY) then //if they click retry
@@ -953,7 +1024,9 @@ vertigo1 := Vertigo('');
                             begin
                                 CancelWithoutPrompt := true;
                                 cdin := true;
-                                WizardForm.Close;
+                                DelTree(expandconstant('{tmp}'), true, true, true);
+                                DeleteFolders();
+                                ExitProcess(5);
                             end;
                         end;
                     end;
@@ -977,9 +1050,9 @@ var
 begin
     size := -1; //set it to something impossible, in case it doesn't get set for some reason.
     //Check file size of the .hog file we're using
-    if (FileExists(ExpandConstant('{app}') + '\D1X-Rebirth\Data\descent.hog')) then
+    if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D1X-Rebirth\Data\descent.hog')) then
     begin
-        FileSize(ExpandConstant('{app}') + '\D1X-Rebirth\Data\descent.hog', size);
+        FileSize(ExpandConstant('{app}') + '\DXX-Rebirth\D1X-Rebirth\Data\descent.hog', size);
     end;
     //If it's not recognized, let the user know.
     if not ((size = -1) or (size = 6856701) or (size = 6856183) or (size = 7261423) or (size = 7456179) or (size = 4492107) or (size = 4494862) or (size = 2339773) or (size = 2365676) or (size = 3370339)) then
@@ -997,13 +1070,13 @@ begin
     //Check file size of the .hog file we're using if we're not extracting the .sow
     if not SowExtract() then
     begin
-      if (FileExists(ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog')) then
+      if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog')) then
       begin
-        FileSize(ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog', size);
+        FileSize(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog', size);
       end;
-      if (FileExists(ExpandConstant('{app}') + '\D2X-Rebirth\Data\d2demo.hog')) then
+      if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\d2demo.hog')) then
       begin
-        FileSize(ExpandConstant('{app}') + '\D2X-Rebirth\Data\d2demo.hog', size);
+        FileSize(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\d2demo.hog', size);
       end;
     end
     else //but if we are extracting the .sow
@@ -1015,7 +1088,7 @@ begin
         end
         else //otherwise it's the second time through
         begin
-            if (FileExists(ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog')) then //If we copied over the data file
+            if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog')) then //If we copied over the data file
             begin
               if (FileExists(Vertigo('') + '\descent2.hog')) and (IsComponentSelected('d2x\vertigo') = true) then //If we have the vertigo file, and we're installing it
               begin //then install it
@@ -1051,9 +1124,9 @@ begin
   DownloadFileCheck.SetText('Getting information for...', filename);
   // Make sure we put the downloaded files in the right place
   if location = 'D1' then
-    location := expandconstant('{app}\D1X-Rebirth\');
+    location := expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\');
   if location = 'D2' then
-    location := expandconstant('{app}\D2X-Rebirth\');
+    location := expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\');
   if location = 'tmp' then
     location := expandconstant('{tmp}\');
   if itd_GetFileSize(url, size) = true then // If we can see the file
@@ -1073,6 +1146,7 @@ begin
               CancelWithoutPrompt := true;
               wedone := true;
               DelTree(expandconstant('{tmp}'), true, true, true);
+              DeleteFolders();
               ExitProcess(5);
           end;
       end;
@@ -1174,24 +1248,43 @@ begin
 end;
 
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
+var exitnow:boolean;
 begin
   if CurPageID=wpInstalling then //If we're on the install page
-    Confirm := not CancelWithoutPrompt; //When the user hits cancel, make sure we only give them a confirmation if CancelWithoutPrompt is false.
+    begin
+     Cancel := false;
+     Confirm := false; //Default to not showing a prompt.
+      if CancelWithoutPrompt = false then //When the user hits cancel, make sure we only give them a confirmation if CancelWithoutPrompt is false.
+      begin
+      exitnow := ExitSetupMsgBox(); //exit setup
+          if exitnow = true then
+           begin
+              CancelWithoutPrompt := true;
+              DelTree(expandconstant('{tmp}'), true, true, true);
+              DeleteFolders();
+              ExitProcess(5);
+          end; 
+      end;
+  end;
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
-var
-mRes : integer;
 begin
   case CurUninstallStep of
     usUninstall:
       begin
-        mRes := MsgBox('Do you want to remove the entire installation folder(s)? (This will remove your original Descent files, as well as any custom files, save games, missions, etc.)', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)
-        if mRes = IDYES then
+        msgresult := MsgBox('Do you want to remove the entire installation folder(s)? (This will remove your original Descent files, as well as any custom files, save games, missions, etc.)', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON2);
+        if msgresult = IDCANCEL then
+        begin
+          Abort();
+        end;
+      end;
+    usPostUninstall:
+      begin
+        if (msgresult = IDYES) then
           begin
-             DelTree(expandconstant('{app}\D1X-Rebirth'), True, True, True);
-             DelTree(expandconstant('{app}\D2X-Rebirth'), True, True, True);
-          End
+             DelTree(expandconstant('{app}\DXX-Rebirth'), True, True, True);
+          end;
       end;
   end;
 end;
