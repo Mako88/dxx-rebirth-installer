@@ -1,4 +1,4 @@
-; This is revision 23.
+; This is revision 24.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -82,17 +82,17 @@ Source: "{app}\D1X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Compone
 Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
 ;D1X Files
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Excludes: "\Missions,\Players,\Demos,d1x-rebirth-retro.ico,\descent.hog,\descent.pig"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
-;Only copy over directories if they don't already exist
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Excludes: "include"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
+;Patch Files
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\datapt.bat"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\datapt.exe"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
 ;D1 Demo Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
 Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -129,18 +129,13 @@ Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\De
 
 ;D2X Files
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Excludes: "\Missions,\Players,\Demos,\Screenshots,\d2x-rebirth-retro.ico,\d2demo.ham,\d2demo.hog,\d2demo.pig"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
-;Only copy over directories if they don't exist
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Missions"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Players"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Demos"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall 
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\Screenshots"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Excludes: "include"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
 ;D2 Demo Files
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 ;D2 Main Files
 Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -297,6 +292,7 @@ RangerAnarchy1=Extracting missions from the Rangers Anarchy D1 Mission Pack...
 RangerAnarchy2=Extracting missions from the Rangers Anarchy D2 Mission Pack...
 RangerCoop1=Extracting missions from the Rangers Co-op D1 Mission Pack...
 RangerCoop2=Extracting missions from the Rangers Co-op D2 Mission Pack...
+
 
 [Code]
 { This demo performs two downloads, one without ITD's GUI, and one with. It checks a website to
@@ -545,7 +541,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.23'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.24'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -705,6 +701,10 @@ begin
       begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth'));
       end;
+      if D1FolderExisted or D2FolderExisted then
+      begin
+         MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
+      end;
 
     //Check all the subcomponents, and add the ones that are selected.
       if yes = false then //if we're not updating, then the download page needs to be after the install screen
@@ -772,10 +772,6 @@ begin
       finally
         DownloadFileCheck.Hide; // Make sure to hide the page when we're done
       end;
-      if D1FolderExisted or D2FolderExisted then
-      begin
-         MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will now move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
-      end;
   result := true;
   end
   else
@@ -828,55 +824,55 @@ end;
 // These two functions are used to tell the [Files] section where to look for data on the hard drive.
 function DescentTwo(Param: String): String;
 begin
-if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
-  begin
-    if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then  // If we're installing both...
+  if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
     begin
-      result := DataDirPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
-    end;
-    if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then  // If just D2
-    begin
-      result := DataDirPage2.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
-    end;
-    if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then // If just D1
-    begin
-      result := '';  // It doesn't matter, since we won't be installing D2.
-    end;
-  end
-else 
- result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
+      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then  // If we're installing both...
+      begin
+        result := DataDirPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
+      end;
+      if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then  // If just D2
+      begin
+        result := DataDirPage2.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
+      end;
+      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then // If just D1
+      begin
+        result := '';  // It doesn't matter, since we won't be installing D2.
+      end;
+    end
+  else 
+   result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
 
-if (folder2 <> '') then
-begin
-  result := folder2;
-end;
+  if (folder2 <> '') then
+  begin
+    result := folder2;
+  end;
 end;
 
 // Same type of stuff for all this...
 function Descent(Param: String): String;
 begin
-if Assigned(DataDirPage) then
-  begin
-    if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then
+  if Assigned(DataDirPage) then
     begin
-      result := DataDirPage.Values[0];   //...except here...
-    end;
-    if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then
-    begin
-      result := '';
-    end;
-    if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then
-    begin
-      result := DataDirPage1.Values[0];  //...and here, since D1 is the first option in both cases.
-    end;
-  end
-else 
- result := '';
+      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then
+      begin
+        result := DataDirPage.Values[0];   //...except here...
+      end;
+      if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then
+      begin
+        result := '';
+      end;
+      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then
+      begin
+        result := DataDirPage1.Values[0];  //...and here, since D1 is the first option in both cases.
+      end;
+    end
+  else 
+   result := '';
 
-if (folder1 <> '') then
-begin
-  result := folder1;
-end;
+  if (folder1 <> '') then
+  begin
+    result := folder1;
+  end;
 end;
 
 function Vertigo(Param: String): String;
@@ -897,6 +893,24 @@ begin
   end
   else
     result := false;
+end;
+
+procedure PatchData();
+var ResultCode: integer;
+begin
+  FileCopy(ExpandConstant('{tmp}\datapt.bat'),ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\datapt.bat'),false);
+  FileCopy(ExpandConstant('{tmp}\datapt.exe'),ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\datapt.exe'),false);
+  FileCopy(ExpandConstant('{tmp}\descent.hog.diff'),ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\descent.hog.diff'),false);
+  FileCopy(ExpandConstant('{tmp}\descent.pig.diff'),ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\descent.pig.diff'),false);
+  if Exec(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\datapt.bat'), '', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then begin
+    MsgBox('Patch applied successfully.', mbInformation, MB_OK);
+  end
+  else
+    MsgBox('Patch failed. Please try applying the patch manually (it can be downloaded from the DXX-Rebirth website).', mbInformation, MB_OK);
+  DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\datapt.bat'));
+  DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\datapt.exe'));
+  DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\descent.hog.diff'));
+  DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\descent.pig.diff'));
 end;
 
 //Procedure for deleting the folders auto-created at start of install if the install is cancelled.
@@ -1047,6 +1061,7 @@ end;
 procedure FileCheck1();
 var
   size: integer;
+  patch: integer;
 begin
     size := -1; //set it to something impossible, in case it doesn't get set for some reason.
     //Check file size of the .hog file we're using
@@ -1058,6 +1073,13 @@ begin
     if not ((size = -1) or (size = 6856701) or (size = 6856183) or (size = 7261423) or (size = 7456179) or (size = 4492107) or (size = 4494862) or (size = 2339773) or (size = 2365676) or (size = 3370339)) then
     begin
         MsgBox('Your Descent .hog file is an unrecognized size, and may be corrupted. Installation will continue, but if you experience problems, this may be the reason.', mbInformation, MB_OK);
+    end;
+    //If it's v1.0 ask if they want to patch it to v1.4a
+    if ((size = 7261423) or (size = 4494862)) then begin
+        patch := MsgBox('It looks like you are using v1.0 data files. It is recommended that you use v1.4a. Would you like to patch the data files now?', mbConfirmation, MB_YESNO);
+        if patch = IDYES then begin
+          PatchData();
+        end;
     end;
 end;
 
