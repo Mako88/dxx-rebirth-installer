@@ -23,7 +23,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 7. Delete the DELETE_ME files in the folders that already existed
 
-8. Add -use_players_dir to d*x.ini file.
+8. Add -use_players_dir to d*x.ini file, and make sure all non-arguments are commented out.
 
 9. (If changing Rebirth version) Replace all instances of the old version number with the new version number in the .iss file.
 
