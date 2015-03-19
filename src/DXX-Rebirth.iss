@@ -92,7 +92,7 @@ Source: "C:\DXX-Rebirth\include\D1-Patch\descent.pig.diff"; DestDir: "{tmp}"; Co
 Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
 ;D1 Demo Files
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\include\D1-Demodescent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D1-Demo\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
 Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -238,7 +238,7 @@ Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 ;7-zip for SOW
-Source: "C:\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
+Source: "C:\DXX-Rebirth\include\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
 
 
 [Icons]
