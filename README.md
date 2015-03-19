@@ -27,9 +27,9 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 9. Add d*x-rebirth-retro.ico files from the include folder to include folders in the respective Rebirth folders in C:\DXX-Rebirth
 
-10. Add Shareware files from the include folder to include folders in the respective Rebirth folders in C:\DXX-Rebirth
+10. Add Shareware files from the include folder to include folders in the respective Rebirth folders in C:\DXX-Rebirth (not in a subfolder)
 
-11. Add patch files from the include folder to an include folder in the D1 Rebirth folder in C:\DXX-Rebirth
+11. Add patch files from the include folder to an include folder in the D1 Rebirth folder in C:\DXX-Rebirth (not in a subfolder)
 
 12. (If changing Rebirth version) Replace all instances of the old version number with the new version number in the .iss file.
 
