@@ -29,6 +29,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={sd}\Games
 DefaultGroupName={#MyAppName}
 OutputBaseFilename=DXX-Rebirth_Setup
+OutputDir=C:\DXX-Rebirth
 Compression=lzma
 SolidCompression=yes
 VersionInfoVersion=0.58.1
