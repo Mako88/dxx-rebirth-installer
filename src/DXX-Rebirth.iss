@@ -1,4 +1,4 @@
-; This is revision 24.
+; This is revision 25.
 
 
 #include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
@@ -477,8 +477,8 @@ begin
   False, '');
   DataDirPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
   DataDirPage.Add('Descent 2 location.');
-  DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent');   //The default values are the GOG install paths.
-  DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent 2'); //The default values are the GOG install paths.
+  DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent');   //The default values are the GOG install paths.
+  DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default values are the GOG install paths.
 
   // The page that is displayed when just D1X is being installed.
   DataDirPage1 := CreateInputDirPage(WhichInstallPage.ID,
@@ -486,7 +486,7 @@ begin
   'Please select the location where the original Descent files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
   False, '');
   DataDirPage1.Add(''); // Option for selecting data location.
-  DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent'); //The default value is the GOG install path.
+  DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); //The default value is the GOG install path.
 
   // Page that's shown when just D2X is being installed.
   DataDirPage2 := CreateInputDirPage(WhichInstallPage.ID,
@@ -494,7 +494,7 @@ begin
   'Please select the location where the original Descent 2 files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
   False, '');
   DataDirPage2.Add(''); // Select a location for data.
-  DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent 2'); //The default value is the GOG install path.
+  DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default value is the GOG install path.
 
   CancelWithoutPrompt := false; //Initially we always cancel with a prompt.
   folder1 := ''; //Make sure all directories are void to start.
@@ -541,7 +541,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.24'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.25'; //Add the installer revision to the version
 
         if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
           { Now read the version from that file and see if it is newer.
@@ -622,10 +622,10 @@ begin
       end;
       if (WhichInstallPage.Values[1] = true) then
       begin
-          DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent');   //The default values are the GOG install paths.
-          DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent 2'); 
-          DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent'); 
-          DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent and Descent 2\Descent 2'); 
+          DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent');   //The default values are the GOG install paths.
+          DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent 2'); 
+          DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); 
+          DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); 
 
       end;
       if (WhichInstallPage.Values[2] = true) then
