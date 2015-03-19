@@ -82,17 +82,17 @@ Source: "{app}\D1X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Compone
 Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
 ;D1X Files
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Excludes: "include"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Patch Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\datapt.bat"; DestDir: "{tmp}"; Components: d1x;
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\datapt.exe"; DestDir: "{tmp}"; Components: d1x;
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.bat"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.exe"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\include\D1-Patch\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
+Source: "C:\DXX-Rebirth\include\D1-Patch\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
 ;D1 Demo Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\include\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D1-Demo\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D1-Demodescent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
 Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -129,13 +129,13 @@ Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\De
 
 ;D2X Files
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Excludes: "include"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
 ;D2 Demo Files
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\include\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
+Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 ;D2 Main Files
 Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
