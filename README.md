@@ -13,7 +13,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 4. (If changing installer revision) Search for "//Add the installer revision to the version" and change the revision number
 
-5. Copy the included 7zip folder to C:\7zip
+5. Copy the include folder to C:\DXX-Rebirth
 
 6. Make sure the following directories exist in each rebirth folder:
     * Players
@@ -25,15 +25,9 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 8. Add -use_players_dir to d*x.ini file.
 
-9. Add d*x-rebirth-retro.ico files from the include folder to include folders in the respective Rebirth folders in C:\DXX-Rebirth
+9. (If changing Rebirth version) Replace all instances of the old version number with the new version number in the .iss file.
 
-10. Add Shareware files from the include folder to include folders in the respective Rebirth folders in C:\DXX-Rebirth (not in a subfolder)
-
-11. Add patch files from the include folder to an include folder in the D1 Rebirth folder in C:\DXX-Rebirth (not in a subfolder)
-
-12. (If changing Rebirth version) Replace all instances of the old version number with the new version number in the .iss file.
-
-13. Change the version number in the version.txt file on the server.
+10. Change the version number in the version.txt file on the server.
 
 ###Note:
 If you compile yourself, the version checker will check against the official server. You can change this behavior in the .iss file where it says
