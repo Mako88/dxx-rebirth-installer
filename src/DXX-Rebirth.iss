@@ -1,7 +1,6 @@
-; This is revision 25.
+; This is revision 26.
 
-
-#include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
+#include <idp.iss>
 
 #define MyAppName "DXX-Rebirth"
 #define MyAppName1 "D1X-Rebirth"
@@ -296,10 +295,6 @@ RangerCoop2=Extracting missions from the Rangers Co-op D2 Mission Pack...
 
 
 [Code]
-{ This demo performs two downloads, one without ITD's GUI, and one with. It checks a website to
-  find out what the most recent version of the installer is, and offers to download the new installer
-  for the user.
-}
 // Global vars
 var
   SampleDataPage: TInputOptionWizardPage;
@@ -307,8 +302,6 @@ var
   DataDirPage1: TInputDirWizardPage;
   DataDirPage2: TInputDirWizardPage;
   WhichInstallPage: TInputOptionWizardPage;
-  downloadPage: TWizardPage;
-  DownloadFileCheck: TOutputProgressWizardPage;
   update: boolean;
   CancelWithoutPrompt: boolean;
   folder1: string;
@@ -323,42 +316,24 @@ var
   D1FolderExisted: boolean;
   D2FolderExisted: boolean;
   msgresult : integer;
+  progress:TOutputProgressWizardPage;
+  NewInstallerPath:string;
 
-procedure CheckDownload(filename: string; url: string; location: string); forward;
 
 procedure ExitProcess(exitCode:integer);
-  external 'ExitProcess@kernel32.dll stdcall';
+  external 'ExitProcess@kernel32.dll stdcall';   
 
-var progress:TOutputProgressWizardPage;
-
-var
- NewInstallerPath:string;  
-
-procedure DownloadFinished(downloadPage:TWizardPage);
-var ErrorCode:integer;
- (* text:string; *)                                                                             
+procedure DownloadFinished();
+var ErrorCode:integer;                                                                           
 begin
- (*
-	 Tell the user about the new installer. The message is pretty ugly if
-	 NewInstallerPath is left at the default (The {tmp} directory)
-
-	 text:=ITD_GetString(ITDS_Update_WillLaunchWithPath);
-
-	 StringChangeEx(text, '%1', NewInstallerPath, true);
-
-	 MsgBox(text, mbInformation, MB_OK);
- *)
-
-if update = true then begin
-MsgBox(ITD_GetString(ITDS_Update_WillLaunch), mbInformation, MB_OK);
-end
-    
-
- if ShellExec('open', NewInstallerPath, '/updated',
-   ExtractFilePath(NewInstallerPath), SW_SHOW, ewNoWait, ErrorCode) then
-   begin
-   ExitProcess(1);
-   end
+  if update = true then begin
+    MsgBox('The updated setup will now launch.', mbInformation, MB_OK);
+  end
+     
+  if ShellExec('open', NewInstallerPath, '/updated', ExtractFilePath(NewInstallerPath), SW_SHOW, ewNoWait, ErrorCode) then
+       begin
+       ExitProcess(1);
+       end
 end;
 
 { Compare the version string 'this' against the version string 'that'. A version
@@ -405,45 +380,29 @@ end;
 
 
 
-
-
-
-
-// Custom wizard page setup, for data dir.
-procedure InitializeWizard;
-
-  
+procedure InitializeWizard;  
 begin
- itd_init;
- ITD_LoadStrings(ExpandConstant('{pf}\Sherlock Software\InnoTools\Downloader\languages\itd_en.ini'));
-
  checkruns := 0;
  RebirthFolderExisted := false;
  D1FolderExisted := false;
  D2FolderExisted := false;
 
- //Where the new installer should be saved to, can be anywhere.
- NewInstallerPath:=ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
-
  {Create our own progress page for the initial download of a small
   textfile from the server which says what the latest version is}
- progress:=CreateOutputProgressPage(ITD_GetString(ITDS_Update_Caption),
-    ITD_GetString(ITDS_Update_Description));
+ progress:=CreateOutputProgressPage('Update setup','Checking for updates...');
 
- DownloadFileCheck := CreateOutputProgressPage('Get Download Information', 'Checking selected download links for file sizes.');
-
- //Create the ITD GUI so that we have it if we decide to download a new intaller version
- 
  
  {If the download succeeds, we will need to launch the new installer. The
  callback is called if the download is successful.}
- itd_afterSuccess:=@downloadfinished;
+ if idpFilesDownloaded then
+ begin
+    DownloadFinished();
+ end;
 
  {If the download of the new installer fails, we still want to give the
   user the option of continuing with the original installation}
- itd_setoption('UI_AllowContinue','1');
- itd_setoption('Debug_Messages','1');
- itd_setoption('ITD_NoCache','1');
+ idpSetOption('AllowContinue','1');
+ idpSetOption('ErrorDialog','UrlList');
 
 
   // Ask if they want to install just Rebirth, or copy the data files as well.
@@ -507,7 +466,7 @@ end;
 // When we try to go to the next page...
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
- list, line:TStringList;
+ serversion:string;
  newavail:boolean;
  i:integer;
  ourVersion:string;
@@ -529,12 +488,12 @@ begin
     end;
    end;
    //Offer to check for a new version for the user..
-   if MsgBox(ITD_GetString(ITDS_Update_WantToCheck), mbConfirmation, MB_YESNO) = IDYES then
+   if MsgBox('Would you like to check for a new version of this installer?', mbConfirmation, MB_YESNO) = IDYES then
     begin
     yes:=true; //we are looking for updates so we'll display the download of the installer
       wizardform.show;
       progress.Show;
-      progress.SetText(ITD_GetString(ITDS_Update_Checking),'');
+      progress.SetText('Checking for update...','');
       progress.SetProgress(2,10);
       try
         newavail:=false;
@@ -542,66 +501,48 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.25'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.26'; //Add the installer revision to the version
 
-        if itd_downloadfile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version.txt',expandconstant('{tmp}\version.txt'))=ITDERR_SUCCESS then begin
-          { Now read the version from that file and see if it is newer.
-            The file has a really simple format:
+        if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
+          begin
+          { Now read the version from that file and see if it is newer. }
+          LoadStringFromFile(expandconstant('{tmp}\version2.txt'), serversion);
+          oldRevision := ExtractFileExt(ourVersion); //Get "current version" revision
+          newRevision := ExtractFileExt(serversion); //Get "new version" revision
+          StringChangeEx(oldRevision, '.', '', true); //Remove . from revision number
+          StringChangeEx(newRevision, '.', '', true); //Remove . from revision number
+          ourVersion := ChangeFileExt(ourVersion, ''); //Remove the revision from version string
+          serversion := ChangeFileExt(serversion, ''); //Remove the revision from version string
 
-            2.0,"http://www.sherlocksoftware.org/innotools/example3%202.0.exe"
-
-            The installer version, a comma, and the URL where the new version can be downloaded.
-          }
-          list:=TStringList.create;
-          try
-            list.loadfromfile(expandconstant('{tmp}\version.txt'));
-
-            if list.count>0 then begin
-              line:=TStringList.create;
-              try
-                line.commatext:=list[0]; //Break down the line into its components
-
-                if line.count>=2 then begin
-                checkedSuccessfully:=true;
-                if CompareVersions(trim(line[0]), trim(ourVersion))>0 then begin
-                  //Version is newer
-                    text:=ITD_GetString(ITDS_Update_NewAvailable);
-                    oldRevision := ExtractFileExt(ourVersion); //Get "current version" revision
-                    newRevision := ExtractFileExt(line[0]); //Get "new version" revision
-                    StringChangeEx(oldRevision, '.', '', true); //Remove . from revision number
-                    StringChangeEx(newRevision, '.', '', true); //Remove . from revision number
-                    ourVersion := ChangeFileExt(ourVersion, ''); //Remove the revision from version string
-                    line[0] := ChangeFileExt(line[0], ''); //Remove the revision from version string
-                    StringChangeEx(text, '%1', ourVersion, true); //"Current version" part of the string
-                    StringChangeEx(text, '%2', line[0], true); //"New version" part of the string
-                    StringChangeEx(text, '%3', oldRevision, true); //"Old revision" part of the string
-                    StringChangeEx(text, '%4', newRevision, true); //"New revision" part of the string
-
-                    if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then begin
-                      itd_addFile(trim(line[1]), NewInstallerPath);
-                      update := true; //if there is an update AND we want it then update is true
-                      downloadPage := itd_downloadafter(wpWelcome); //and we display the download for the installer
-                    end
-                    else
-                    begin
-                    yes := false; //Otherwise we display the download for components.
-                    end
-                end else begin
-                  MsgBox(ITD_GetString(ITDS_Update_NoNewAvailable), mbInformation, MB_OK);
-                end;
-                end;
-              finally
-                line.free;
-              end;
+          if pos('.', serversion) <> 0 then
+          begin
+            checkedSuccessfully:=true;
+                     
+            if CompareVersions(trim(ourVersion), trim(serversion)) > 0 then
+            begin
+              //Version is newer
+              text:='There is a newer installer available. Your version is ' + ourVersion + ', installer revision ' + oldRevision + ', the new version is ' + serversion + ', installer revision ' + newRevision + '. Would you like to download it?';
+              if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then
+              begin
+                idpAddFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/DXX-Rebirth_Setup.exe', expandConstant('{tmp}\DXX-Rebirth_Setup.exe'));
+                update := true; //if there is an update AND we want it, then update is true
+                idpDownloadAfter(wpWelcome); //and we display the download for the installer
+              end
+              else
+              begin
+                 yes := false; //Otherwise we display the download for components.
+              end
+            end
+            else
+            begin
+              MsgBox('You are running the latest version of this setup.', mbInformation, MB_OK);
             end;
-          finally
-            list.free;
           end;
         end;
-
-        if not checkedSuccessfully then begin
-          text:=ITD_GetString(ITDS_Update_Failed);
-		  StringChangeEx(text, '%1', ourVersion, true);
+        
+        if not checkedSuccessfully then
+        begin
+          text:='I was unable to check for an update. Installation of the current version, ' + ourVersion + ', installer revision ' + oldRevision + ' will continue.';
           MsgBox(text, mbInformation, MB_OK);
           update := false; //if we didn't check succesfully, then we're not an updated installer...
           yes := false; //and we didn't say yes
@@ -646,38 +587,6 @@ begin
         result := false;
         exit;
       end
-      
-      // This section gets the number of downloaded components selected and stores it in numcomponents
-      comp := WizardSelectedComponents(false);
-      componentlist := TStringList.Create;
-      componentlist.CommaText := comp;
-      if componentlist.IndexOf('d1x') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1x'));
-      if componentlist.IndexOf('d1x\demo') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1x\demo'));
-      if componentlist.IndexOf('d1xa') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1xa'));
-      if componentlist.IndexOf('d1xa\addon1') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1xa\addon1'));
-      if componentlist.IndexOf('d1xa\mission1') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1xa\mission1'));
-      if componentlist.IndexOf('d1xa\addon1\nosound') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d1xa\addon1\nosound'));
-      if componentlist.IndexOf('d2x') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2x'));
-      if componentlist.IndexOf('d2x\demo') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2x\demo'));
-      if componentlist.IndexOf('d2xa') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2xa'));
-      if componentlist.IndexOf('d2x\vertigo') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2x\vertigo'));
-      if componentlist.IndexOf('d2xa\addon2') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2xa\addon2'));
-      if componentlist.IndexOf('d2xa\mission2') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2xa\mission2'));
-      if componentlist.IndexOf('d2xa\addon2\nosound') <> -1 then
-        componentlist.Delete(componentlist.IndexOf('d2xa\addon2\nosound'));
-      numcomponents := componentlist.Count;
     result := true; // Otherwise if we're on the components selection page, just keep going.
   end
   if CurPageID = wpReady then
@@ -710,70 +619,25 @@ begin
     //Check all the subcomponents, and add the ones that are selected.
       if yes = false then //if we're not updating, then the download page needs to be after the install screen
       begin
-        downloadPage := itd_downloadafter(wpReady); //Put the download page after the installation so we can download the AddOns directly to their final locations.
+        idpDownloadAfter(wpReady); //Put the download page after the installation so we can download the AddOns directly to their final locations.
       end;
-      DownloadFileCheck.Show; // Show our custom progress page
-      try
-        if IsComponentSelected('d1xa\retro1') = true then
-        begin
-            CheckDownload('d1x-rebirth-retro.exe', 'http://descentchampions.org/retromod/d1x-rebirth-retro.exe', 'D1');
-        end;
-        if IsComponentSelected('d1xa\mission1\rangeranarchy1') = true then
-        begin
-          CheckDownload('D1 Anarchy Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D1%20Anarchy%20Ranger%20Pack.zip', 'tmp');
-        end;
-        if IsComponentSelected('d1xa\mission1\rangercoop1') = true then
-        begin
-          CheckDownload('D1 Coop Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D1%20Coop%20Ranger%20Pack.zip', 'tmp');
-        end;
-        if IsComponentSelected('d1xa\mission1\dcl1') = true then
-        begin
-          CheckDownload('dcl_d1_missions.zip', 'http://descentchampions.org/missions/dcl_d1_missions.zip', 'tmp');
-        end;
-        if IsComponentSelected('d1xa\addon1\sc551') = true then
-        begin
-          CheckDownload('d1xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', 'D1');
-        end;
-        if IsComponentSelected('d1xa\addon1\opl31') = true then
-        begin
-          CheckDownload('d1xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', 'D1');
-        end;
-        if IsComponentSelected('d1xa\addon1\german1') = true then
-        begin
-          CheckDownload('d1xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', 'D1');
-        end;
-        if IsComponentSelected('d2xa\retro2') = true then
-        begin
-            CheckDownload('d2x-rebirth-retro.exe', 'http://descentchampions.org/retromod/d2x-rebirth-retro.exe', 'D2');
-        end;
-        if IsComponentSelected('d2xa\mission2\rangeranarchy2') = true then
-        begin
-          CheckDownload('D2 Anarchy Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', 'tmp');
-        end;
-        if IsComponentSelected('d2xa\mission2\rangercoop2') = true then
-        begin
-          CheckDownload('D2 Coop Ranger Pack.zip', 'http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', 'tmp');
-        end;
-        if IsComponentSelected('d2xa\mission2\dcl2') = true then
-        begin
-          CheckDownload('dcl_d2_missions.zip', 'http://descentchampions.org/missions/dcl_d2_missions.zip', 'tmp');
-        end;
-        if IsComponentSelected('d2xa\addon2\sc552') = true then
-        begin
-          CheckDownload('d2xr-sc55-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', 'D2');
-        end;
-        if IsComponentSelected('d2xa\addon2\opl32') = true then
-        begin
-          CheckDownload('d2xr-opl3-music.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', 'D2');
-        end;
-        if IsComponentSelected('d2xa\addon2\german2') = true then
-        begin
-          CheckDownload('d2xr-briefings-ger.dxa', 'http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', 'D2');
-        end;
-      finally
-        DownloadFileCheck.Hide; // Make sure to hide the page when we're done
-      end;
-  result := true;
+
+      idpAddFileComp('http://descentchampions.org/retromod/d1x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.exe'), 'd1xa\retro1');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Anarchy Ranger Pack.zip'), 'd1xa\mission1\rangeranarchy1');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Coop Ranger Pack.zip'), 'd1xa\mission1\rangercoop1');
+      idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission1\dcl1');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-sc55-music.dxa'), 'd1xa\addon1\sc551');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-opl3-music.dxa'), 'd1xa\addon1\opl31');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon1\german1');
+      idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro2');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Anarchy Ranger Pack.zip'), 'd2xa\mission2\rangeranarchy2');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Coop Ranger Pack.zip'), 'd2xa\mission2\rangercoop2');
+      idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\dcl_d2_missions.zip'), 'd2xa\mission2\dcl2');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-sc55-music.dxa'), 'd2xa\addon2\sc552');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-opl3-music.dxa'), 'd2xa\addon2\opl32');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon2\german2');
+
+      result := true;
   end
   else
     result := true;   // And keep going if we're on any other page as well.
@@ -1132,61 +996,6 @@ begin
     begin
         MsgBox('Your Descent 2 .hog file is an unrecognized size, and may be corrupted. Installation will continue, but if you experience problems, this may be the reason.', mbInformation, MB_OK);
     end;
-end;
-
-// Check the files to download before actually downloading them.
-procedure CheckDownload(filename: string; url: string; location: string);
-var size:cardinal; // Size of file
-  wedone:boolean; // Check whether we're still retrying
-  exitnow:boolean; // Placeholder for the message box result
-  datmsg:integer; // The message box informing the user there was a problem
-begin
-  checkruns := checkruns + 1; // Increment for each downloadable component
-  wedone := false;
-  DownloadFileCheck.SetProgress(checkruns,numcomponents);
-  DownloadFileCheck.SetText('Getting information for...', filename);
-  // Make sure we put the downloaded files in the right place
-  if location = 'D1' then
-    location := expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\');
-  if location = 'D2' then
-    location := expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\');
-  if location = 'tmp' then
-    location := expandconstant('{tmp}\');
-  if itd_GetFileSize(url, size) = true then // If we can see the file
-  begin
-    itd_addfilesize(url, location + filename, size); // Add it to the list of downloads
-  end
-  else
-  begin
-    while (wedone = false) do
-    begin
-      datmsg := MsgBox('The information for the file ''' + filename + ''' could not be retrieved. Click Ignore to skip this file, Retry to attempt to get the information again, or Abort to cancel setup.', mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3);
-      if (datmsg = IDABORT) then //if they click abort
-      begin
-          exitnow := ExitSetupMsgBox(); //exit setup
-          if exitnow = true then
-          begin
-              CancelWithoutPrompt := true;
-              wedone := true;
-              DelTree(expandconstant('{tmp}'), true, true, true);
-              DeleteFolders();
-              ExitProcess(5);
-          end;
-      end;
-      if (datmsg = IDRETRY) then //if they click retry
-      begin
-          if itd_GetFileSize(url, size) = true then
-          begin
-            wedone := true;
-          end;
-      end;
-      if (datmsg = IDIGNORE) then
-      begin
-          wedone := true;
-      end;
-    end;
-  end;
-  wedone := false;
 end;
 
 // Decide under what curcumstances, certain pages should be skipped.
