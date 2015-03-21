@@ -617,7 +617,7 @@ begin
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon1\german1');
       // D2 Addons
       idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro2');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip?raw=1', expandconstant('{tmp}\D2 Anarchy Ranger Pack.zip'), 'd2xa\mission2\rangeranarchy2');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Anarchy Ranger Pack.zip'), 'd2xa\mission2\rangeranarchy2');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Coop Ranger Pack.zip'), 'd2xa\mission2\rangercoop2');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\dcl_d2_missions.zip'), 'd2xa\mission2\dcl2');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-sc55-music.dxa'), 'd2xa\addon2\sc552');
