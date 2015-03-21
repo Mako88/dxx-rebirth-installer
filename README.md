@@ -7,7 +7,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 1. Unzip the official release to C:\DXX-Rebirth\
 
-2. Install INNO Setup (non-unicode) and Inno Downloader Plugin (INNO Setup can be installed from http://www.jrsoftware.org/isdl.php Inno Downloader Plugin is in the include folder)
+2. Install INNO Setup (non-unicode) and Inno Downloader Plugin (INNO Setup can be installed from http://www.jrsoftware.org/isdl.php Inno Downloader Plugin is in the include folder) NOTE: Make sure you install INNO Setup with the preprocessor, and make sure you install IDP with the include .iss setting checked.
 
 3. (If changing installer revision) Search for "//Add the installer revision to the version" and change the revision number
 
