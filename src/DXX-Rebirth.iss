@@ -1,4 +1,4 @@
-; This is revision 26.
+; This is revision 27.
 
 #include <idp.iss>
 
@@ -82,6 +82,7 @@ Source: "{app}\D1X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Compone
 Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
 ;D1X Files
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x.ini"; DestDir: "{tmp}"; Components: d1x; Flags: ignoreversion; AfterInstall: D1Xini
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Patch Files
 Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.bat"; DestDir: "{tmp}"; Components: d1x;
@@ -89,7 +90,7 @@ Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.exe"; DestDir: "{tmp}"; Componen
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro1; Flags: ignoreversion; AfterInstall: RetroTracker1
 ;D1 Demo Files
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
@@ -129,9 +130,10 @@ Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\De
 
 ;D2X Files
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x.ini"; DestDir: "{tmp}"; Components: d2x; Flags: ignoreversion; AfterInstall: D2Xini
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro2; Flags: ignoreversion; AfterInstall: RetroTracker2
 ;D2 Demo Files
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
@@ -308,9 +310,6 @@ var
   folder2: string;
   vertigo1: string;
   filecheckran: boolean;
-  numcomponents: integer;
-  componentlist: TStringList;
-  comp: string;
   checkruns: integer;
   RebirthFolderExisted: boolean;
   D1FolderExisted: boolean;
@@ -394,7 +393,6 @@ begin
   user the option of continuing with the original installation}
  idpSetOption('AllowContinue', '1');
  idpSetOption('ErrorDialog', 'FileList');
-
 
   // Ask if they want to install just Rebirth, or copy the data files as well.
   SampleDataPage := CreateInputOptionPage(wpSelectComponents,
@@ -487,7 +485,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.26'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.27'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -780,6 +778,70 @@ begin
     begin
       DelTree(expandconstant('{app}\DXX-Rebirth'), true, true, true);
     end;
+end;
+
+//Create backups of the user's d1x.ini file
+procedure D1Xini();
+var
+  myini: string;
+  userini: string;
+  renameresult: boolean;
+begin
+  if FileExists(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini')) then
+  begin
+    userini := GetMd5OfFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini'));
+    myini := GetMd5OfFile(ExpandConstant('{tmp}\d1x.ini'));
+    if myini <> userini then
+    begin
+      DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini.bak'));
+      renameresult := RenameFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini'), ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini.bak'));
+      if renameresult = true then
+      begin
+        MsgBox('Your old d1x.ini file has been saved as d1x.ini.bak.', mbInformation, MB_OK);
+      end
+      else
+      begin
+        MsgBox('Your old d1x.ini file could not be renamed, so it has been replaced.', mbInformation, MB_OK);
+      end;
+    end;
+  end;
+end;
+
+//Create backups of the user's d1x.ini file
+procedure D2Xini();
+var
+  myini: string;
+  userini: string;
+  renameresult: boolean;
+begin
+  if FileExists(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini')) then
+  begin
+    userini := GetMd5OfFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini'));
+    myini := GetMd5OfFile(ExpandConstant('{tmp}\d2x.ini'));
+    if myini <> userini then
+    begin
+      DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini.bak'));
+      renameresult := RenameFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini'), ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini.bak'));
+      if renameresult = true then
+      begin
+        MsgBox('Your old d2x.ini file has been saved as d2x.ini.bak.', mbInformation, MB_OK);
+      end
+      else
+      begin
+        MsgBox('Your old d2x.ini file could not be renamed, so it has been replaced.', mbInformation, MB_OK);
+      end;
+    end;
+  end;
+end;
+
+procedure RetroTracker1();
+begin
+  SaveStringToFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini'), #13#10 + '; Retro Tracker' + #13#10 + '-tracker_hostaddr retro-tracker.game-server.cc', True);
+end;
+
+procedure RetroTracker2();
+begin
+  SaveStringToFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini'), #13#10 + '; Retro Tracker' + #13#10 + '-tracker_hostaddr retro-tracker.game-server.cc', True);
 end;
 
 //Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
