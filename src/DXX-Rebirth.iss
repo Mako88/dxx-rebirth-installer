@@ -1,4 +1,4 @@
-; This is revision 28.
+; This is revision 29.
 
 #include <idp.iss>
 
@@ -144,8 +144,8 @@ Source: "{code:Descent}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\De
 ;D1 Addons
 ;Source: "C:\DXX-Rebirth\include\Addons\DESCENT.HOG"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: d1x; Check: MacData; Flags: ignoreversion uninsneveruninstall;
 ;Source: "C:\DXX-Rebirth\include\Addons\DESCENT.PIG"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: d1x; Check: MacData; Flags: ignoreversion uninsneveruninstall; 
-;Source: "C:\DXX-Rebirth\include\Addons\D1MAC-GFX.DXA"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion;
-;Source: "C:\DXX-Rebirth\include\Addons\D1MAC-SFX.DXA"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\Addons\D1MAC-GFX.DXA"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; Check: MacPatch;
+Source: "C:\DXX-Rebirth\include\Addons\D1MAC-SFX.DXA"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; Check: MacPatch;
 ;Source: "C:\DXX-Rebirth\include\Addons\D1MAC-MIDI.DXA"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Check: MacMidi; Flags: ignoreversion;
 
 
@@ -338,6 +338,7 @@ var
   D1FolderExisted: boolean;
   D2FolderExisted: boolean;
   msgresult : integer;
+  macdata: boolean;
 
 
 procedure ExitProcess(exitCode:integer);
@@ -409,6 +410,7 @@ begin
  RebirthFolderExisted := false;
  D1FolderExisted := false;
  D2FolderExisted := false;
+ macdata := false;
 
  
 
@@ -508,7 +510,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.28'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.29'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -883,12 +885,12 @@ begin
   SaveStringToFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini'), #13#10 + '; Retro Tracker' + #13#10 + '-tracker_hostaddr retro-tracker.game-server.cc', True);
 end;
 
-{
-function MacData(): Boolean;
-begin
 
+function MacPatch(): Boolean;
+begin
+  result := macdata;
 end;
-}
+
 
 //Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
 procedure CheckCD1();
@@ -1035,11 +1037,14 @@ begin
         MsgBox('Your Descent .hog file is an unrecognized size, and may be corrupted. Installation will continue, but if you experience problems, this may be the reason.', mbInformation, MB_OK);
     end;
     //If it's v1.0 ask if they want to patch it to v1.4a
-    if ((size = 7261423) or (size = 4494862)) then begin
+    if size = 7261423 then begin
         patch := MsgBox('It looks like you are using v1.0 data files. It is recommended that you use v1.4a. Would you like to patch the data files now?', mbConfirmation, MB_YESNO);
         if patch = IDYES then begin
           PatchData();
         end;
+    end;
+    if size = 7456179 then begin
+        macdata := true;
     end;
 end;
 
