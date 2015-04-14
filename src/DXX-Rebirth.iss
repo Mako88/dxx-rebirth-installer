@@ -1,4 +1,4 @@
-; This is revision 29.
+; This is revision 30.
 
 #include <idp.iss>
 
@@ -60,15 +60,14 @@ Name: "d1xa\mission\rangeranarchy"; Description: "Rangers Anarchy Mission Pack f
 Name: "d1xa\mission\rangercoop"; Description: "Rangers Co-op Mission Pack for D1"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 8063549
 Name: "d1xa\mission\dcl"; Description: "Descent Championship Ladder Mission Pack for D1"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 831488
 Name: "d1xa\addon"; Description: "AddOn Packs for D1X"; Flags: disablenouninstallwarning
-Name: "d1xa\addon\nosound"; Description: "No AddOn Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning
-Name: "d1xa\addon\sc55"; Description: "SC-55 MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 72770200
-Name: "d1xa\addon\opl3"; Description: "OPL3 MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 81474000
-Name: "d1xa\addon\awe32"; Description: "AWE32 MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 95223690
-Name: "d1xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 95486914
-Name: "d1xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 73066025
-Name: "d1xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 95310677
-Name: "d1xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 95627285
-Name: "d1xa\addon\mac"; Description: "Mac Redbook Audio for D1X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 139194210
+Name: "d1xa\addon\sc55"; Description: "SC-55 MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 72770200
+Name: "d1xa\addon\opl3"; Description: "OPL3 MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 81474000
+Name: "d1xa\addon\awe32"; Description: "AWE32 MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95223690
+Name: "d1xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95486914
+Name: "d1xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 73066025
+Name: "d1xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95310677
+Name: "d1xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95627285
+Name: "d1xa\addon\mac"; Description: "Mac Redbook Audio for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 139194210
 Name: "d1xa\addon\german"; Description: "German Briefings for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 16794
 Name: "d2xa"; Description: "Downloadable Content for D2X"; Flags: dontinheritcheck disablenouninstallwarning
 Name: "d2xa\retro"; Description: "Retro Mod for D2 (For competitive play)"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1537264
@@ -78,17 +77,16 @@ Name: "d2xa\mission\rangeranarchy"; Description: "Rangers Anarchy Mission Pack f
 Name: "d2xa\mission\rangercoop"; Description: "Rangers Co-op Mission Pack for D2"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 45225083
 Name: "d2xa\mission\dcl"; Description: "Descent Championship Ladder Mission Pack for D2"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 400384
 Name: "d2xa\addon"; Description: "AddOn Packs for D2X"; Flags: disablenouninstallwarning
-Name: "d2xa\addon\nosound"; Description: "No AddOn Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning
-Name: "d2xa\addon\sc55"; Description: "SC-55 MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 19608000 
-Name: "d2xa\addon\opl3"; Description: "OPL3 MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 22754000
-Name: "d2xa\addon\awe32"; Description: "AWE32 MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 24921187
-Name: "d2xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 25048407
-Name: "d2xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 20074399
-Name: "d2xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 25143129
-Name: "d2xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 25074959
-Name: "d2xa\addon\mac"; Description: "Mac Redbook Soundtrack for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 100602568
-Name: "d2xa\addon\max"; Description: "Descent Maximum Redbook Audio for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 90639559
-Name: "d2xa\addon\tdc"; Description: "The Definitive Collection Redbook Audio for D2X"; Flags: exclusive disablenouninstallwarning; ExtraDiskSpaceRequired: 122615372 
+Name: "d2xa\addon\sc55"; Description: "SC-55 MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 19608000 
+Name: "d2xa\addon\opl3"; Description: "OPL3 MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 22754000
+Name: "d2xa\addon\awe32"; Description: "AWE32 MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 24921187
+Name: "d2xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 25048407
+Name: "d2xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 20074399
+Name: "d2xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 25143129
+Name: "d2xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 25074959
+Name: "d2xa\addon\mac"; Description: "Mac Redbook Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 100602568
+Name: "d2xa\addon\max"; Description: "Descent Maximum Redbook Audio for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 90639559
+Name: "d2xa\addon\tdc"; Description: "The Definitive Collection Redbook Audio for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 122615372 
 Name: "d2xa\addon\german"; Description: "German Briefings for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 11674
 
 [Files]
@@ -105,7 +103,7 @@ Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.exe"; DestDir: "{tmp}"; Componen
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro; Flags: ignoreversion; AfterInstall: RetroTracker1
+Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro; Flags: ignoreversion;
 ;D1 Demo Files
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
@@ -154,7 +152,7 @@ Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x.ini"; DestDir: "{tmp}"; Components: d2x; Flags: ignoreversion; AfterInstall: D2Xini
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro; Flags: ignoreversion; AfterInstall: RetroTracker2
+Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro; Flags: ignoreversion;
 ;D2 Demo Files
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
@@ -269,13 +267,13 @@ Source: "C:\DXX-Rebirth\include\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
 [Icons]
 Name: "{group}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x";
 Name: "{group}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x";
-Name: "{group}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro";
-Name: "{group}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro";
+Name: "{group}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro";
+Name: "{group}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro";
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}";
 Name: "{userdesktop}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x"; Tasks: desktopicon
 Name: "{userdesktop}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Components: "d1xa\retro"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Components: "d2xa\retro"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro"; Tasks: desktopicon
+Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName1, "&", "&&")}}"; Components: "d1x"; Flags: nowait postinstall skipifsilent unchecked
@@ -477,6 +475,106 @@ begin
   filecheckran := false; //we haven't run a file check yet.
 end;
 
+function Soundtrack1(): Boolean;
+begin
+  if IsComponentSelected('d1xa\addon\sc55') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\opl3') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\awe32') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\awe64') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\2m') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\8m') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\sc') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d1xa\addon\mac') then
+  begin
+    result := true;
+    exit;
+  end;
+  result := false;
+end;
+
+function Soundtrack2(): Boolean;
+begin
+  if IsComponentSelected('d2xa\addon\sc55') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\opl3') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\awe32') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\awe64') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\2m') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\8m') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\sc') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\mac') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\max') then
+  begin
+    result := true;
+    exit;
+  end;
+  if IsComponentSelected('d2xa\addon\tdc') then
+  begin
+    result := true;
+    exit;
+  end;
+  result := false;
+end;
+
 // When we try to go to the next page...
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
@@ -510,7 +608,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.29'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.30'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -591,10 +689,18 @@ begin
   begin
     if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = false) then  //...and we didn't select anything...
       begin
-        MsgBox('You didn'+chr(39)+'t select anything to install.', mbError, MB_OK); //...spit out an error. ;)
+        MsgBox('Please select to install either D1X-Rebirth, D2X-Rebirth, or both.', mbError, MB_OK); //...spit out an error. ;)
         result := false;
         exit;
-      end
+      end;
+    if IsComponentSelected('d2xa\max') then
+    begin
+      MsgBox('You have selected to install Descent Maximum. This is a total conversion, and replaces the main campaign of Descent 2. To uninstall it, remove or change the extension of D2XR-MAXIMUM.DXA in the main D2X-Rebirth folder.', mbInformation, MB_OK);
+    end;
+    if Soundtrack1() or Soundtrack2() then
+    begin
+      MsgBox('The soundtrack(s) you have selected will be downloaded into a "Soundtracks" subfolder in the main Rebirth installation folder(s). To enable one of them you must copy it into the main installation folder(s).', mbInformation, MB_OK);
+    end;
     result := true; // Otherwise if we're on the components selection page, just keep going.
   end
   if CurPageID = wpReady then
@@ -623,6 +729,14 @@ begin
       begin
          MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
       end;
+      if Soundtrack1() then
+      begin
+        ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks'));
+      end;
+      if Soundtrack2() then
+      begin
+        ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks'));
+      end;
 
     //Check all the subcomponents, and add the ones that are selected.
       if yes = false then //if we're not updating, then the download page needs to be after the install screen
@@ -635,14 +749,14 @@ begin
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Anarchy Ranger Pack.zip'), 'd1xa\mission\rangeranarchy');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Coop Ranger Pack.zip'), 'd1xa\mission\rangercoop');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission\dcl');
-      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
-      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1cda-mac.dxa'), 'd1xa\addon\mac');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1cda-mac.dxa'), 'd1xa\addon\mac');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon\german');
       // D2 Addons
       idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro');
@@ -650,16 +764,16 @@ begin
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Anarchy Ranger Pack.zip'), 'd2xa\mission\rangeranarchy');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Coop Ranger Pack.zip'), 'd2xa\mission\rangercoop');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
-      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
-      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2cda-mac.dxa'), 'd2xa\addon\mac');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAX.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2cda-max.dxa'), 'd2xa\addon\max');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-TDC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAX.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-TDC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
 
       result := true;
@@ -874,23 +988,10 @@ begin
   end;
 end;
 
-//Append Retro Tracker to .ini files
-procedure RetroTracker1();
-begin
-  SaveStringToFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x.ini'), #13#10 + '; Retro Tracker' + #13#10 + '-tracker_hostaddr retro-tracker.game-server.cc', True);
-end;
-
-procedure RetroTracker2();
-begin
-  SaveStringToFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x.ini'), #13#10 + '; Retro Tracker' + #13#10 + '-tracker_hostaddr retro-tracker.game-server.cc', True);
-end;
-
-
 function MacPatch(): Boolean;
 begin
   result := macdata;
 end;
-
 
 //Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
 procedure CheckCD1();
