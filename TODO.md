@@ -1,4 +1,4 @@
-- [ ] Warn about installing maximum
-- [ ] Handle multiple soundtrack addons sanely
+- [X] Warn about installing maximum
+- [X] Handle multiple soundtrack addons sanely
+- [X] Switch Retro tracker to icons (desktop and start menu) instead of .ini
 - [ ] Figure out including mac data
-- [ ] Switch Retro tracker to icons (desktop and start menu) instead of .ini
