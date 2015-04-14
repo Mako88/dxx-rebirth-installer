@@ -1,3 +1,4 @@
 - [ ] Warn about installing maximum
 - [ ] Handle multiple soundtrack addons sanely
 - [ ] Figure out including mac data
+- [ ] Switch Retro tracker to icon instead of .ini
