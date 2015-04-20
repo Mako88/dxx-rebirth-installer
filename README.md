@@ -33,4 +33,4 @@ If you compile yourself, the version checker will check against the official ser
 if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt')) then begin
 ```
 
-Change that URL to point to your own version.txt file on your own server. You can download the existing version.txt file to copy its syntax.
+Change that URL to point to a text file on your own server. The syntax is simply the rebirth version with the installer revision added (i.e. 0.58.1.28 is Rebirth version 0.58.1 with installer revision 28).
