@@ -1,6 +1,6 @@
 - [X] Warn about installing maximum
 - [X] Handle multiple soundtrack addons sanely
 - [X] Switch Retro tracker to icons (desktop and start menu) instead of .ini
+- [X] Fix running Retro from the installer (add tracker)
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-- [ ] Fix running Retro from the installer (add tracker)
