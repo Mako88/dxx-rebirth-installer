@@ -3,3 +3,4 @@
 - [X] Switch Retro tracker to icons (desktop and start menu) instead of .ini
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
+- [ ] Fix running Retro from the installer (add tracker)
