@@ -1,4 +1,4 @@
-; This is revision 31.
+; This is revision 32.
 
 #include <idp.iss>
 
@@ -279,8 +279,8 @@ Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#
 [Run]
 Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName1, "&", "&&")}}"; Components: "d1x"; Flags: nowait postinstall skipifsilent unchecked
 Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName2, "&", "&&")}}"; Components: "d2x"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName3, "&", "&&")}}"; Components: "d1xa\retro"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName4, "&", "&&")}}"; Components: "d2xa\retro"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName3, "&", "&&")}}"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName4, "&", "&&")}}"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro"; Flags: nowait postinstall skipifsilent unchecked
 ;Extract .sow file
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien1.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien2.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
@@ -297,11 +297,11 @@ Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missi
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract; AfterInstall: FileCheck2
 ;Extract downloaded mission packs
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy1}"; Components: "d1xa\mission\rangeranarchy"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\rangercoop_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop1}"; Components: "d1xa\mission\rangercoop"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\d1-anarchy.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy1}"; Components: "d1xa\mission\rangeranarchy"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\d1-coop.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop1}"; Components: "d1xa\mission\rangercoop"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\dcl_d1_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl1}"; Components: "d1xa\mission\dcl"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\rangeranarchy_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy2}"; Components: "d2xa\mission\rangeranarchy"
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\rangercoop_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop2}"; Components: "d2xa\mission\rangercoop"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\d2-anarchy.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy2}"; Components: "d2xa\mission\rangeranarchy"
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\d2-coop.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop2}"; Components: "d2xa\mission\rangercoop"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\dcl_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl2}"; Components: "d2xa\mission\dcl"
 
 [Messages]
@@ -614,7 +614,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.31'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.32'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -752,8 +752,8 @@ begin
 
       // D1 Addons
       idpAddFileComp('http://descentchampions.org/retromod/d1x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.exe'), 'd1xa\retro');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Anarchy Ranger Pack.zip'), 'd1xa\mission\rangeranarchy');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D1 Coop Ranger Pack.zip'), 'd1xa\mission\rangercoop');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d1-anarchy.zip', expandconstant('{tmp}\d1-anarchy.zip'), 'd1xa\mission\rangeranarchy');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d1-coop.zip', expandconstant('{tmp}\d1-coop.zip'), 'd1xa\mission\rangercoop');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission\dcl');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
@@ -768,9 +768,9 @@ begin
       // D2 Addons
       idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2XR-MAXIMUM.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-maximum.dxa'), 'd2xa\max');      
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Anarchy Ranger Pack.zip'), 'd2xa\mission\rangeranarchy');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\D2 Coop Ranger Pack.zip'), 'd2xa\mission\rangercoop');
-      idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d2-anarchy.zip', expandconstant('{tmp}\d2-anarchy.zip'), 'd2xa\mission\rangeranarchy');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d2-coop.zip', expandconstant('{tmp}\d2-coop.zip'), 'd2xa\mission\rangercoop');
+      idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{tmp}\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
