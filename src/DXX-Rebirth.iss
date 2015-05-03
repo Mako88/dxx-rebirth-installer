@@ -1,4 +1,4 @@
-; This is revision 32.
+; This is revision 33.
 
 #include <idp.iss>
 
@@ -29,7 +29,7 @@ DefaultDirName={sd}\Games
 DefaultGroupName={#MyAppName}
 OutputBaseFilename=DXX-Rebirth_Setup
 OutputDir=C:\DXX-Rebirth
-Compression=lzma
+Compression=lzma2/max
 SolidCompression=yes
 VersionInfoVersion=0.58.1
 VersionInfoTextVersion=0.58.1
@@ -37,6 +37,9 @@ DirExistsWarning=no
 AppendDefaultDirName=no
 UninstallFilesDir={app}\DXX-Rebirth
 PrivilegesRequired=admin
+AllowRootDirectory=yes
+UsePreviousSetupType=no
+
 
 
 [Languages]
@@ -615,7 +618,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.32'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.33'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
