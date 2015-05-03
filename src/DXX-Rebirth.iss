@@ -36,7 +36,6 @@ VersionInfoTextVersion=0.58.1
 DirExistsWarning=no
 AppendDefaultDirName=no
 UninstallFilesDir={app}\DXX-Rebirth
-PrivilegesRequired=admin
 
 
 [Languages]
