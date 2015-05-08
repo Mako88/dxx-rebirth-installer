@@ -5,3 +5,4 @@
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 - [ ] Extract files from GOG installers
+- [ ] Add link to download from GOG on the "Installtion Type" page
