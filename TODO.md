@@ -6,3 +6,4 @@
 - [ ] Possibly include Definitive Collection
 - [ ] Extract files from GOG installers
 - [ ] Add link to download from GOG on the "Installation Type" page
+- [ ] Auto install single soundtrack/allow enabling a soundtrack
