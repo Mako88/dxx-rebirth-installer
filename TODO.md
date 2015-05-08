@@ -4,3 +4,4 @@
 - [X] Fix running Retro from the installer (add tracker)
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
+- [ ] Extract files from GOG installers
