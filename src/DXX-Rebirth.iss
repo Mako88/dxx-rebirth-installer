@@ -768,7 +768,7 @@ begin
       begin
           if MsgBox('Would you like to purchase Descent 1 & 2 from GOG? (This will open the store page in your default browser.)', mbConfirmation, MB_YESNO) = IDYES then
           begin
-            ShellExec('open', 'http://www.gog.com/game/descent_1_descent_2','', '', SW_SHOW, ewNoWait, ErrorCode);
+            ShellExec('open', 'http://www.gog.com/game/descent_1_descent_2?pp=fc074d501302eb2b93e2554793fcaf50b3bf7291','', '', SW_SHOW, ewNoWait, ErrorCode);
             GogStore := true;
             GogInstalledPage.Values[1] := true;
           end;
