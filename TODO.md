@@ -2,8 +2,8 @@
 - [X] Handle multiple soundtrack addons sanely
 - [X] Switch Retro tracker to icons (desktop and start menu) instead of .ini
 - [X] Fix running Retro from the installer (add tracker)
+- [X] Extract files from GOG installers
+- [X] Add link to download from GOG on the "Installation Type" page
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-- [ ] Extract files from GOG installers
-- [ ] Add link to download from GOG on the "Installation Type" page
 - [ ] Auto install single soundtrack/allow enabling a soundtrack
