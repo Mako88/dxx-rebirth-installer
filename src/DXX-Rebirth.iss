@@ -55,8 +55,9 @@ Name: "install"; Description: "DXX-Rebirth"; Flags: iscustom
 Name: "d1x"; Description: "D1X-Rebirth (For Descent)"; Types: install; Flags: checkablealone disablenouninstallwarning
 Name: "d1x\demo"; Description: "Shareware demo files for Descent 1"; Flags: dontinheritcheck disablenouninstallwarning; ExtraDiskSpaceRequired: 462000
 Name: "d2x"; Description: "D2X-Rebirth (For Descent 2)"; Types: install; Flags: checkablealone disablenouninstallwarning
-Name: "d2x\demo"; Description: "Shareware demo files for Descent 2"; Flags: dontinheritcheck disablenouninstallwarning; ExtraDiskSpaceRequired: 672000
-Name: "d2x\vertigo"; Description: "Vertigo Expansion for D2 (You must already have the Vertigo files)"; Flags: dontinheritcheck disablenouninstallwarning
+Name: "d2x\none"; Description: "No Expansion"; Flags: disablenouninstallwarning exclusive
+Name: "d2x\demo"; Description: "Shareware demo files for Descent 2"; Flags: disablenouninstallwarning exclusive; ExtraDiskSpaceRequired: 672000
+Name: "d2x\vertigo"; Description: "Vertigo Expansion for D2 (You must already have the Vertigo files)"; Flags: disablenouninstallwarning exclusive
 Name: "d1xa"; Description: "Downloadable Content for D1X"; Flags: dontinheritcheck disablenouninstallwarning
 Name: "d1xa\retro"; Description: "Retro Mod for D1 (For competitive play)"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1322248
 Name: "d1xa\mission"; Description: "Mission Packs for D1"; Flags: disablenouninstallwarning
@@ -268,6 +269,9 @@ Source: "C:\DXX-Rebirth\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Rebirth\
 ;7-zip for SOW
 Source: "C:\DXX-Rebirth\include\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
 
+;Innounp for GOG installer extraction
+Source: "C:\DXX-Rebirth\include\innounp.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+
 
 [Icons]
 Name: "{group}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x";
@@ -307,6 +311,21 @@ Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missi
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\d2-anarchy.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy2}"; Components: "d2xa\mission\rangeranarchy"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\d2-coop.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop2}"; Components: "d2xa\mission\rangercoop"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\dcl_d2_missions.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Dcl2}"; Components: "d2xa\mission\dcl"
+;Extract GOG Installers
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D1X-Rebirth\Data"" ""{code:GogD1}"" descent.hog descent.pig"; Flags: runhidden; StatusMsg: "{cm:Gog1}"; Components: "d1x"; Check: GogInstaller1
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" descent2.hog"; Flags: runhidden; StatusMsg: "{cm:Gog2hog}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" descent2.ham"; Flags: runhidden; StatusMsg: "{cm:Gog2ham}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" descent2.s11"; Flags: runhidden; StatusMsg: "{cm:Gog2s11}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" descent2.s22"; Flags: runhidden; StatusMsg: "{cm:Gog2s22}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" alien1.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2alien1}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" alien2.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2alien2}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" fire.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2fire}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" groupa.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2groupa}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" ice.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2ice}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" water.pig"; Flags: runhidden; StatusMsg: "{cm:Gog2water}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" intro-h.mvl"; Flags: runhidden; StatusMsg: "{cm:Gog2intro}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" robots-h.mvl"; Flags: runhidden; StatusMsg: "{cm:Gog2robots}"; Components: "d2x"; Check: GogInstaller2
+Filename: "{tmp}\innounp.exe"; Parameters: "-e -y -d""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{code:GogD2}"" other-h.mvl"; Flags: runhidden; StatusMsg: "{cm:Gog2other}"; Components: "d2x"; Check: GogInstaller2
 
 [Messages]
 ConfirmUninstall=Are you sure you want to remove %1?
@@ -320,6 +339,20 @@ RangerAnarchy1=Extracting missions from the Rangers Anarchy D1 Mission Pack...
 RangerAnarchy2=Extracting missions from the Rangers Anarchy D2 Mission Pack...
 RangerCoop1=Extracting missions from the Rangers Co-op D1 Mission Pack...
 RangerCoop2=Extracting missions from the Rangers Co-op D2 Mission Pack...
+Gog1=Extracting descent.hog and descent.pig from the GOG installer...
+Gog2hog=Extracting descent2.hog from the GOG installer...
+Gog2ham=Extracting descent2.ham from the GOG installer...
+Gog2s11=Extracting descent2.s11 from the GOG installer...
+Gog2s22=Extracting descent2.s22 from the GOG installer...
+Gog2alien1=Extracting alien1.pig from the GOG installer...
+Gog2alien2=Extracting alien2.pig from the GOG installer...
+Gog2fire=Extracting fire.pig from the GOG installer...
+Gog2groupa=Extracting groupa.pig from the GOG installer...
+Gog2ice=Extracting ice.pig from the GOG installer...
+Gog2water=Extracting water.pig from the GOG installer...
+Gog2intro=Extracting intro-h.mvl from the GOG installer...
+Gog2robots=Extracting robots-h.mvl from the GOG installer...
+Gog2other=Extracting other-h.mvl from the GOG installer...
 
 
 [Code]
@@ -330,6 +363,10 @@ var
   DataDirPage1: TInputDirWizardPage;
   DataDirPage2: TInputDirWizardPage;
   WhichInstallPage: TInputOptionWizardPage;
+  GogInstalledPage: TInputOptionWizardPage;
+  GogInstallPage: TInputFileWizardPage;
+  GogInstallPage1: TInputFileWizardPage;
+  GogInstallPage2: TInputFileWizardPage;
   update: boolean;
   CancelWithoutPrompt: boolean;
   folder1: string;
@@ -342,6 +379,9 @@ var
   D2FolderExisted: boolean;
   msgresult : integer;
   macdata: boolean;
+  GogStore: boolean;
+  ErrorCode:integer;
+
 
 
 procedure ExitProcess(exitCode:integer);
@@ -349,7 +389,6 @@ procedure ExitProcess(exitCode:integer);
 
 procedure DownloadFinished();
 var 
-  ErrorCode:integer;
   NewInstallerPath:string;                                                                           
 begin
   NewInstallerPath := ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
@@ -414,6 +453,7 @@ begin
  D1FolderExisted := false;
  D2FolderExisted := false;
  macdata := false;
+ GogStore := false;
 
  
 
@@ -422,10 +462,32 @@ begin
  idpSetOption('AllowContinue', '1');
  idpSetOption('ErrorDialog', 'FileList');
 
+ //The page to decide what the default data location should be
+  WhichInstallPage := CreateInputOptionPage(wpSelectComponents,
+    'Select Installation Type', '',
+    'Select what type of Descent installation is currently on your computer.',
+    True, False);
+  WhichInstallPage.Add('GOG');
+  WhichInstallPage.Add('Steam');
+  WhichInstallPage.Add('Other');
+  WhichInstallPage.Add('I do not own Descent');
+  WhichInstallPage.Add('I am updating my Rebirth install');
+
+  WhichInstallPage.Values[0] := true;
+
+ // Ask if the GOG installers have been run
+  GogInstalledPage := CreateInputOptionPage(WhichInstallPage.ID,
+    'GOG Installation Selection', '',
+    'Select whether you have already run the GOG Descent installers.',
+    True, False);
+  GogInstalledPage.Add('Yes, I have already run the GOG installers');
+  GogInstalledPage.Add('No, I have downloaded them, but have not run them yet');
+  GogInstalledPage.Values[0] := true;
+
   // Ask if they want to install just Rebirth, or copy the data files as well.
-  SampleDataPage := CreateInputOptionPage(wpSelectComponents,
+  SampleDataPage := CreateInputOptionPage(GogInstalledPage.ID,
     'Install Descent Data', '',
-    'Select what files from the old Descent installation should be copied over. (If updating Rebirth, leave everthing unchecked).',
+    'Select what files from the old Descent installation should be copied over.',
     False, False);
   SampleDataPage.Add('Required Game Files (Must be checked if installing Vertigo)');
   SampleDataPage.Add('Missions');
@@ -436,19 +498,32 @@ begin
   // The default value is to copy the game files only.
   SampleDataPage.Values[0] := True;
 
-  //The page to decide what the default data location should be
-  WhichInstallPage := CreateInputOptionPage(SampleDataPage.ID,
-    'Select Installation Type', '',
-    'Select what type of Descent installation is currently on your computer.',
-    True, False);
-  WhichInstallPage.Add('Steam');
-  WhichInstallPage.Add('GOG');
-  WhichInstallPage.Add('Other');
-
-  WhichInstallPage.Values[0] := true;
 
   // The page that is displayed when they're installing both D1X and D2X
-  DataDirPage := CreateInputDirPage(WhichInstallPage.ID,
+  GogInstallPage := CreateInputFilePage(GogInstalledPage.ID,
+  'GOG Installer Location', '',
+  'Please select the GOG installer locations.');
+  GogInstallPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  GogInstallPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
+  GogInstallPage.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
+  GogInstallPage.Values[1] := ExpandConstant('{src}\setup_descent2.exe'); //The default values are the current directory.
+
+  // The page that is displayed when they're installing both D1X and D2X
+  GogInstallPage1 := CreateInputFilePage(GogInstalledPage.ID,
+  'GOG Installer Location', '',
+  'Please select the GOG Descent 1 installer location.');
+  GogInstallPage1.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  GogInstallPage1.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
+
+  // The page that is displayed when they're installing both D1X and D2X
+  GogInstallPage2 := CreateInputFilePage(GogInstalledPage.ID,
+  'GOG Installer Location', '',
+  'Please select the GOG Descent 2 installer locations.');
+  GogInstallPage2.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  GogInstallPage2.Values[0] := ExpandConstant('{src}\setup_descent2.exe');   //The default values are the current directory.
+
+  // The page that is displayed when they're installing both D1X and D2X
+  DataDirPage := CreateInputDirPage(SampleDataPage.ID,
   'Descent Data Directories', '',
   'Please select the locations where the original Descent files are installed.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
   False, '');
@@ -458,7 +533,7 @@ begin
   DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default values are the GOG install paths.
 
   // The page that is displayed when just D1X is being installed.
-  DataDirPage1 := CreateInputDirPage(WhichInstallPage.ID,
+  DataDirPage1 := CreateInputDirPage(SampleDataPage.ID,
   'Descent Data Directory', '',
   'Please select the location where the original Descent files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
   False, '');
@@ -466,7 +541,7 @@ begin
   DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); //The default value is the GOG install path.
 
   // Page that's shown when just D2X is being installed.
-  DataDirPage2 := CreateInputDirPage(WhichInstallPage.ID,
+  DataDirPage2 := CreateInputDirPage(SampleDataPage.ID,
   'Descent 2 Data Directory', '',
   'Please select the location where the original Descent 2 files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
   False, '');
@@ -671,33 +746,47 @@ begin
 
   if CurPageID = WhichInstallPage.ID then //If we're on the which install page, check to get default values for the data dir pages.
   begin
-      if (WhichInstallPage.Values[0] = true) then //If we're installing from Steam
+      if (not WhichInstallPage.Values[0]) then
       begin
-          DataDirPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the GOG install paths.
+          GogInstalledPage.Values[0] := true; // If the user clicks back, make sure we reset the value
+      end;
+      if (WhichInstallPage.Values[1]) then //If we're installing from Steam
+      begin
+          DataDirPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the Steam install paths.
           DataDirPage.Values[1] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2'); 
           DataDirPage1.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
           DataDirPage2.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
       end;
-      if (WhichInstallPage.Values[1] = true) then
+      if (WhichInstallPage.Values[2]) then
       begin
-          DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent');   //The default values are the GOG install paths.
-          DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent 2'); 
-          DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); 
-          DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); 
-
-      end;
-      if (WhichInstallPage.Values[2] = true) then
-      begin
-          DataDirPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');   //The default values are the GOG install paths.
+          DataDirPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');   //The default values are the original install paths.
           DataDirPage.Values[1] := ExpandConstant('{sd}\GAMES\Descent2'); 
           DataDirPage1.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
           DataDirPage2.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
       end;
+      if (WhichInstallPage.Values[3]) then // If they don't have Descent, ask to buy it.
+      begin
+          if MsgBox('Would you like to purchase Descent 1 & 2 from GOG? (This will open the store page in your default browser.)', mbConfirmation, MB_YESNO) = IDYES then
+          begin
+            ShellExec('open', 'http://www.gog.com/game/descent_1_descent_2','', '', SW_SHOW, ewNoWait, ErrorCode);
+            GogStore := true;
+            GogInstalledPage.Values[1] := true;
+          end;
+      end
+      else begin
+        GogStore := false; // If they go back, reset this
+      end;
+  end;
+
+  if CurPageID = GogInstalledPage.ID then
+  begin
+    if GogInstalledPage.Values[1] then
+      SampleDataPage.Values[0] := false;
   end;
 
   if CurPageID = wpSelectComponents then  //...and we're on the component selection page...
   begin
-    if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = false) then  //...and we didn't select anything...
+    if (not IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then  //...and we didn't select anything...
       begin
         MsgBox('Please select to install either D1X-Rebirth, D2X-Rebirth, or both.', mbError, MB_OK); //...spit out an error. ;)
         result := false;
@@ -836,20 +925,32 @@ begin
   Result := SampleDataPage.Values[4];  // You don't say??
 end;
 
+function GogInstaller1(): Boolean;
+begin
+  if(GogInstalledPage.Values[1] and not IsComponentSelected('d1x\demo')) then
+    result := true;
+end;
+
+function GogInstaller2(): Boolean;
+begin
+  if(GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
+    result := true;
+end;
+
 // These two functions are used to tell the [Files] section where to look for data on the hard drive.
 function DescentTwo(Param: String): String;
 begin
   if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
     begin
-      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then  // If we're installing both...
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then  // If we're installing both...
       begin
         result := DataDirPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
       end;
-      if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then  // If just D2
+      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then  // If just D2
       begin
         result := DataDirPage2.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
       end;
-      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then // If just D1
+      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then // If just D1
       begin
         result := '';  // It doesn't matter, since we won't be installing D2.
       end;
@@ -868,15 +969,15 @@ function Descent(Param: String): String;
 begin
   if Assigned(DataDirPage) then
     begin
-      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
       begin
         result := DataDirPage.Values[0];   //...except here...
       end;
-      if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then
+      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
       begin
         result := '';
       end;
-      if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then
+      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then
       begin
         result := DataDirPage1.Values[0];  //...and here, since D1 is the first option in both cases.
       end;
@@ -897,6 +998,48 @@ begin
     begin
         result := vertigo1;
     end;
+end;
+
+function GogD1(Param: String): String;
+begin
+    if Assigned(GogInstallPage) then
+    begin
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      begin
+        result := GogInstallPage.Values[0];
+      end;
+      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      begin
+        result := '';
+      end;
+      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then
+      begin
+        result := GogInstallPage1.Values[0];
+      end;
+    end
+  else 
+   result := '';
+end;
+
+function GogD2(Param: String): String;
+begin
+    if Assigned(GogInstallPage) then
+    begin
+      if (IsComponentSelected('d2x') and IsComponentSelected('d1x')) then
+      begin
+        result := GogInstallPage.Values[1];
+      end;
+      if (not IsComponentSelected('d2x') and IsComponentSelected('d1x')) then
+      begin
+        result := '';
+      end;
+      if (IsComponentSelected('d2x') and not IsComponentSelected('d1x')) then
+      begin
+        result := GogInstallPage2.Values[0];
+      end;
+    end
+  else 
+   result := '';
 end;
 
 //Function for deciding whether or not we should extract the descent2.sow file.
@@ -1213,82 +1356,82 @@ end;
 // Decide under what curcumstances, certain pages should be skipped.
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
-  if ((PageID = DataDirPage.ID) or (PageID = WhichInstallPage.ID))and not (GameFiles() or Missions() or PlayerFiles() or SaveGames() or Demos()) then // If we selected to not copy anything, we don't need to ask where the data files are.
+  // If D1 demo is being installed, don't ask for D1 files.
+  if (isComponentSelected('d1x\demo') and ((PageID = DataDirPage1.ID) or (PageID = GogInstallPage1.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
   begin
-    Result := True
+    result := true;
     exit;
   end;
-  if (PageID = DataDirPage1.ID) and not (GameFiles() or Missions() or PlayerFiles() or SaveGames() or Demos()) then // Ditto
+  // If D2 demo is being installed, don't ask for D2 files.
+  if (isComponentSelected('d2x\demo') and ((PageID = DataDirPage2.ID) or (PageID = GogInstallPage2.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
   begin
-    Result := True
+    result := true;
     exit;
   end;
-  if (PageID = DataDirPage2.ID) and not (GameFiles() or Missions() or PlayerFiles() or SaveGames() or Demos()) then // Ditto
+  // If both demos are bing installed, don't ask for any files.
+  if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) and ((PageID = WhichInstallPage.ID) or (PageID = GogInstalledPage.ID) or (PageID = SampleDataPage.ID))) then
   begin
-    Result := True
+    result := true;
     exit;
   end;
-  if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = true) then // If we want to install both programs then...
+  // If the user has run the GOG installers, don't ask for their locations.
+  if (GogInstalledPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID))) then 
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user hasn't run the GOG installers, don't ask for the installation directories.
+  if (GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user is installing D1 and D2 (and not the demos) don't show the single question pages
+  if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not (IsComponentSelected('d1x\demo') or IsComponentSelected('d2x\demo'))) then
+  begin
+    if ((PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID)) then
     begin
-      if PageID = DataDirPage.ID then  // Don't skip this page (the one with both options).
-      begin
-        result := false;
-        exit;
-      end;
-      if PageID = DataDirPage1.ID then // But skip this one.
-      begin
-        result := true;
-        exit;
-      end;
-      if PageID = DataDirPage2.ID then // And this one.
-      begin
-        result := true;
-        exit;
-      end;
+      result := true;
       exit;
     end;
-    if (IsComponentSelected('d1x') = true) and (IsComponentSelected('d2x') = false) then  // If we're only installing D1X then...
+  end;
+  // If the user is only installing D1, don't show the D2 questions
+  if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then 
+  begin
+    if ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID) or (PageID = GogInstallPage.ID) or (PageID = GogInstallPage2.ID)) then
     begin
-      if PageID = DataDirPage.ID then // Skip this page.
-      begin
-        result := true;
-        exit;
-      end;
-      if PageID = DataDirPage1.ID then // But show this page. (The one with just Descent 1 option).
-      begin
-        result := false;
-        exit;
-      end;
-      if PageID = DataDirPage2.ID then // Skip this one too.
-      begin
-        result := true;
-        exit;
-      end;
+      result := true;
       exit;
     end;
-    if (IsComponentSelected('d1x') = false) and (IsComponentSelected('d2x') = true) then // But if we're just installing D2 then...
-    begin
-      if PageID = DataDirPage.ID then // Skip this page.
-      begin
-        result := true;
-        exit;
-      end;
-      if PageID = DataDirPage1.ID then // And this one.
-      begin
-        result := true;
-        exit;
-      end;
-      if PageID = DataDirPage2.ID then // But show this one (The one with just D2 options).
-      begin
-        result := false;
-        exit;
-      end;
-      exit;
-    end
-  else
+  end;
+  // If the user is only installing D2, don't show the D1 questions
+  if (IsComponentSelected('d2x') and not IsComponentSelected('d1x')) then 
   begin
+    if ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID)) then
+    begin
+      result := true;
+      exit;
+    end;
+  end;
+  // If the user doesn't have a GOG installation (and isn't buying one), don't show the GOG pages.
+  if (not WhichInstallPage.Values[0] and not GogStore and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID) or (PageID = GogInstalledPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user doesn't have Descent (and isn't buying it), don't ask for the data.
+  if ((WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) and not GogStore and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user just bought Descent from GOG, don't ask for the installation directories (only the installer locations).
+  if (GogStore and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID) or (PageID = GogInstalledPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
   result := false;    // If we're not on any of the pages we want to skip, then don't skip the page (obviously).
-  end;
 end;
 
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
