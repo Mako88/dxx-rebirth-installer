@@ -778,12 +778,6 @@ begin
       end;
   end;
 
-  if CurPageID = GogInstalledPage.ID then
-  begin
-    if GogInstalledPage.Values[1] then
-      SampleDataPage.Values[0] := false;
-  end;
-
   if CurPageID = wpSelectComponents then  //...and we're on the component selection page...
   begin
     if (not IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then  //...and we didn't select anything...
@@ -835,6 +829,11 @@ begin
       if Soundtrack2() then
       begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks'));
+      end;
+
+      if (GogInstalledPage.Values[1] or (isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) or WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) then
+      begin
+        SampleDataPage.Values[0] := false;
       end;
 
     //Check all the subcomponents, and add the ones that are selected.
