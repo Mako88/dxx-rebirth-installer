@@ -1,4 +1,4 @@
-; This is revision 33.
+; This is revision 34.
 
 #include <idp.iss>
 
@@ -350,9 +350,9 @@ Gog2fire=Extracting fire.pig from the GOG installer...
 Gog2groupa=Extracting groupa.pig from the GOG installer...
 Gog2ice=Extracting ice.pig from the GOG installer...
 Gog2water=Extracting water.pig from the GOG installer...
-Gog2intro=Extracting intro-h.mvl from the GOG installer...
-Gog2robots=Extracting robots-h.mvl from the GOG installer...
-Gog2other=Extracting other-h.mvl from the GOG installer...
+Gog2intro=Extracting intro-h.mvl from the GOG installer (This may take a few minutes)...
+Gog2robots=Extracting robots-h.mvl from the GOG installer (This may take a few minutes)...
+Gog2other=Extracting other-h.mvl from the GOG installer (This may take a few minutes)...
 
 
 [Code]
@@ -502,7 +502,7 @@ begin
   // The page that is displayed when they're installing both D1X and D2X
   GogInstallPage := CreateInputFilePage(GogInstalledPage.ID,
   'GOG Installer Location', '',
-  'Please select the GOG installer locations.');
+  'Please select the GOG installer locations.'#13#10);
   GogInstallPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
   GogInstallPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
   GogInstallPage.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
@@ -511,14 +511,14 @@ begin
   // The page that is displayed when they're installing both D1X and D2X
   GogInstallPage1 := CreateInputFilePage(GogInstalledPage.ID,
   'GOG Installer Location', '',
-  'Please select the GOG Descent 1 installer location.');
+  'Please select the GOG Descent 1 installer location.'#13#10);
   GogInstallPage1.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
   GogInstallPage1.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
   GogInstallPage2 := CreateInputFilePage(GogInstalledPage.ID,
   'GOG Installer Location', '',
-  'Please select the GOG Descent 2 installer locations.');
+  'Please select the GOG Descent 2 installer locations.'#13#10);
   GogInstallPage2.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
   GogInstallPage2.Values[0] := ExpandConstant('{src}\setup_descent2.exe');   //The default values are the current directory.
 
@@ -693,7 +693,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.33'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.34'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -937,22 +937,25 @@ begin
     result := true;
 end;
 
-// These two functions are used to tell the [Files] section where to look for data on the hard drive.
+// These functions are used to tell the [Files] section where to look for data on the hard drive.
 function DescentTwo(Param: String): String;
 begin
   if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
     begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then  // If we're installing both...
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d1x\demo')) then  // If we're installing both and no demo...
       begin
         result := DataDirPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
+        exit;
       end;
-      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then  // If just D2
+      if (IsComponentSelected('d2x')) then  // If just D2
       begin
         result := DataDirPage2.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
+        exit;
       end;
-      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then // If just D1
+      if (not IsComponentSelected('d2x')) then // If just D1
       begin
         result := '';  // It doesn't matter, since we won't be installing D2.
+        exit;
       end;
     end
   else 
@@ -969,17 +972,20 @@ function Descent(Param: String): String;
 begin
   if Assigned(DataDirPage) then
     begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
       begin
-        result := DataDirPage.Values[0];   //...except here...
+        result := DataDirPage.Values[0];
+        exit;
       end;
-      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      if (IsComponentSelected('d1x')) then
+      begin
+        result := DataDirPage1.Values[0]
+        exit;
+      end;
+      if (not IsComponentSelected('d1x')) then
       begin
         result := '';
-      end;
-      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then
-      begin
-        result := DataDirPage1.Values[0];  //...and here, since D1 is the first option in both cases.
+        exit;
       end;
     end
   else 
@@ -1004,17 +1010,20 @@ function GogD1(Param: String): String;
 begin
     if Assigned(GogInstallPage) then
     begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
       begin
         result := GogInstallPage.Values[0];
+        exit;
       end;
-      if (not IsComponentSelected('d1x') and IsComponentSelected('d2x')) then
+      if (IsComponentSelected('d1x')) then
+      begin
+        result := GogInstallPage1.Values[0]
+        exit;
+      end;
+      if (not IsComponentSelected('d1x')) then
       begin
         result := '';
-      end;
-      if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then
-      begin
-        result := GogInstallPage1.Values[0];
+        exit;
       end;
     end
   else 
@@ -1025,17 +1034,20 @@ function GogD2(Param: String): String;
 begin
     if Assigned(GogInstallPage) then
     begin
-      if (IsComponentSelected('d2x') and IsComponentSelected('d1x')) then
+      if (IsComponentSelected('d2x') and IsComponentSelected('d1x') and not IsComponentSelected('d1x\demo')) then
       begin
         result := GogInstallPage.Values[1];
+        exit;
       end;
-      if (not IsComponentSelected('d2x') and IsComponentSelected('d1x')) then
-      begin
-        result := '';
-      end;
-      if (IsComponentSelected('d2x') and not IsComponentSelected('d1x')) then
+      if (IsComponentSelected('d2x')) then
       begin
         result := GogInstallPage2.Values[0];
+        exit;
+      end;
+      if (not IsComponentSelected('d2x')) then
+      begin
+        result := '';
+        exit;
       end;
     end
   else 
