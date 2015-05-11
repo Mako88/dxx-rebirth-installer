@@ -7,7 +7,9 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 1. Unzip the official release to C:\DXX-Rebirth\
 
-2. Install INNO Setup (non-unicode) and Inno Downloader Plugin (INNO Setup can be installed from http://www.jrsoftware.org/isdl.php Inno Downloader Plugin is in the include folder) NOTE: Make sure you install INNO Setup with the preprocessor, and make sure you install IDP with the include .iss setting checked.
+2. Replace the Hi-res addon in the D1 folder with the one in the include folder
+
+2. Install INNO Setup (unicode) and Inno Downloader Plugin (INNO Setup can be installed from http://www.jrsoftware.org/isdl.php Inno Downloader Plugin is in the include folder) NOTE: Make sure you install INNO Setup with the preprocessor, and make sure you install IDP with the include .iss setting checked.
 
 3. (If changing installer revision) Search for "//Add the installer revision to the version" and change the revision number
 
@@ -25,7 +27,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 8. (If changing Rebirth version) Replace all instances of the old version number with the new version number in the .iss file.
 
-9. Change the version number in the version2.txt file on the server.
+9. (If changing installer revision or Rebirth version) Change the version number in the version2.txt file on the server.
 
 ###Note:
 If you compile yourself, the version checker will check against the official server. You can change this behavior in the .iss file where it says
