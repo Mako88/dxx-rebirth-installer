@@ -7,7 +7,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 1. Unzip the official release to C:\DXX-Rebirth\
 
-2. Replace the Hi-res addon in the D1 folder with the one in the include folder
+2. Replace the Hi-res addon in the D1 folder with the one in the include\Addons folder
 
 2. Install INNO Setup (unicode) and Inno Downloader Plugin (INNO Setup can be installed from http://www.jrsoftware.org/isdl.php Inno Downloader Plugin is in the include folder) NOTE: Make sure you install INNO Setup with the preprocessor, and make sure you install IDP with the include .iss setting checked.
 
