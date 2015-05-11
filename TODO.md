@@ -4,6 +4,9 @@
 - [X] Fix running Retro from the installer (add tracker)
 - [X] Extract files from GOG installers
 - [X] Add link to download from GOG on the "Installation Type" page
+- [X] Auto install single soundtrack/allow enabling a soundtrack
+- [ ] Add "I'm a noob" popup to component selection
+- [ ] Add Mumble installation and configuration
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-- [ ] Auto install single soundtrack/allow enabling a soundtrack
+
