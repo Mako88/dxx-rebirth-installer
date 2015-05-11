@@ -1,4 +1,4 @@
-; This is revision 34.
+; This is revision 35.
 
 #include <idp.iss>
 
@@ -367,6 +367,8 @@ var
   GogInstallPage: TInputFileWizardPage;
   GogInstallPage1: TInputFileWizardPage;
   GogInstallPage2: TInputFileWizardPage;
+  SoundtrackPage1: TInputOptionWizardPage;
+  SoundtrackPage2: TInputOptionWizardPage;
   update: boolean;
   CancelWithoutPrompt: boolean;
   folder1: string;
@@ -377,10 +379,15 @@ var
   RebirthFolderExisted: boolean;
   D1FolderExisted: boolean;
   D2FolderExisted: boolean;
-  msgresult : integer;
+  msgresult: integer;
   macdata: boolean;
   GogStore: boolean;
-  ErrorCode:integer;
+  ErrorCode: integer;
+  D1Soundtracks: array of string;
+  D2Soundtracks: array of string;
+  D1SIndex: integer;
+  D2SIndex: integer;
+
 
 
 
@@ -394,7 +401,7 @@ begin
   NewInstallerPath := ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
   if update = true then begin
     MsgBox('The updated setup will now launch.', mbInformation, MB_OK);
-  end
+  end;
      
   if ShellExec('open', NewInstallerPath, '/updated', ExtractFilePath(NewInstallerPath), SW_SHOW, ewNoWait, ErrorCode) then
        begin
@@ -454,7 +461,13 @@ begin
  D2FolderExisted := false;
  macdata := false;
  GogStore := false;
-
+ CancelWithoutPrompt := false; //Initially we always cancel with a prompt.
+ folder1 := ''; //Make sure all directories are void to start.
+ folder2 := '';
+ vertigo1 := '';
+ filecheckran := false; //we haven't run a file check yet.
+ D1SIndex := 0;
+ D2SIndex := 0;
  
 
  {If the download of the new installer fails, we still want to give the
@@ -548,122 +561,145 @@ begin
   DataDirPage2.Add(''); // Select a location for data.
   DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default value is the GOG install path.
 
-  CancelWithoutPrompt := false; //Initially we always cancel with a prompt.
-  folder1 := ''; //Make sure all directories are void to start.
-  folder2 := '';
-  vertigo1 := '';
-  filecheckran := false; //we haven't run a file check yet.
+  SoundtrackPage1 := CreateInputOptionPage(wpInstalling,
+  'Descent 1 Soundtrack Selection', '',
+  'Please select which of the downloaded D1 soundtracks to enable.'#13#10'This will move the .dxa file from the "Soundtracks" folder to the main D1X folder.'#13#10'To enable a different one, simply move this one back to the "Soundtracks"'#13#10'folder, and move a new one to the main D1X folder.'#13#10,
+  True, True);
+
+  SoundtrackPage2 := CreateInputOptionPage(SoundtrackPage1.ID,
+  'Descent 1 Soundtrack Selection', '',
+  'Please select which of the downloaded D1 soundtracks to enable.'#13#10'This will move the .dxa file from the "Soundtracks" folder to the main D1X folder.'#13#10'To enable a different one, simply move this one back to the "Soundtracks"'#13#10'folder, and move a new one to the main D1X folder.'#13#10,
+  True, True);
 end;
 
-function Soundtrack1(): Boolean;
+procedure Soundtrack1();
 begin
+  SetArrayLength(D1Soundtracks, 9);
   if IsComponentSelected('d1xa\addon\sc55') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1xr-sc55-music.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('SC-55 MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\opl3') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1xr-opl3-music.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('OPL-3 MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\awe32') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1midi-awe32.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('AWE32 MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\awe64') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1midi-awe64.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('AWE64 MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\2m') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1midi-ensoniq2m.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Ensoniq 2M MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\8m') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1midi-ensoniq8m.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Ensoniq 8M MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\sc') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1midi-rolandsc.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Roland SC MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\mac') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1cda-mac.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Mac Redbook Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\playstation') then
   begin
-    result := true;
-    exit;
+    D1Soundtracks[D1SIndex] := 'd1-playstation.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Playstation Soundtrack for D1X');
   end;
-  result := false;
 end;
 
-function Soundtrack2(): Boolean;
+procedure Soundtrack2();
 begin
+  SetArrayLength(D2Soundtracks, 10);
   if IsComponentSelected('d2xa\addon\sc55') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2xr-sc55-music.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('SC-55 MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\opl3') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2xr-opl3-music.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('OPL3 MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\awe32') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2midi-awe32.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('AWE32 MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\awe64') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2midi-awe64.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('AWE64 MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\2m') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2midi-ensoniq2m.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Ensoniq 2M MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\8m') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2midi-ensoniq8m.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Ensoniq 8M MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\sc') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2midi-rolandsc.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Roland SC MIDI Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\mac') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2cda-mac.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Mac Redbook Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\max') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2cda-max.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Descent Maximum Soundtrack for D2X');
   end;
   if IsComponentSelected('d2xa\addon\tdc') then
   begin
-    result := true;
-    exit;
+    D2Soundtracks[D2SIndex] := 'd2cda-tdc.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('The Definitive Collection Redbook Soundtrack for D2X');
   end;
-  result := false;
 end;
 
 // When we try to go to the next page...
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
- serversion:string;
+ serversion:ansistring;
  newavail:boolean;
  i:integer;
  ourVersion:string;
@@ -693,7 +729,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.34'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.35'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -790,12 +826,8 @@ begin
     begin
       MsgBox('You have selected to install Descent Maximum. This is a total conversion, and replaces the main campaign of Descent 2. To uninstall it, remove or change the extension of D2XR-MAXIMUM.DXA in the main D2X-Rebirth folder.', mbInformation, MB_OK);
     end;
-    if Soundtrack1() or Soundtrack2() then
-    begin
-      MsgBox('The soundtrack(s) you have selected will be downloaded into a "Soundtracks" subfolder in the main Rebirth installation folder(s). To enable one of them you must copy it into the main installation folder(s).', mbInformation, MB_OK);
-    end;
     result := true; // Otherwise if we're on the components selection page, just keep going.
-  end
+  end;
   if CurPageID = wpReady then
   begin
       if DirExists(ExpandConstant('{app}\DXX-Rebirth')) then
@@ -822,11 +854,13 @@ begin
       begin
          MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
       end;
-      if Soundtrack1() then
+      Soundtrack1();
+      Soundtrack2();
+      if D1SIndex > 0 then
       begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks'));
       end;
-      if Soundtrack2() then
+      if D2SIndex > 0 then
       begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks'));
       end;
@@ -875,10 +909,48 @@ begin
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-TDC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
 
-      result := true;
-  end
-  else
-    result := true;   // And keep going if we're on any other page as well.
+  end;
+  if CurPageID = wpFinished then
+  begin
+    // If they only downloaded one soundtrack
+    if (D1SIndex = 1) then
+    begin
+      // Activate it
+      RenameFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\' + D1Soundtracks[0]), ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\' + D1Soundtracks[0]));
+    end;
+    // If they downloaded more than one
+    if (D1SIndex > 1) then
+    begin
+      for i := 0 to (D1SIndex - 1) do
+      begin
+        if SoundtrackPage1.Values[i] = true then
+        begin
+          // Activate the one they selected.
+          RenameFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\' + D1Soundtracks[i]), ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\' + D1Soundtracks[i]));
+        end;
+      end;
+    end;
+
+    // If they only downloaded one soundtrack
+    if (D2SIndex = 1) then
+    begin
+      // Activate it
+      RenameFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\' + D2Soundtracks[0]), ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\' + D2Soundtracks[0]));
+    end;
+    // If they downloaded more than one
+    if (D2SIndex > 1) then
+    begin
+      for i := 0 to (D2SIndex - 1) do
+      begin
+        if SoundtrackPage2.Values[i] = true then
+        begin
+          // Activate the one they selected.
+          RenameFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\' + D2Soundtracks[i]), ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\' + D2Soundtracks[i]));
+        end;
+      end;
+    end;
+  end;
+  result := true;   // And keep going if we're on any other page as well.
 end;
 
 //Use this to delete the original install directory if needed.
@@ -1438,6 +1510,18 @@ begin
   end;
   // If the user just bought Descent from GOG, don't ask for the installation directories (only the installer locations).
   if (GogStore and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID) or (PageID = GogInstalledPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user selected fewer than 2 D1 soundtracks, we don't need to ask to activate them.
+  if ((D1SIndex < 2) and (PageID = SoundtrackPage1.ID)) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If the user selected fewer than 2 D2 soundtracks, we don't need to ask to activate them.
+  if ((D2SIndex < 2) and (PageID = SoundtrackPage2.ID)) then
   begin
     result := true;
     exit;
