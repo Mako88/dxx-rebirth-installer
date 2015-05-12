@@ -1,4 +1,4 @@
-; This is revision 35.
+; This is revision 36.
 
 #include <idp.iss>
 
@@ -387,6 +387,7 @@ var
   D2Soundtracks: array of string;
   D1SIndex: integer;
   D2SIndex: integer;
+  defaults: boolean;
 
 
 
@@ -729,7 +730,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.35'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.36'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -1559,6 +1560,25 @@ begin
     begin
       DownloadFinished();
     end;
+  end;
+  if CurPageID = wpSelectComponents then
+  begin
+    if (defaults = false) and (MsgBox('Would you like to automatically select the recommended components? (If you are unsure of what you need, click yes).', mbConfirmation, MB_YESNO) = IDYES) then
+    begin
+      defaults := true;
+      WizardForm.ComponentsList.Checked[7] := true;
+      WizardForm.ComponentsList.Checked[9] := true;
+      WizardForm.ComponentsList.Checked[11] := true;
+      WizardForm.ComponentsList.Checked[19] := true;
+      WizardForm.ComponentsList.Checked[24] := true;
+      WizardForm.ComponentsList.Checked[27] := true;
+      WizardForm.ComponentsList.Checked[29] := true;
+      WizardForm.ComponentsList.Checked[37] := true;
+    end;
+  end;
+  if CurPageID = wpFinished then
+  begin
+    MsgBox('Most of the Descent community uses Mumble to coordinate multiplayer games. You can download Mumble at http://mumble.sourceforge.net/ then connect to server address mumble.descentrangers.com on port 31393.', mbInformation, MB_OK);
   end;
 end;
 
