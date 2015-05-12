@@ -6,7 +6,7 @@
 - [X] Add link to download from GOG on the "Installation Type" page
 - [X] Auto install single soundtrack/allow enabling a soundtrack
 - [ ] Add "I'm a noob" popup to component selection
-- [ ] Add Mumble installation and configuration
+- [ ] Add Mumble installation and configuration link at end
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 
