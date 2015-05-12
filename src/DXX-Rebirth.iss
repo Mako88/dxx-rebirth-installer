@@ -29,7 +29,7 @@ DefaultDirName={sd}\Games
 DefaultGroupName={#MyAppName}
 OutputBaseFilename=DXX-Rebirth_Setup
 OutputDir=C:\DXX-Rebirth
-Compression=lzma2/max
+Compression=lzma2/fast
 SolidCompression=yes
 VersionInfoVersion=0.58.1
 VersionInfoTextVersion=0.58.1
@@ -99,6 +99,8 @@ Name: "d2xa\addon\german"; Description: "German Briefings for D2X"; Flags: disab
 ;Old installation files
 Source: "{app}\D1X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
 Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: external ignoreversion recursesubdirs createallsubdirs uninsneveruninstall skipifsourcedoesntexist overwritereadonly
+;Mumble info text file
+Source: "C:\DXX-Rebirth\include\mumble-info.txt"; DestDir: "{app}\DXX-Rebirth"; Flags: ignoreversion
 ;D1X Files
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x.ini"; DestDir: "{tmp}"; Components: d1x; Flags: ignoreversion; AfterInstall: D1Xini
@@ -1578,7 +1580,7 @@ begin
   end;
   if CurPageID = wpFinished then
   begin
-    MsgBox('Most of the Descent community uses Mumble to coordinate multiplayer games. You can download Mumble at http://mumble.sourceforge.net/ then connect to server address mumble.descentrangers.com on port 31393.', mbInformation, MB_OK);
+    MsgBox('Most of the Descent community uses Mumble to coordinate multiplayer games. The Mumble server info is saved in ' + ExpandConstant('{app}\DXX-Rebirth\mumble-info.txt'), mbInformation, MB_OK);
   end;
 end;
 
