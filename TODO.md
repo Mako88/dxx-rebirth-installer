@@ -8,7 +8,6 @@
 - [X] Add "I'm a noob" popup to component selection
 - [X] Add Mumble installation and configuration link at end
 - [ ] Have installer remove mikmod.dll with the next release
-- [ ] Fix playstation soundtrack
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 
