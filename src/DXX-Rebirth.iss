@@ -644,7 +644,7 @@ end;
 
 procedure Soundtrack2();
 begin
-  SetArrayLength(D2Soundtracks, 10);
+  SetArrayLength(D2Soundtracks, 11);
   if IsComponentSelected('d2xa\addon\sc55') then
   begin
     D2Soundtracks[D2SIndex] := 'd2xr-sc55-music.dxa';
