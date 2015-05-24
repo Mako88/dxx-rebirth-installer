@@ -1,4 +1,4 @@
-; This is revision 36.
+; This is revision 37.
 
 #include <idp.iss>
 
@@ -72,6 +72,7 @@ Name: "d1xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D1X"; Flags: d
 Name: "d1xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 73066025
 Name: "d1xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95310677
 Name: "d1xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 95627285
+Name: "d1xa\addon\finn"; Description: "Finn's MIDI Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 83293357
 Name: "d1xa\addon\mac"; Description: "Mac Redbook Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 139194210
 Name: "d1xa\addon\playstation"; Description: "Playstation Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 153810449
 Name: "d1xa\addon\german"; Description: "German Briefings for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 16794
@@ -90,6 +91,7 @@ Name: "d2xa\addon\awe64"; Description: "AWE64 MIDI Soundtrack for D2X"; Flags: d
 Name: "d2xa\addon\2m"; Description: "Ensoniq 2M MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 20074399
 Name: "d2xa\addon\8m"; Description: "Ensoniq 8M MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 25143129
 Name: "d2xa\addon\sc"; Description: "Roland SC MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 25074959
+Name: "d2xa\addon\finn"; Description: "Finn's MIDI Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 24190474
 Name: "d2xa\addon\mac"; Description: "Mac Redbook Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 100602568
 Name: "d2xa\addon\max"; Description: "Descent Maximum Redbook Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 90639559
 Name: "d2xa\addon\tdc"; Description: "The Definitive Collection Redbook Soundtrack for D2X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 122615372 
@@ -577,7 +579,7 @@ end;
 
 procedure Soundtrack1();
 begin
-  SetArrayLength(D1Soundtracks, 9);
+  SetArrayLength(D1Soundtracks, 10);
   if IsComponentSelected('d1xa\addon\sc55') then
   begin
     D1Soundtracks[D1SIndex] := 'd1xr-sc55-music.dxa';
@@ -625,6 +627,12 @@ begin
     D1Soundtracks[D1SIndex] := 'd1cda-mac.dxa';
     D1SIndex := D1SIndex + 1;
     SoundtrackPage1.Add('Mac Redbook Soundtrack for D1X');
+  end;
+  if IsComponentSelected('d1xa\addon\finn') then
+  begin
+    D1Soundtracks[D1SIndex] := 'd1-finn.dxa';
+    D1SIndex := D1SIndex + 1;
+    SoundtrackPage1.Add('Finn''s MIDI Soundtrack for D1X');
   end;
   if IsComponentSelected('d1xa\addon\playstation') then
   begin
@@ -679,6 +687,12 @@ begin
     D2SIndex := D2SIndex + 1;
     SoundtrackPage2.Add('Roland SC MIDI Soundtrack for D2X');
   end;
+  if IsComponentSelected('d2xa\addon\finn') then
+  begin
+    D2Soundtracks[D2SIndex] := 'd2-finn.dxa';
+    D2SIndex := D2SIndex + 1;
+    SoundtrackPage2.Add('Finn''s MIDI Soundtrack for D2X');
+  end;
   if IsComponentSelected('d2xa\addon\mac') then
   begin
     D2Soundtracks[D2SIndex] := 'd2cda-mac.dxa';
@@ -732,7 +746,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.36'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.37'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -893,6 +907,7 @@ begin
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d1-finn.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-finn.dxa'), 'd1xa\addon\finn');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon\german');
       // D2 Addons
       idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro');
@@ -908,6 +923,7 @@ begin
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
+      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d2-finn.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2-finn.dxa'), 'd2xa\addon\finn');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAX.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
       idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-TDC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
