@@ -11,7 +11,6 @@
 - [ ] Have installer remove mikmod.dll with the next release
 - [ ] Figure out Retro and Rebirth settings/hogdir options
  
-
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 
