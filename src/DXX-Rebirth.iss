@@ -1,4 +1,4 @@
-; This is revision 37.
+; This is revision 38.
 
 #include <idp.iss>
 
@@ -456,7 +456,37 @@ begin
  result:=0;
 end;
 
+function GetGogD1():String;
+  var file: TFindRec;
+begin
+  if FindFirst(ExpandConstant('{src}\setup_descent_*'), file) then
+  begin
+    result := file.Name;
+    FindClose(file);
+    exit;
+  end
+  else begin
+    result := ExpandConstant('{src}\setup_descent.exe');
+    FindClose(file);
+    exit;
+  end;
+end;
 
+function GetGogD2():String;
+  var file:TFindRec;
+begin
+  if FindFirst(ExpandConstant('{src}\setup_descent2_*'), file) then
+  begin
+    result := file.Name;
+    FindClose(file);
+    exit;
+  end
+  else begin
+    result := ExpandConstant('{src}\setup_descent2.exe');
+    FindClose(file);
+    exit;
+  end;
+end;
 
 procedure InitializeWizard;  
 begin
@@ -523,22 +553,22 @@ begin
   'Please select the GOG installer locations.'#13#10);
   GogInstallPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
   GogInstallPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
-  GogInstallPage.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
-  GogInstallPage.Values[1] := ExpandConstant('{src}\setup_descent2.exe'); //The default values are the current directory.
+  GogInstallPage.Values[0] := GetGogD1();   //The default values are the current directory.
+  GogInstallPage.Values[1] := GetGogD2(); //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
   GogInstallPage1 := CreateInputFilePage(GogInstalledPage.ID,
   'GOG Installer Location', '',
   'Please select the GOG Descent 1 installer location.'#13#10);
   GogInstallPage1.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-  GogInstallPage1.Values[0] := ExpandConstant('{src}\setup_descent.exe');   //The default values are the current directory.
+  GogInstallPage1.Values[0] := GetGogD1();   //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
   GogInstallPage2 := CreateInputFilePage(GogInstalledPage.ID,
   'GOG Installer Location', '',
   'Please select the GOG Descent 2 installer locations.'#13#10);
   GogInstallPage2.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-  GogInstallPage2.Values[0] := ExpandConstant('{src}\setup_descent2.exe');   //The default values are the current directory.
+  GogInstallPage2.Values[0] := GetGogD2();   //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
   DataDirPage := CreateInputDirPage(SampleDataPage.ID,
@@ -746,7 +776,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.37'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.38'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
