@@ -861,6 +861,36 @@ begin
       end;
   end;
 
+  if CurPageID = GogInstallPage.ID then
+  begin
+    if not (FileExists(GogInstallPage.Values[0]) and FileExists(GogInstallPage.Values[1])) then
+    begin
+      MsgBox('Please select the location of both GOG installers.', mbInformation, MB_OK);
+      result := false;
+      exit;
+    end;
+  end;
+
+  if CurPageID = GogInstallPage1.ID then
+  begin
+    if not (FileExists(GogInstallPage1.Values[0])) then
+    begin
+      MsgBox('Please select the location of the Descent 1 GOG installer.', mbInformation, MB_OK);
+      result := false;
+      exit;
+    end;
+  end;
+
+  if CurPageID = GogInstallPage2.ID then
+  begin
+    if not (FileExists(GogInstallPage2.Values[0])) then
+    begin
+      MsgBox('Please select the location of the Descent 2 GOG installer.', mbInformation, MB_OK);
+      result := false;
+      exit;
+    end;
+  end;
+
   if CurPageID = wpSelectComponents then  //...and we're on the component selection page...
   begin
     if (not IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then  //...and we didn't select anything...
