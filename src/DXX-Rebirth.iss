@@ -1648,10 +1648,10 @@ begin
       WizardForm.ComponentsList.Checked[9] := true;
       WizardForm.ComponentsList.Checked[11] := true;
       WizardForm.ComponentsList.Checked[19] := true;
-      WizardForm.ComponentsList.Checked[24] := true;
-      WizardForm.ComponentsList.Checked[27] := true;
-      WizardForm.ComponentsList.Checked[29] := true;
-      WizardForm.ComponentsList.Checked[37] := true;
+      WizardForm.ComponentsList.Checked[25] := true;
+      WizardForm.ComponentsList.Checked[28] := true;
+      WizardForm.ComponentsList.Checked[30] := true;
+      WizardForm.ComponentsList.Checked[38] := true;
     end;
   end;
   if CurPageID = wpFinished then
