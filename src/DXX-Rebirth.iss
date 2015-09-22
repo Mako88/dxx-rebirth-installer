@@ -1,4 +1,4 @@
-; This is revision 39.
+; This is revision 40.
 
 #include <idp.iss>
 
@@ -776,7 +776,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.39'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.40'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
