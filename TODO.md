@@ -7,9 +7,9 @@
 - [X] Auto install single soundtrack/allow enabling a soundtrack
 - [X] Add "I'm a noob" popup to component selection
 - [X] Add Mumble installation and configuration link at end
-- [ ] Add beta build option(s) to installer (including needed .dlls)
-- [ ] Have installer remove mikmod.dll with the next release
-- [ ] Figure out Retro and Rebirth settings/hogdir options
+~~- [ ] Add beta build option(s) to installer (including needed .dlls)~~
+- [ ] Only use needed .dll files (possibly remove old ones?)
+~~- [ ] Figure out Retro and Rebirth settings/hogdir options~~
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 
