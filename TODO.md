@@ -10,4 +10,4 @@
 - [ ] Only use needed .dll files (possibly remove old ones?)
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-
+- [ ] Fix GOG Installer Names (on all 3 possibilities)
