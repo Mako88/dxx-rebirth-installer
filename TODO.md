@@ -11,3 +11,4 @@
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
 - [ ] Fix GOG Installer Names (on all 3 possibilities)
+- [ ] Fix Vertigo selection
