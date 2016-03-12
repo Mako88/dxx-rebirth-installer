@@ -35,7 +35,7 @@ AllowRootDirectory=yes
 UsePreviousSetupType=no
 DisableWelcomePage=no
 AllowNoIcons=yes
-
+DisableDirPage=no
 
 
 [Languages]
@@ -761,7 +761,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.41'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.42'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
