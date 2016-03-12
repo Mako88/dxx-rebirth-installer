@@ -1,18 +1,12 @@
-; This is revision 40.
-
 #include <idp.iss>
 
 #define MyAppName "DXX-Rebirth"
 #define MyAppName1 "D1X-Rebirth"
 #define MyAppName2 "D2X-Rebirth"
-#define MyAppName3 "D1X-Rebirth (Retro Mod)"
-#define MyAppName4 "D2X-Rebirth (Retro Mod)"
 #define MyAppVersion "0.58.1"
 #define MyAppURL "http://www.dxx-rebirth.com/"
 #define MyAppExeName "d1x-rebirth.exe"
 #define MyAppExeName2 "d2x-rebirth.exe"
-#define MyAppExeName3 "d1x-rebirth-retro.exe"
-#define MyAppExeName4 "d2x-rebirth-retro.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -39,6 +33,8 @@ UninstallFilesDir={app}\DXX-Rebirth
 PrivilegesRequired=admin
 AllowRootDirectory=yes
 UsePreviousSetupType=no
+DisableWelcomePage=no
+AllowNoIcons=yes
 
 
 
@@ -59,7 +55,6 @@ Name: "d2x\none"; Description: "No Expansion"; Flags: disablenouninstallwarning 
 Name: "d2x\demo"; Description: "Shareware demo files for Descent 2"; Flags: disablenouninstallwarning exclusive; ExtraDiskSpaceRequired: 672000
 Name: "d2x\vertigo"; Description: "Vertigo Expansion for D2 (You must already have the Vertigo files)"; Flags: disablenouninstallwarning exclusive
 Name: "d1xa"; Description: "Downloadable Content for D1X"; Flags: dontinheritcheck disablenouninstallwarning
-Name: "d1xa\retro"; Description: "Retro Mod for D1 (For competitive play)"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1322248
 Name: "d1xa\mission"; Description: "Mission Packs for D1"; Flags: disablenouninstallwarning
 Name: "d1xa\mission\rangeranarchy"; Description: "Rangers Anarchy Mission Pack for D1"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1195377
 Name: "d1xa\mission\rangercoop"; Description: "Rangers Co-op Mission Pack for D1"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 8063549
@@ -77,7 +72,6 @@ Name: "d1xa\addon\mac"; Description: "Mac Redbook Soundtrack for D1X"; Flags: di
 Name: "d1xa\addon\playstation"; Description: "Playstation Soundtrack for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 153810449
 Name: "d1xa\addon\german"; Description: "German Briefings for D1X"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 16794
 Name: "d2xa"; Description: "Downloadable Content for D2X"; Flags: dontinheritcheck disablenouninstallwarning
-Name: "d2xa\retro"; Description: "Retro Mod for D2 (For competitive play)"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1537264
 Name: "d2xa\max"; Description: "Descent 2 Maximum (Playstation) Conversion"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 1431133
 Name: "d2xa\mission"; Description: "Mission Packs for D2"; Flags: disablenouninstallwarning
 Name: "d2xa\mission\rangeranarchy"; Description: "Rangers Anarchy Mission Pack for D2"; Flags: disablenouninstallwarning; ExtraDiskSpaceRequired: 7287603
@@ -112,18 +106,16 @@ Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.bat"; DestDir: "{tmp}"; Componen
 Source: "C:\DXX-Rebirth\include\D1-Patch\datapt.exe"; DestDir: "{tmp}"; Components: d1x;
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.hog.diff"; DestDir: "{tmp}"; Components: d1x;
 Source: "C:\DXX-Rebirth\include\D1-Patch\descent.pig.diff"; DestDir: "{tmp}"; Components: d1x;
-;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d1x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1xa\retro; Flags: ignoreversion;
 ;D1 Demo Files
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D1-Demo\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x\demo"; Flags: uninsneveruninstall
 ;D1 Main Files
-Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Data\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Data\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Descent\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Descent}\Descent\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; AfterInstall: FileCheck1
+Source: "{code:Descent}\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Data\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Data\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Descent\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Descent}\Descent\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall; AfterInstall: FileCheck1
 ;D1 Missions
 Source: "{code:Descent}\*.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\*.msn"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -161,56 +153,54 @@ Source: "C:\DXX-Rebirth\include\Addons\D1MAC-SFX.DXA"; DestDir: "{app}\DXX-Rebir
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x.ini"; DestDir: "{tmp}"; Components: d2x; Flags: ignoreversion; AfterInstall: D2Xini
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
-;Copy over the retro icon if the component is selected
-Source: "C:\DXX-Rebirth\include\d2x-rebirth-retro.ico"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2xa\retro; Flags: ignoreversion;
 ;D2 Demo Files
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 Source: "C:\DXX-Rebirth\include\D2-Demo\d2demo.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\demo"; Flags: uninsneveruninstall
 ;D2 Main Files
-Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\D2data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\D2data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.s11"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.s22"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\alien1.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\alien2.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\fire.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\groupa.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\ice.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\water.pig"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 SOW File
-Source: "{code:DescentTwo}\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist
-Source: "{code:DescentTwo}\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: GameFiles; Flags: external skipifsourcedoesntexist; AfterInstall: FileCheck2
+Source: "{code:DescentTwo}\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist
+Source: "{code:DescentTwo}\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist; AfterInstall: FileCheck2
 ;D2 Missions
 Source: "{code:DescentTwo}\*.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\*.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -235,40 +225,39 @@ Source: "{code:DescentTwo}\Players\*.mg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebir
 Source: "{code:DescentTwo}\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;Vertigo
-Source: "{code:Vertigo}\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; BeforeInstall: CheckVertigo
-Source: "{code:Vertigo}\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: GameFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; BeforeInstall: CheckVertigo
+Source: "{code:Vertigo}\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Data\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 Addons
 Source: "C:\DXX-Rebirth\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion;
-
 
 ;7-zip for SOW
 Source: "C:\DXX-Rebirth\include\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
@@ -280,19 +269,13 @@ Source: "C:\DXX-Rebirth\include\innounp.exe"; DestDir: "{tmp}"; Flags: ignorever
 [Icons]
 Name: "{group}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x";
 Name: "{group}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x";
-Name: "{group}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro";
-Name: "{group}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro";
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}";
 Name: "{userdesktop}\{#MyAppName1}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth.ico"; Components: "d1x"; Tasks: desktopicon
 Name: "{userdesktop}\{#MyAppName2}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth.ico"; Components: "d2x"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName3}"; Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; IconFilename: "{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro"; Tasks: desktopicon
-Name: "{userdesktop}\{#MyAppName4}"; Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; IconFilename: "{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.ico"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName1, "&", "&&")}}"; Components: "d1x"; Flags: nowait postinstall skipifsilent unchecked
 Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName2}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName2, "&", "&&")}}"; Components: "d2x"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\DXX-Rebirth\D1X-Rebirth\{#MyAppExeName3}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName3, "&", "&&")}}"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d1xa\retro"; Flags: nowait postinstall skipifsilent unchecked
-Filename: "{app}\DXX-Rebirth\D2X-Rebirth\{#MyAppExeName4}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName4, "&", "&&")}}"; Parameters: "-tracker_hostaddr retro-tracker.game-server.cc"; Components: "d2xa\retro"; Flags: nowait postinstall skipifsilent unchecked
 ;Extract .sow file
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien1.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"" ""{tmp}\descent2.sow"" ""alien2.pig"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
@@ -383,9 +366,10 @@ var
   RebirthFolderExisted: boolean;
   D1FolderExisted: boolean;
   D2FolderExisted: boolean;
+  OldD1FolderExisted: boolean;
+  OldD2FolderExisted: boolean;
   msgresult: integer;
   macdata: boolean;
-  GogStore: boolean;
   ErrorCode: integer;
   D1Soundtracks: array of string;
   D2Soundtracks: array of string;
@@ -466,7 +450,7 @@ begin
     exit;
   end
   else begin
-    result := ExpandConstant('{src}\setup_descent.exe');
+    result := ExpandConstant('{src}\setup_descent_2.1.0.8.exe');
     FindClose(file);
     exit;
   end;
@@ -482,7 +466,7 @@ begin
     exit;
   end
   else begin
-    result := ExpandConstant('{src}\setup_descent2.exe');
+    result := ExpandConstant('{src}\setup_descent2_2.1.0.10.exe');
     FindClose(file);
     exit;
   end;
@@ -494,8 +478,9 @@ begin
  RebirthFolderExisted := false;
  D1FolderExisted := false;
  D2FolderExisted := false;
+ OldD1FolderExisted := false;
+ OldD2FolderExisted := false
  macdata := false;
- GogStore := false;
  CancelWithoutPrompt := false; //Initially we always cancel with a prompt.
  folder1 := ''; //Make sure all directories are void to start.
  folder2 := '';
@@ -517,8 +502,8 @@ begin
     True, False);
   WhichInstallPage.Add('GOG');
   WhichInstallPage.Add('Steam');
-  WhichInstallPage.Add('Other');
-  WhichInstallPage.Add('I do not own Descent');
+  WhichInstallPage.Add('Other / Original CDs');
+  WhichInstallPage.Add('I do not own Descent (install the Shareware)');
   WhichInstallPage.Add('I am updating my Rebirth install');
 
   WhichInstallPage.Values[0] := true;
@@ -527,10 +512,9 @@ begin
   GogInstalledPage := CreateInputOptionPage(WhichInstallPage.ID,
     'GOG Installation Selection', '',
     'Select whether you have already run the GOG Descent installers.',
-    True, False);
-  GogInstalledPage.Add('Yes, I have already run the GOG installers');
-  GogInstalledPage.Add('No, I have downloaded them, but have not run them yet');
-  GogInstalledPage.Values[0] := true;
+    False, False);
+  GogInstalledPage.Add('I have run the Descent 1 installer');
+  GogInstalledPage.Add('I have run the Descent 2 installer');
 
   // Ask if they want to install just Rebirth, or copy the data files as well.
   SampleDataPage := CreateInputOptionPage(GogInstalledPage.ID,
@@ -573,7 +557,7 @@ begin
   // The page that is displayed when they're installing both D1X and D2X
   DataDirPage := CreateInputDirPage(SampleDataPage.ID,
   'Descent Data Directories', '',
-  'Please select the locations where the original Descent files are installed.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
+  'Please select the locations of the Descent files.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
   False, '');
   DataDirPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
   DataDirPage.Add('Descent 2 location.');
@@ -583,7 +567,7 @@ begin
   // The page that is displayed when just D1X is being installed.
   DataDirPage1 := CreateInputDirPage(SampleDataPage.ID,
   'Descent Data Directory', '',
-  'Please select the location where the original Descent files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
+  'Please select the location of the Descent files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
   False, '');
   DataDirPage1.Add(''); // Option for selecting data location.
   DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); //The default value is the GOG install path.
@@ -591,7 +575,7 @@ begin
   // Page that's shown when just D2X is being installed.
   DataDirPage2 := CreateInputDirPage(SampleDataPage.ID,
   'Descent 2 Data Directory', '',
-  'Please select the location where the original Descent 2 files are installed.'#13#10#13#10'If you are using the CD set the location to the root of your CD drive.',
+  'Please select the location of the Descent 2 files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
   False, '');
   DataDirPage2.Add(''); // Select a location for data.
   DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default value is the GOG install path.
@@ -755,6 +739,7 @@ var
  yes:boolean; //if yes is true then we don't display component downloads (instead we show installer download), if it's false then we do.
  oldRevision:string;
  newRevision:string;
+ Index:integer;
 begin
  result:=true;
  yes:=false; //we assume that we're only displaying component downloads
@@ -829,10 +814,6 @@ begin
 
   if CurPageID = WhichInstallPage.ID then //If we're on the which install page, check to get default values for the data dir pages.
   begin
-      if (not WhichInstallPage.Values[0]) then
-      begin
-          GogInstalledPage.Values[0] := true; // If the user clicks back, make sure we reset the value
-      end;
       if (WhichInstallPage.Values[1]) then //If we're installing from Steam
       begin
           DataDirPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the Steam install paths.
@@ -847,19 +828,28 @@ begin
           DataDirPage1.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
           DataDirPage2.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
       end;
-      if (WhichInstallPage.Values[3]) then // If they don't have Descent, ask to buy it.
+      if (WhichInstallPage.Values[3]) then // If they don't have Descent, install the demo.
       begin
-          if MsgBox('Would you like to purchase Descent 1 & 2 from GOG? (This will open the store page in your default browser.)', mbConfirmation, MB_YESNO) = IDYES then
+        if isComponentSelected('d1x') then
+        begin
+          Index := WizardForm.ComponentsList.Items.IndexOf('Shareware demo files for Descent 1');
+          if Index <> -1 then
           begin
-            ShellExec('open', 'http://www.gog.com/game/descent_1_descent_2?pp=fc074d501302eb2b93e2554793fcaf50b3bf7291','', '', SW_SHOW, ewNoWait, ErrorCode);
-            GogStore := true;
-            GogInstalledPage.Values[1] := true;
+            WizardForm.ComponentsList.Checked[Index] := true;
+            WizardForm.ComponentsList.ItemEnabled[Index] := true;
           end;
-      end
-      else begin
-        GogStore := false; // If they go back, reset this
+        end;
+        if isComponentSelected('d2x') then
+        begin
+          Index := WizardForm.ComponentsList.Items.IndexOf('Shareware demo files for Descent 2');
+          if Index <> -1 then
+          begin
+            WizardForm.ComponentsList.Checked[Index] := true;
+            WizardForm.ComponentsList.ItemEnabled[Index] := true;
+          end;
+        end;
       end;
-  end;
+    end;
 
   if CurPageID = GogInstallPage.ID then
   begin
@@ -913,9 +903,17 @@ begin
       end;
       if DirExists(ExpandConstant('{app}\D1X-Rebirth')) then
       begin
-        D1FolderExisted := true;
+        OldD1FolderExisted := true;
       end;
       if DirExists(ExpandConstant('{app}\D2X-Rebirth')) then
+      begin
+        OldD2FolderExisted := true;
+      end;
+      if DirExists(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth')) then
+      begin
+        D1FolderExisted := true;
+      end;
+      if DirExists(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth')) then
       begin
         D2FolderExisted := true;
       end;
@@ -927,7 +925,7 @@ begin
       begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth'));
       end;
-      if D1FolderExisted or D2FolderExisted then
+      if OldD1FolderExisted or OldD2FolderExisted then
       begin
          MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
       end;
@@ -942,7 +940,7 @@ begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks'));
       end;
 
-      if (GogInstalledPage.Values[1] or (isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) or WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) then
+      if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) or WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) then
       begin
         SampleDataPage.Values[0] := false;
       end;
@@ -954,38 +952,36 @@ begin
       end;
 
       // D1 Addons
-      idpAddFileComp('http://descentchampions.org/retromod/d1x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1x-rebirth-retro.exe'), 'd1xa\retro');
       idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-anarchy.zip'), 'd1xa\mission\rangeranarchy');
       idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-coop.zip'), 'd1xa\mission\rangercoop');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission\dcl');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1cda-mac.dxa'), 'd1xa\addon\mac');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d1-playstation.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-playstation.dxa'), 'd1xa\addon\playstation');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D1MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d1-finn.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-finn.dxa'), 'd1xa\addon\finn');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8cocWtOX01xZHVaX2M', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1cda-mac.dxa'), 'd1xa\addon\mac');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8codnZhN3lkM3ZDTWs', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-playstation.dxa'), 'd1xa\addon\playstation');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8cocDFGNlBmYWZ3T1U', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coXzVXcG02UXIwQVE', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8codWYyOEZoUElyVFk', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coaG5STUV2cjduWkU', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coa0I0RWZkcjhwb00', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coMFhCOU9nZnJ0bWs', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-finn.dxa'), 'd1xa\addon\finn');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon\german');
       // D2 Addons
-      idpAddFileComp('http://descentchampions.org/retromod/d2x-rebirth-retro.exe', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2x-rebirth-retro.exe'), 'd2xa\retro');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2XR-MAXIMUM.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-maximum.dxa'), 'd2xa\max');      
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coTHI1ZjBRX2czQWM', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-maximum.dxa'), 'd2xa\max');      
       idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-anarchy.zip'), 'd2xa\mission\rangeranarchy');
       idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-coop.zip'), 'd2xa\mission\rangercoop');
       idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{tmp}\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE32.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-AWE64.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ2M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ENSONIQ8M.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2MIDI-ROLANDSC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/d2-finn.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2-finn.dxa'), 'd2xa\addon\finn');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-MAX.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
-      idpAddFileComp('http://ackermancomputing.com/Descent_Stuff/D2CDA-TDC.DXA', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coSVRRdU1vdC0zUkk', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coYXJIMXdyQzlxblE', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8cobXI0REtLUDR3X28', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8cobi1HaUNwRG5RTzg', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coWlVNWnB3bmtocDQ', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8coZURRM2xJUGM3MVE', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8cobkpOYTFCVTJXTzg', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2-finn.dxa'), 'd2xa\addon\finn');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8codzZIcDdxSl9hTEU', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
+      idpAddFileComp('https://googledrive.com/host/0BxXLA3TMI8codS16akRsNVZNX0U', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
       idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
 
   end;
@@ -1036,24 +1032,68 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then begin
-    if D1FolderExisted then begin 
+    if OldD1FolderExisted then begin 
       DelTree(ExpandConstant('{app}\D1X-Rebirth'), true, true, true);
     end;
-    if D2FolderExisted then begin 
+    if OldD2FolderExisted then begin 
       DelTree(ExpandConstant('{app}\D2X-Rebirth'), true, true, true);
     end;
-    if D1FolderExisted or D2FolderExisted then begin
+    if OldD1FolderExisted or OldD2FolderExisted then begin
       DeleteFile(ExpandConstant('{app}\unins000.exe'));
       DeleteFile(ExpandConstant('{app}\unins000.dat'));
     end;
   end;
 end;
 
-// These functions are used in the [Files] section, to check whether or not to copy files from somewhere else on the computer. 
-function GameFiles(): Boolean;  // If we want to install data files
+// IF we haven't run the installer and we're not installing demos, then we're using the GOG installer.
+function GogInstaller1(): Boolean;
 begin
-  Result := SampleDataPage.Values[0]; // Then we must have checked to install data files.
+  if(not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
+    result := true;
 end;
+
+function GogInstaller2(): Boolean;
+begin
+  if(not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
+    result := true;
+end;
+
+// These functions are used in the [Files] section, to check whether or not to copy files from somewhere else on the computer.
+function D1Files(): Boolean;
+begin
+  if GogInstaller1() then
+  begin
+    result := False;
+  end
+  else
+  begin
+    result := SampleDataPage.Values[0];
+  end;
+end;
+
+function D2Files(): Boolean;
+begin
+  if GogInstaller2() then
+  begin
+    result := False;
+  end
+  else
+  begin
+    result := SampleDataPage.Values[0];
+  end;
+end;
+
+function VertigoFiles(): Boolean;
+begin
+  if not GogInstaller2() then
+  begin
+    result := SampleDataPage.Values[0];
+  end
+  else
+  begin
+    result := True;
+  end;
+end; 
 
 function Missions(): Boolean;  // If we just want to install missions.
 begin
@@ -1075,17 +1115,6 @@ begin
   Result := SampleDataPage.Values[4];  // You don't say??
 end;
 
-function GogInstaller1(): Boolean;
-begin
-  if(GogInstalledPage.Values[1] and not IsComponentSelected('d1x\demo')) then
-    result := true;
-end;
-
-function GogInstaller2(): Boolean;
-begin
-  if(GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
-    result := true;
-end;
 
 // These functions are used to tell the [Files] section where to look for data on the hard drive.
 function DescentTwo(Param: String): String;
@@ -1207,7 +1236,7 @@ end;
 //Function for deciding whether or not we should extract the descent2.sow file.
 function SowExtract(): Boolean;
 begin
-  if (FileExists(ExpandConstant('{tmp}\descent2.sow'))) and (GameFiles()) then //Make sure we want to install data
+  if (FileExists(ExpandConstant('{tmp}\descent2.sow'))) and (D2Files()) then //Make sure we want to install data
   begin
     result := true;
   end
@@ -1312,27 +1341,55 @@ end;
 //Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
 procedure CheckCD1();
 var
+   exitresult: boolean;
    cdin: boolean;
    msg: boolean;
+   vmsg: integer;
    msgtext: string;
 begin
 cdin := false;
 folder1 := Descent('');
-      if (GameFiles()) then //If we're installing data files
+      if (D1Files()) then //If we're installing data files
       begin
             while (cdin = false) do //As long as we haven't found the right files
             begin
                 if not (FileExists(Descent('') + '\descent.hog')) and not (FileExists(Descent('') + '\Data\descent.hog')) and not (FileExists(Descent('') + '\Descent\descent.hog')) then //Check all known locations
                 begin
-                    msgtext := 'The Descent files were not in the directory specified. Please select the location of these files. If you are installing from a CD, please select the root of your CD drive.';
-                    msg := BrowseForFolder(msgtext, folder1, false); //Let them select a new location, defaulting to their originally selected location.
-                    if msg = false then //If they click cancel
+                    msgtext := 'The Descent files could not be found.'#13#10'To continue the installation without the data files click Ignore.'#13#10'To specify a different location click Retry.'#13#10'To exit setup click Abort.';
+                    vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
+                    if (vmsg = IDABORT) then //if they click abort
                     begin
-                        if MsgBox('Are you sure you want to skip copying the Descent data files?', mbConfirmation, MB_YESNO) = IDYES then //Ask if they want to skip copying the files
+                        exitresult := ExitSetupMsgBox(); //exit setup as before
+                        if exitresult = true then
                         begin
-                            cdin := true; //Break out of the loop
+                            CancelWithoutPrompt := true;
+                            cdin := true;
+                            DelTree(expandconstant('{tmp}'), true, true, true);
+                            DeleteFolders();
+                            ExitProcess(5);
                         end;
-                    end; //If they click OK, run the loop again to see if we can find the files
+                    end;
+                    if (vmsg = IDRETRY) then //if they click retry
+                    begin
+                        msgtext := 'Please select the location of the Descent files.'#13#10'If you are installing from a CD, please select the root of your CD drive.';
+                        msg := BrowseForFolder(msgtext, folder1, false); //give them the option to select a location for the D2 files
+                        if msg = false then
+                        begin
+                            exitresult := ExitSetupMsgBox();
+                            if exitresult = true then
+                            begin
+                                CancelWithoutPrompt := true;
+                                cdin := true;
+                                DelTree(expandconstant('{tmp}'), true, true, true);
+                                DeleteFolders();
+                                ExitProcess(5);
+                            end;
+                        end;
+                    end;
+                    if (vmsg = IDIGNORE) then
+                    begin
+                        cdin := true;
+                    end;
                 end
                 else
                 begin
@@ -1345,26 +1402,54 @@ end;
 //Check that the D2 files are in the location specified. Same thing as above.
 procedure CheckCD2();
 var
+   exitresult: boolean;
    cdin: boolean;
    msg: boolean;
+   vmsg: integer;
    msgtext: string;
 begin
 cdin := false;
 folder2 := DescentTwo('');
-      if (GameFiles()) then
+      if (D2Files()) then
       begin
             while (cdin = false) do
             begin
                 if not (FileExists(DescentTwo('') + '\descent2.hog')) and not (FileExists(DescentTwo('') + '\Data\descent2.hog')) and not (FileExists(DescentTwo('') + '\descent2.sow')) and not (FileExists(DescentTwo('') + '\D2data\descent2.sow')) then
                 begin
-                    msgtext := 'The Descent 2 files were not in the directory specified. Please select the location of these files. If you are installing from a CD, please select the root of your CD drive.';
-                    msg := BrowseForFolder(msgtext, folder2, false);
-                    if msg = false then
+                    msgtext := 'The Descent 2 files could not be found.'#13#10'To continue the installation without the data files click Ignore.'#13#10'To specify a different location click Retry.'#13#10'To exit setup click Abort.';
+                    vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
+                    if (vmsg = IDABORT) then //if they click abort
                     begin
-                        if MsgBox('Are you sure you want to skip copying the Descent 2 data files?', mbConfirmation, MB_YESNO) = IDYES then //Ask if they want to skip copying the files
+                        exitresult := ExitSetupMsgBox(); //exit setup as before
+                        if exitresult = true then
                         begin
-                            cdin := true; //Break out of the loop
+                            CancelWithoutPrompt := true;
+                            cdin := true;
+                            DelTree(expandconstant('{tmp}'), true, true, true);
+                            DeleteFolders();
+                            ExitProcess(5);
                         end;
+                    end;
+                    if (vmsg = IDRETRY) then //if they click retry
+                    begin
+                        msgtext := 'Please select the location of the Descent 2 files.'#13#10'If you are installing from a CD, please select the root of your CD drive.';
+                        msg := BrowseForFolder(msgtext, folder2, false); //give them the option to select a location for the D2 files
+                        if msg = false then
+                        begin
+                            exitresult := ExitSetupMsgBox();
+                            if exitresult = true then
+                            begin
+                                CancelWithoutPrompt := true;
+                                cdin := true;
+                                DelTree(expandconstant('{tmp}'), true, true, true);
+                                DeleteFolders();
+                                ExitProcess(5);
+                            end;
+                        end;
+                    end;
+                    if (vmsg = IDIGNORE) then
+                    begin
+                        cdin := true;
                     end;
                 end
                 else
@@ -1386,13 +1471,13 @@ var
 begin
 cdin := false;
 vertigo1 := Vertigo('');
-      if (GameFiles()) then
+      if (VertigoFiles()) then
       begin
             while (cdin = false) do
             begin
                 if not (FileExists(Vertigo('') + '\hoard.ham')) and not (FileExists(Vertigo('') + '\Data\hoard.ham')) and not (FileExists(Vertigo('') + '\Vertigo\hoard.ham')) then
                 begin
-                    msgtext := 'The Vertigo expansion files were not in the directory specified. To continue the installation without Vertigo click Ignore. To specify a different location click Retry. To exit setup click Abort.';
+                    msgtext := 'The Vertigo expansion files could not be found.'#13#10'To continue the installation without Vertigo click Ignore.'#13#10'To specify a location click Retry.'#13#10'To exit setup click Abort.';
                     vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
                     if (vmsg = IDABORT) then //if they click abort
                     begin
@@ -1408,7 +1493,7 @@ vertigo1 := Vertigo('');
                     end;
                     if (vmsg = IDRETRY) then //if they click retry
                     begin
-                        msgtext := 'The Vertigo files were not in the directory specified. Please select the location of these files. If you are installing from a CD, please select the root of your CD drive.';
+                        msgtext := 'Please select the location of the Vertigo files.';
                         msg := BrowseForFolder(msgtext, vertigo1, false); //give them the option to select a location of Vertigo
                         if msg = false then
                         begin
@@ -1518,38 +1603,41 @@ end;
 // Decide under what curcumstances, certain pages should be skipped.
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
-  // If D1 demo is being installed, don't ask for D1 files.
-  if (isComponentSelected('d1x\demo') and ((PageID = DataDirPage1.ID) or (PageID = GogInstallPage1.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
+// If the user has selected one demo, and hasn't run the other installer, don't ask what files to copy.
+  if (IsComponentSelected('d1x\demo') and not GogInstalledPage.Values[1]) and (PageID = SampleDataPage.ID) then
   begin
     result := true;
     exit;
   end;
-  // If D2 demo is being installed, don't ask for D2 files.
-  if (isComponentSelected('d2x\demo') and ((PageID = DataDirPage2.ID) or (PageID = GogInstallPage2.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
-  begin
-    result := true;
-    exit;
-  end;
-  // If both demos are bing installed, don't ask for any files.
-  if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) and ((PageID = WhichInstallPage.ID) or (PageID = GogInstalledPage.ID) or (PageID = SampleDataPage.ID))) then
+  if (IsComponentSelected('d2x\demo') and not GogInstalledPage.Values[0]) and (PageID = SampleDataPage.ID) then
   begin
     result := true;
     exit;
   end;
   // If the user has run the GOG installers, don't ask for their locations.
-  if (GogInstalledPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID))) then 
+  if (GogInstalledPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID))) then 
+  begin
+    result := true;
+    exit;
+  end;
+  if (GogInstalledPage.Values[1] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage2.ID))) then 
   begin
     result := true;
     exit;
   end;
   // If the user hasn't run the GOG installers, don't ask for the installation directories.
-  if (GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
+  if (not GogInstalledPage.Values[0] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  if (not GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID))) then
   begin
     result := true;
     exit;
   end;
   // If the user is installing D1 and D2 (and not the demos) don't show the single question pages
-  if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not (IsComponentSelected('d1x\demo') or IsComponentSelected('d2x\demo'))) then
+  if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not (IsComponentSelected('d1x\demo') or IsComponentSelected('d2x\demo')) and not (GogInstalledPage.Values[0] xor GogInstalledPage.Values[1])) then
   begin
     if ((PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID)) then
     begin
@@ -1575,20 +1663,38 @@ begin
       exit;
     end;
   end;
-  // If the user doesn't have a GOG installation (and isn't buying one), don't show the GOG pages.
-  if (not WhichInstallPage.Values[0] and not GogStore and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID) or (PageID = GogInstalledPage.ID))) then
+  // If the user doesn't have a GOG installation, don't show the GOG pages.
+  if (not WhichInstallPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID) or (PageID = GogInstalledPage.ID))) then
   begin
     result := true;
     exit;
   end;
-  // If the user doesn't have Descent (and isn't buying it), don't ask for the data.
-  if ((WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) and not GogStore and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
+  // If the user doesn't have Descent, don't ask for the data.
+  if ((WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
   begin
     result := true;
     exit;
   end;
-  // If the user just bought Descent from GOG, don't ask for the installation directories (only the installer locations).
-  if (GogStore and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID) or (PageID = GogInstalledPage.ID))) then
+  // If the user hasn't run either Gog installer, don't ask what files to copy.
+  if not (GogInstalledPage.Values[0] or GogInstalledPage.Values[1]) and (PageID = SampleDataPage.ID) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If D1 demo is being installed, don't ask for D1 files.
+  if (isComponentSelected('d1x\demo') and ((PageID = DataDirPage1.ID) or (PageID = GogInstallPage1.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If D2 demo is being installed, don't ask for D2 files.
+  if (isComponentSelected('d2x\demo') and ((PageID = DataDirPage2.ID) or (PageID = GogInstallPage2.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
+  begin
+    result := true;
+    exit;
+  end;
+  // If both demos are being installed, don't ask for any files.
+  if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) and ((PageID = WhichInstallPage.ID) or (PageID = GogInstalledPage.ID) or (PageID = SampleDataPage.ID))) then
   begin
     result := true;
     exit;
@@ -1630,6 +1736,8 @@ begin
 end;
 
 procedure CurPageChanged(CurPageID: Integer);
+var
+  Index: Integer;
 begin
   // if the downloader page was just shown, then...
   if CurPageID = wpSelectDir then
@@ -1643,16 +1751,44 @@ begin
   begin
     if (defaults = false) and (MsgBox('Would you like to automatically select the recommended components? (If you are unsure of what you need, click yes).', mbConfirmation, MB_YESNO) = IDYES) then
     begin
-      defaults := true;
-      WizardForm.ComponentsList.Checked[7] := true;
-      WizardForm.ComponentsList.Checked[9] := true;
-      WizardForm.ComponentsList.Checked[11] := true;
-      WizardForm.ComponentsList.Checked[19] := true;
-      WizardForm.ComponentsList.Checked[25] := true;
-      WizardForm.ComponentsList.Checked[28] := true;
-      WizardForm.ComponentsList.Checked[30] := true;
-      WizardForm.ComponentsList.Checked[38] := true;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Rangers Anarchy Mission Pack for D1');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Descent Championship Ladder Mission Pack for D1');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Roland SC MIDI Soundtrack for D1X');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Rangers Anarchy Mission Pack for D2');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Descent Championship Ladder Mission Pack for D2');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
+      Index := WizardForm.ComponentsList.Items.IndexOf('Roland SC MIDI Soundtrack for D2X');
+      if Index <> -1 then
+      begin
+        WizardForm.ComponentsList.Checked[Index] := true;
+        WizardForm.ComponentsList.ItemEnabled[Index] := true;
+      end;
     end;
+    defaults := true;
   end;
   if CurPageID = wpFinished then
   begin
