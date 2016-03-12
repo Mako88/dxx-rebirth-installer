@@ -7,9 +7,9 @@
 - [X] Auto install single soundtrack/allow enabling a soundtrack
 - [X] Add "I'm a noob" popup to component selection
 - [X] Add Mumble installation and configuration link at end
+- [X] Fix GOG Installer Names (on all 3 possibilities)
+- [X] Fix Vertigo selection
+- [X] Remove GOG link
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-- [ ] Fix GOG Installer Names (on all 3 possibilities)
-- [ ] Fix Vertigo selection
-- [ ] Remove GOG link
 - [ ] Move download links to Google Drive
