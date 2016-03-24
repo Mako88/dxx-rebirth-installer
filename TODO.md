@@ -12,4 +12,3 @@
 - [X] Remove GOG link
 - [ ] Figure out including mac data
 - [ ] Possibly include Definitive Collection
-- [ ] Move download links to Google Drive
