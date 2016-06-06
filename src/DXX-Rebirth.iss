@@ -257,7 +257,7 @@ Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth
 Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 Addons
-Source: "C:\DXX-Rebirth\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion;
+Source: "C:\DXX-Rebirth\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x and not d2x\demo; Flags: ignoreversion;
 
 ;7-zip for SOW
 Source: "C:\DXX-Rebirth\include\7zip\*"; DestDir: "{tmp}"; Flags: ignoreversion
@@ -761,7 +761,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.43'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.44'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -1048,13 +1048,13 @@ end;
 // IF we haven't run the installer and we're not installing demos, then we're using the GOG installer.
 function GogInstaller1(): Boolean;
 begin
-  if(not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
     result := true;
 end;
 
 function GogInstaller2(): Boolean;
 begin
-  if(not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
     result := true;
 end;
 
