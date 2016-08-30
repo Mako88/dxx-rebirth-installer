@@ -98,7 +98,7 @@ Source: "{app}\D2X-Rebirth\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Compone
 ;Mumble info text file
 Source: "C:\DXX-Rebirth\include\mumble-info.txt"; DestDir: "{app}\DXX-Rebirth"; Flags: ignoreversion
 ;D1X Files
-Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion; BeforeInstall: CheckCD1
+Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\d1x.ini"; DestDir: "{tmp}"; Components: d1x; Flags: ignoreversion; AfterInstall: D1Xini
 Source: "C:\DXX-Rebirth\d1x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: d1x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Patch Files
@@ -150,7 +150,7 @@ Source: "C:\DXX-Rebirth\include\Addons\D1MAC-SFX.DXA"; DestDir: "{app}\DXX-Rebir
 
 
 ;D2X Files
-Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion; BeforeInstall: CheckCD2
+Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x-rebirth.exe"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion;
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\d2x.ini"; DestDir: "{tmp}"; Components: d2x; Flags: ignoreversion; AfterInstall: D2Xini
 Source: "C:\DXX-Rebirth\d2x-rebirth_v0.58.1-win\*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x; Flags: ignoreversion recursesubdirs createallsubdirs
 ;D2 Demo Files
@@ -181,6 +181,12 @@ Source: "{code:DescentTwo}\D2data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-
 Source: "{code:DescentTwo}\D2data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\D2data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\D2data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\intro-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\intro-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Descent_II\D2data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\d2demo.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -198,9 +204,6 @@ Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Re
 Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
-;D2 SOW File
-Source: "{code:DescentTwo}\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist
-Source: "{code:DescentTwo}\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist; AfterInstall: FileCheck2
 ;D2 Missions
 Source: "{code:DescentTwo}\*.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\*.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -224,38 +227,53 @@ Source: "{code:DescentTwo}\Players\*.mg*"; DestDir: "{app}\DXX-Rebirth\D2X-Rebir
 ;D2 Demos
 Source: "{code:DescentTwo}\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Demos\*.dem"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Demos"; Components: "d2x"; Check: Demos; Flags: external skipifsourcedoesntexist uninsneveruninstall
-;Vertigo
-Source: "{code:Vertigo}\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall; BeforeInstall: CheckVertigo
-Source: "{code:Vertigo}\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Data\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
-Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+;Vertigo Data
+Source: "{code:DescentTwo}\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\d2x-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\d2x-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\descent2.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\descent2.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\hoard.ham"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+;Vertigo Missions
+Source: "{code:DescentTwo}\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Data\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Levels\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Levels\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Levels\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Levels\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Missions\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Levels\panic.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Levels\panic.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Levels\d2x.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+Source: "{code:DescentTwo}\Vertigo\Levels\d2x.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
+;D2 SOW File (Beneath Vertigo, so the file check runs after the Vertigo files have been copied).
+Source: "{code:DescentTwo}\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist
+Source: "{code:DescentTwo}\Descent_II\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist
+Source: "{code:DescentTwo}\D2data\descent2.sow"; DestDir: "{tmp}"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist; AfterInstall: FileCheck2('first')
 ;D2 Addons
 Source: "C:\DXX-Rebirth\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: d2x and not d2x\demo; Flags: ignoreversion;
 
@@ -290,7 +308,7 @@ Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Data"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2chaos.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.hog"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract
-Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract; AfterInstall: FileCheck2
+Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D2X-Rebirth\Missions"" ""{tmp}\descent2.sow"" ""d2-2plyr.mn2"" -aoa"; Flags: runhidden; StatusMsg: "{cm:Sow}"; Check: SowExtract; AfterInstall: FileCheck2('')
 ;Extract downloaded mission packs
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\d1-anarchy.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerAnarchy1}"; Components: "d1xa\mission\rangeranarchy"
 Filename: "{tmp}\7z.exe"; Parameters: "x -o""{app}\DXX-Rebirth\D1X-Rebirth\Missions"" ""{tmp}\d1-coop.zip"" -aoa"; Flags: runhidden; StatusMsg: "{cm:RangerCoop1}"; Components: "d1xa\mission\rangercoop"
@@ -345,37 +363,29 @@ Gog2other=Extracting other-h.mvl from the GOG installer (This may take a few min
 [Code]
 // Global vars
 var
-  SampleDataPage: TInputOptionWizardPage;
-  DataDirPage: TInputDirWizardPage;
-  DataDirPage1: TInputDirWizardPage;
-  DataDirPage2: TInputDirWizardPage;
-  WhichInstallPage: TInputOptionWizardPage;
-  GogInstalledPage: TInputOptionWizardPage;
-  GogInstallPage: TInputFileWizardPage;
-  GogInstallPage1: TInputFileWizardPage;
-  GogInstallPage2: TInputFileWizardPage;
+  DataToCopyPage: TInputOptionWizardPage;
+  BothLocationsPage: TInputDirWizardPage;
+  D1LocationPage: TInputDirWizardPage;
+  D2LocationPage: TInputDirWizardPage;
+  VertigoLocationPage: TInputDirWizardPage;
+  TypeOfInstallPage: TInputOptionWizardPage;
+  GogRanPage: TInputOptionWizardPage;
+  GogBothPage: TInputFileWizardPage;
+  Gog1Page: TInputFileWizardPage;
+  Gog2Page: TInputFileWizardPage;
   SoundtrackPage1: TInputOptionWizardPage;
   SoundtrackPage2: TInputOptionWizardPage;
-  update: boolean;
-  CancelWithoutPrompt: boolean;
-  folder1: string;
-  folder2: string;
-  vertigo1: string;
-  filecheckran: boolean;
-  checkruns: integer;
   RebirthFolderExisted: boolean;
   D1FolderExisted: boolean;
   D2FolderExisted: boolean;
   OldD1FolderExisted: boolean;
   OldD2FolderExisted: boolean;
-  msgresult: integer;
   macdata: boolean;
-  ErrorCode: integer;
   D1Soundtracks: array of string;
   D2Soundtracks: array of string;
   D1SIndex: integer;
   D2SIndex: integer;
-  defaults: boolean;
+  update: boolean;
 
 
 
@@ -383,14 +393,14 @@ var
 procedure ExitProcess(exitCode:integer);
   external 'ExitProcess@kernel32.dll stdcall';   
 
+// Used to launch the updated setup
 procedure DownloadFinished();
+var ErrorCode: integer;
 var 
   NewInstallerPath:string;                                                                           
 begin
   NewInstallerPath := ExpandConstant('{tmp}\DXX-Rebirth_Setup.exe');
-  if update = true then begin
-    MsgBox('The updated setup will now launch.', mbInformation, MB_OK);
-  end;
+  MsgBox('The updated setup will now launch.', mbInformation, MB_OK);
      
   if ShellExec('open', NewInstallerPath, '/updated', ExtractFilePath(NewInstallerPath), SW_SHOW, ewNoWait, ErrorCode) then
        begin
@@ -440,6 +450,7 @@ begin
  result:=0;
 end;
 
+// Attempt to locate the GOG installer in the same directory as this installer.
 function GetGogD1():String;
   var file: TFindRec;
 begin
@@ -451,11 +462,11 @@ begin
   end
   else begin
     result := ExpandConstant('{src}\setup_descent_2.1.0.8.exe');
-    FindClose(file);
     exit;
   end;
 end;
 
+// Attempt to locate the GOG installer in the same directory as this installer.
 function GetGogD2():String;
   var file:TFindRec;
 begin
@@ -474,20 +485,15 @@ end;
 
 procedure InitializeWizard;  
 begin
- checkruns := 0;
  RebirthFolderExisted := false;
  D1FolderExisted := false;
  D2FolderExisted := false;
  OldD1FolderExisted := false;
  OldD2FolderExisted := false
  macdata := false;
- CancelWithoutPrompt := false; //Initially we always cancel with a prompt.
- folder1 := ''; //Make sure all directories are void to start.
- folder2 := '';
- vertigo1 := '';
- filecheckran := false; //we haven't run a file check yet.
  D1SIndex := 0;
  D2SIndex := 0;
+ update := false;
  
 
  {If the download of the new installer fails, we still want to give the
@@ -496,89 +502,92 @@ begin
  idpSetOption('ErrorDialog', 'FileList');
 
  //The page to decide what the default data location should be
-  WhichInstallPage := CreateInputOptionPage(wpSelectComponents,
+  TypeOfInstallPage := CreateInputOptionPage(wpSelectComponents,
     'Select Installation Type', '',
     'Select what type of Descent installation is currently on your computer.',
     True, False);
-  WhichInstallPage.Add('GOG');
-  WhichInstallPage.Add('Steam');
-  WhichInstallPage.Add('Other / Original CDs');
-  WhichInstallPage.Add('I do not own Descent (install the Shareware)');
-  WhichInstallPage.Add('I am updating my Rebirth install');
+  TypeOfInstallPage.Add('GOG');
+  TypeOfInstallPage.Add('Steam');
+  TypeOfInstallPage.Add('Other / Original CDs');
+  TypeOfInstallPage.Add('I do not own Descent (install the Shareware)');
+  TypeOfInstallPage.Add('I am updating my Rebirth install');
 
-  WhichInstallPage.Values[0] := true;
+  TypeOfInstallPage.Values[0] := true;
 
  // Ask if the GOG installers have been run
-  GogInstalledPage := CreateInputOptionPage(WhichInstallPage.ID,
+  GogRanPage := CreateInputOptionPage(TypeOfInstallPage.ID,
     'GOG Installation Selection', '',
     'Select whether you have already run the GOG Descent installers.',
     False, False);
-  GogInstalledPage.Add('I have run the Descent 1 installer');
-  GogInstalledPage.Add('I have run the Descent 2 installer');
+  GogRanPage.Add('I have run the Descent 1 installer');
+  GogRanPage.Add('I have run the Descent 2 installer');
 
   // Ask if they want to install just Rebirth, or copy the data files as well.
-  SampleDataPage := CreateInputOptionPage(GogInstalledPage.ID,
+  DataToCopyPage := CreateInputOptionPage(GogRanPage.ID,
     'Install Descent Data', '',
     'Select what files from the old Descent installation should be copied over.',
     False, False);
-  SampleDataPage.Add('Required Game Files (Must be checked if installing Vertigo)');
-  SampleDataPage.Add('Missions');
-  SampleDataPage.Add('Pilot Files');
-  SampleDataPage.Add('Savegames');
-  SampleDataPage.Add('Demos');
+  DataToCopyPage.Add('Required Game Files (Must be checked if installing Vertigo)');
+  DataToCopyPage.Add('Missions');
+  DataToCopyPage.Add('Pilot Files');
+  DataToCopyPage.Add('Savegames');
+  DataToCopyPage.Add('Demos');
 
   // The default value is to copy the game files only.
-  SampleDataPage.Values[0] := True;
+  DataToCopyPage.Values[0] := True;
 
 
   // The page that is displayed when they're installing both D1X and D2X
-  GogInstallPage := CreateInputFilePage(GogInstalledPage.ID,
+  GogBothPage := CreateInputFilePage(GogRanPage.ID,
   'GOG Installer Location', '',
   'Please select the GOG installer locations.'#13#10);
-  GogInstallPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-  GogInstallPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
-  GogInstallPage.Values[0] := GetGogD1();   //The default values are the current directory.
-  GogInstallPage.Values[1] := GetGogD2(); //The default values are the current directory.
+  GogBothPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  GogBothPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
+  GogBothPage.Values[0] := GetGogD1();   //The default values are the current directory.
+  GogBothPage.Values[1] := GetGogD2(); //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
-  GogInstallPage1 := CreateInputFilePage(GogInstalledPage.ID,
+  Gog1Page := CreateInputFilePage(GogRanPage.ID,
   'GOG Installer Location', '',
   'Please select the GOG Descent 1 installer location.'#13#10);
-  GogInstallPage1.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-  GogInstallPage1.Values[0] := GetGogD1();   //The default values are the current directory.
+  Gog1Page.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  Gog1Page.Values[0] := GetGogD1();   //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
-  GogInstallPage2 := CreateInputFilePage(GogInstalledPage.ID,
+  Gog2Page := CreateInputFilePage(GogRanPage.ID,
   'GOG Installer Location', '',
   'Please select the GOG Descent 2 installer locations.'#13#10);
-  GogInstallPage2.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-  GogInstallPage2.Values[0] := GetGogD2();   //The default values are the current directory.
+  Gog2Page.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+  Gog2Page.Values[0] := GetGogD2();   //The default values are the current directory.
 
   // The page that is displayed when they're installing both D1X and D2X
-  DataDirPage := CreateInputDirPage(SampleDataPage.ID,
+  BothLocationsPage := CreateInputDirPage(DataToCopyPage.ID,
   'Descent Data Directories', '',
   'Please select the locations of the Descent files.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
   False, '');
-  DataDirPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
-  DataDirPage.Add('Descent 2 location.');
-  DataDirPage.Values[0] := ExpandConstant('{sd}\GOG Games\Descent');   //The default values are the GOG install paths.
-  DataDirPage.Values[1] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default values are the GOG install paths.
+  BothLocationsPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
+  BothLocationsPage.Add('Descent 2 location.');
 
   // The page that is displayed when just D1X is being installed.
-  DataDirPage1 := CreateInputDirPage(SampleDataPage.ID,
+  D1LocationPage := CreateInputDirPage(DataToCopyPage.ID,
   'Descent Data Directory', '',
   'Please select the location of the Descent files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
   False, '');
-  DataDirPage1.Add(''); // Option for selecting data location.
-  DataDirPage1.Values[0] := ExpandConstant('{sd}\GOG Games\Descent'); //The default value is the GOG install path.
+  D1LocationPage.Add(''); // Option for selecting data location.
 
   // Page that's shown when just D2X is being installed.
-  DataDirPage2 := CreateInputDirPage(SampleDataPage.ID,
+  D2LocationPage := CreateInputDirPage(DataToCopyPage.ID,
   'Descent 2 Data Directory', '',
   'Please select the location of the Descent 2 files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
   False, '');
-  DataDirPage2.Add(''); // Select a location for data.
-  DataDirPage2.Values[0] := ExpandConstant('{sd}\GOG Games\Descent 2'); //The default value is the GOG install path.
+  D2LocationPage.Add(''); // Select a location for data.
+
+  // Location of Vertigo
+  VertigoLocationPage := CreateInputDirPage(BothLocationsPage.ID,
+  'Vertigo Data Directory', '',
+  'Please select the location of the Vertigo data files.',
+  False, '');
+  VertigoLocationPage.Add(''); // Select a location for data.
 
   SoundtrackPage1 := CreateInputOptionPage(wpInstalling,
   'Descent 1 Soundtrack Selection', '',
@@ -589,6 +598,56 @@ begin
   'Descent 1 Soundtrack Selection', '',
   'Please select which of the downloaded D1 soundtracks to enable.'#13#10'This will move the .dxa file from the "Soundtracks" folder to the main D1X folder.'#13#10'To enable a different one, simply move this one back to the "Soundtracks"'#13#10'folder, and move a new one to the main D1X folder.'#13#10,
   True, True);
+end;
+
+// These functions are used to tell the [Files] section where to look for data on the hard drive.
+function DescentTwo(Param: String): String;
+begin
+  if Assigned(BothLocationsPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
+    begin
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d1x\demo')) then  // If we're installing both and no demo...
+      begin
+        result := BothLocationsPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
+        exit;
+      end;
+      if (IsComponentSelected('d2x')) then  // If just D2
+      begin
+        result := D2LocationPage.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
+        exit;
+      end;
+      if (not IsComponentSelected('d2x')) then // If just D1
+      begin
+        result := '';  // It doesn't matter, since we won't be installing D2.
+        exit;
+      end;
+    end
+  else 
+   result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
+end;
+
+// Same type of stuff for all this...
+function Descent(Param: String): String;
+begin
+  if Assigned(BothLocationsPage) then
+    begin
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
+      begin
+        result := BothLocationsPage.Values[0];
+        exit;
+      end;
+      if (IsComponentSelected('d1x')) then
+      begin
+        result := D1LocationPage.Values[0]
+        exit;
+      end;
+      if (not IsComponentSelected('d1x')) then
+      begin
+        result := '';
+        exit;
+      end;
+    end
+  else 
+   result := '';
 end;
 
 procedure Soundtrack1();
@@ -727,6 +786,43 @@ begin
   end;
 end;
 
+// Check if the Descent 1 files exist in the location given.
+function CheckD1Location(): Boolean;
+begin
+  if (FileExists(Descent('') + '\descent.hog')) or (FileExists(Descent('') + '\Data\descent.hog')) or (FileExists(Descent('') + '\Descent\descent.hog')) then
+  begin  
+    result := true;
+  end
+  else
+  begin
+    result := false;
+  end    
+end;
+
+function CheckD2Location(): Boolean;
+begin
+  if (FileExists(DescentTwo('') + '\descent2.hog')) or (FileExists(DescentTwo('') + '\Data\descent2.hog')) or (FileExists(DescentTwo('') + '\D2Data\descent2.hog')) or (FileExists(DescentTwo('') + '\Descent_II\D2Data\descent2.hog')) or (FileExists(DescentTwo('') + '\descent2.sow')) or (FileExists(DescentTwo('') + '\D2Data\descent2.sow')) or (FileExists(DescentTwo('') + '\Descent_II\D2Data\descent2.sow')) then
+  begin  
+    result := true;
+  end
+  else
+  begin
+    result := false;
+  end
+end;
+
+function CheckVertigoLocation(): Boolean;
+begin
+  if (FileExists(DescentTwo('') + '\hoard.ham')) or (FileExists(DescentTwo('') + '\Data\hoard.ham')) or (FileExists(DescentTwo('') + '\Vertigo\hoard.ham')) then
+  begin  
+    result := true;
+  end
+  else
+  begin
+    result := false;
+  end
+end;
+
 // When we try to go to the next page...
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
@@ -744,7 +840,6 @@ begin
  result:=true;
  yes:=false; //we assume that we're only displaying component downloads
  if curPageID=wpWelcome then begin
-   update := false;
    //Are we being called by an updating setup? If so, don't ask to check for updates again!
    for i:=1 to ParamCount do begin
     if uppercase(ParamStr(i))='/UPDATED' then begin
@@ -761,7 +856,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.44'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.45'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -785,8 +880,8 @@ begin
               if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then
               begin
                 idpAddFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/DXX-Rebirth_Setup.exe', expandConstant('{tmp}\DXX-Rebirth_Setup.exe'));
-                update := true; //if there is an update AND we want it, then update is true
                 idpDownloadAfter(wpWelcome); //and we display the download for the installer
+                update := true;
               end
               else
               begin
@@ -806,29 +901,30 @@ begin
           serversion := ChangeFileExt(serversion, ''); //Remove the revision from version string
           text:='I was unable to check for an update. Installation of the current version, ' + ourVersion + ', installer revision ' + oldRevision + ' will continue.';
           MsgBox(text, mbInformation, MB_OK);
-          update := false; //if we didn't check succesfully, then we're not an updated installer...
           yes := false; //and we didn't say yes
         end;
     end
   end;
 
-  if CurPageID = WhichInstallPage.ID then //If we're on the which install page, check to get default values for the data dir pages.
+  if CurPageID = TypeOfInstallPage.ID then //If we're on the which install page, check to get default values for the data dir pages.
   begin
-      if (WhichInstallPage.Values[1]) then //If we're installing from Steam
+      if (TypeOfInstallPage.Values[1]) then //If we're installing from Steam
       begin
-          DataDirPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the Steam install paths.
-          DataDirPage.Values[1] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2'); 
-          DataDirPage1.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
-          DataDirPage2.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
+          BothLocationsPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the Steam install paths.
+          BothLocationsPage.Values[1] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2'); 
+          D1LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
+          D2LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
+          VertigoLocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
       end;
-      if (WhichInstallPage.Values[2]) then
+      if (TypeOfInstallPage.Values[2]) then
       begin
-          DataDirPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');   //The default values are the original install paths.
-          DataDirPage.Values[1] := ExpandConstant('{sd}\GAMES\Descent2'); 
-          DataDirPage1.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
-          DataDirPage2.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
+          BothLocationsPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');   //The default values are the original install paths.
+          BothLocationsPage.Values[1] := ExpandConstant('{sd}\GAMES\Descent2'); 
+          D1LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
+          D2LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
+          VertigoLocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
       end;
-      if (WhichInstallPage.Values[3]) then // If they don't have Descent, install the demo.
+      if (TypeOfInstallPage.Values[3]) then // If they don't have Descent, install the demo.
       begin
         if isComponentSelected('d1x') then
         begin
@@ -851,9 +947,9 @@ begin
       end;
     end;
 
-  if CurPageID = GogInstallPage.ID then
+  if CurPageID = GogBothPage.ID then
   begin
-    if not (FileExists(GogInstallPage.Values[0]) and FileExists(GogInstallPage.Values[1])) then
+    if not (FileExists(GogBothPage.Values[0]) and FileExists(GogBothPage.Values[1])) then
     begin
       MsgBox('Please select the location of both GOG installers.', mbInformation, MB_OK);
       result := false;
@@ -861,9 +957,9 @@ begin
     end;
   end;
 
-  if CurPageID = GogInstallPage1.ID then
+  if CurPageID = Gog1Page.ID then
   begin
-    if not (FileExists(GogInstallPage1.Values[0])) then
+    if not (FileExists(Gog1Page.Values[0])) then
     begin
       MsgBox('Please select the location of the Descent 1 GOG installer.', mbInformation, MB_OK);
       result := false;
@@ -871,13 +967,81 @@ begin
     end;
   end;
 
-  if CurPageID = GogInstallPage2.ID then
+  if CurPageID = Gog2Page.ID then
   begin
-    if not (FileExists(GogInstallPage2.Values[0])) then
+    if not (FileExists(Gog2Page.Values[0])) then
     begin
       MsgBox('Please select the location of the Descent 2 GOG installer.', mbInformation, MB_OK);
       result := false;
       exit;
+    end;
+  end;
+
+  if CurPageID = BothLocationsPage.ID then
+  begin
+    if not (CheckD1Location() or CheckD2Location()) then
+    begin
+      if MsgBox('Neither the Descent 1 nor the Descent 2 data files could be found in the locations specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end
+      else begin
+        result := true;
+        exit;
+      end;
+    end;
+    if not CheckD1Location() then
+    begin
+      if MsgBox('The Descent 1 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end;
+    end;
+    if not CheckD2Location() then
+    begin
+      if MsgBox('The Descent 2 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end;
+    end;
+  end;
+
+  if CurPageID = D1LocationPage.ID then
+  begin
+    if not CheckD1Location() then
+    begin
+      if MsgBox('The Descent 1 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end;
+    end;
+  end;
+
+  if CurPageID = D2LocationPage.ID then
+  begin
+    if not CheckD2Location() then
+    begin
+      if MsgBox('The Descent 2 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end;
+    end;
+  end;
+
+  if CurPageID = VertigoLocationPage.ID then
+  begin
+    if not CheckVertigoLocation() then
+    begin
+      if MsgBox('The Vertigo data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      begin
+        result := false;
+        exit;
+      end;
     end;
   end;
 
@@ -940,9 +1104,9 @@ begin
         ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks'));
       end;
 
-      if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) or WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) then
+      if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) or TypeOfInstallPage.Values[3] or TypeOfInstallPage.Values[4]) then
       begin
-        SampleDataPage.Values[0] := false;
+        DataToCopyPage.Values[0] := false;
       end;
 
     //Check all the subcomponents, and add the ones that are selected.
@@ -1048,13 +1212,13 @@ end;
 // IF we haven't run the installer and we're not installing demos, then we're using the GOG installer.
 function GogInstaller1(): Boolean;
 begin
-  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
+  if TypeOfInstallPage.Values[0] and (not GogRanPage.Values[0] and not IsComponentSelected('d1x\demo')) then
     result := true;
 end;
 
 function GogInstaller2(): Boolean;
 begin
-  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
+  if TypeOfInstallPage.Values[0] and (not GogRanPage.Values[1] and not IsComponentSelected('d2x\demo')) then
     result := true;
 end;
 
@@ -1067,7 +1231,7 @@ begin
   end
   else
   begin
-    result := SampleDataPage.Values[0];
+    result := DataToCopyPage.Values[0];
   end;
 end;
 
@@ -1079,7 +1243,7 @@ begin
   end
   else
   begin
-    result := SampleDataPage.Values[0];
+    result := DataToCopyPage.Values[0];
   end;
 end;
 
@@ -1087,7 +1251,7 @@ function VertigoFiles(): Boolean;
 begin
   if not GogInstaller2() then
   begin
-    result := SampleDataPage.Values[0];
+    result := DataToCopyPage.Values[0];
   end
   else
   begin
@@ -1097,106 +1261,37 @@ end;
 
 function Missions(): Boolean;  // If we just want to install missions.
 begin
-  Result := SampleDataPage.Values[1]; // Then we checked to install missions.
+  Result := DataToCopyPage.Values[1]; // Then we checked to install missions.
 end;
 
 function PlayerFiles(): Boolean;  // If we want to install pilot files
 begin
-  Result := SampleDataPage.Values[2];  // You know the drill by now...
+  Result := DataToCopyPage.Values[2];  // You know the drill by now...
 end;
 
 function SaveGames(): Boolean;  // And savegames
 begin
-  Result := SampleDataPage.Values[3];  // This is getting old...
+  Result := DataToCopyPage.Values[3];  // This is getting old...
 end;
 
 function Demos(): Boolean;  // Same for demos
 begin
-  Result := SampleDataPage.Values[4];  // You don't say??
+  Result := DataToCopyPage.Values[4];  // You don't say??
 end;
 
-
-// These functions are used to tell the [Files] section where to look for data on the hard drive.
-function DescentTwo(Param: String): String;
-begin
-  if Assigned(DataDirPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
-    begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d1x\demo')) then  // If we're installing both and no demo...
-      begin
-        result := DataDirPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
-        exit;
-      end;
-      if (IsComponentSelected('d2x')) then  // If just D2
-      begin
-        result := DataDirPage2.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
-        exit;
-      end;
-      if (not IsComponentSelected('d2x')) then // If just D1
-      begin
-        result := '';  // It doesn't matter, since we won't be installing D2.
-        exit;
-      end;
-    end
-  else 
-   result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
-
-  if (folder2 <> '') then
-  begin
-    result := folder2;
-  end;
-end;
-
-// Same type of stuff for all this...
-function Descent(Param: String): String;
-begin
-  if Assigned(DataDirPage) then
-    begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
-      begin
-        result := DataDirPage.Values[0];
-        exit;
-      end;
-      if (IsComponentSelected('d1x')) then
-      begin
-        result := DataDirPage1.Values[0]
-        exit;
-      end;
-      if (not IsComponentSelected('d1x')) then
-      begin
-        result := '';
-        exit;
-      end;
-    end
-  else 
-   result := '';
-
-  if (folder1 <> '') then
-  begin
-    result := folder1;
-  end;
-end;
-
-function Vertigo(Param: String): String;
-begin
-    result := DescentTwo('');
-    if (vertigo1 <> '') then
-    begin
-        result := vertigo1;
-    end;
-end;
 
 function GogD1(Param: String): String;
 begin
-    if Assigned(GogInstallPage) then
+    if Assigned(GogBothPage) then
     begin
       if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
       begin
-        result := GogInstallPage.Values[0];
+        result := GogBothPage.Values[0];
         exit;
       end;
       if (IsComponentSelected('d1x')) then
       begin
-        result := GogInstallPage1.Values[0]
+        result := Gog1Page.Values[0]
         exit;
       end;
       if (not IsComponentSelected('d1x')) then
@@ -1211,16 +1306,16 @@ end;
 
 function GogD2(Param: String): String;
 begin
-    if Assigned(GogInstallPage) then
+    if Assigned(GogBothPage) then
     begin
       if (IsComponentSelected('d2x') and IsComponentSelected('d1x') and not IsComponentSelected('d1x\demo')) then
       begin
-        result := GogInstallPage.Values[1];
+        result := GogBothPage.Values[1];
         exit;
       end;
       if (IsComponentSelected('d2x')) then
       begin
-        result := GogInstallPage2.Values[0];
+        result := Gog2Page.Values[0];
         exit;
       end;
       if (not IsComponentSelected('d2x')) then
@@ -1306,7 +1401,7 @@ begin
   end;
 end;
 
-//Create backups of the user's d1x.ini file
+//Create backups of the user's d2x.ini file
 procedure D2Xini();
 var
   myini: string;
@@ -1336,189 +1431,6 @@ end;
 function MacPatch(): Boolean;
 begin
   result := macdata;
-end;
-
-//Make sure the user has specified a correct location. (Called CheckCD cause originally it was to make sure the CD was inserted.)
-procedure CheckCD1();
-var
-   exitresult: boolean;
-   cdin: boolean;
-   msg: boolean;
-   vmsg: integer;
-   msgtext: string;
-begin
-cdin := false;
-folder1 := Descent('');
-      if (D1Files()) then //If we're installing data files
-      begin
-            while (cdin = false) do //As long as we haven't found the right files
-            begin
-                if not (FileExists(Descent('') + '\descent.hog')) and not (FileExists(Descent('') + '\Data\descent.hog')) and not (FileExists(Descent('') + '\Descent\descent.hog')) then //Check all known locations
-                begin
-                    msgtext := 'The Descent files could not be found.'#13#10'To continue the installation without the data files click Ignore.'#13#10'To specify a different location click Retry.'#13#10'To exit setup click Abort.';
-                    vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
-                    if (vmsg = IDABORT) then //if they click abort
-                    begin
-                        exitresult := ExitSetupMsgBox(); //exit setup as before
-                        if exitresult = true then
-                        begin
-                            CancelWithoutPrompt := true;
-                            cdin := true;
-                            DelTree(expandconstant('{tmp}'), true, true, true);
-                            DeleteFolders();
-                            ExitProcess(5);
-                        end;
-                    end;
-                    if (vmsg = IDRETRY) then //if they click retry
-                    begin
-                        msgtext := 'Please select the location of the Descent files.'#13#10'If you are installing from a CD, please select the root of your CD drive.';
-                        msg := BrowseForFolder(msgtext, folder1, false); //give them the option to select a location for the D2 files
-                        if msg = false then
-                        begin
-                            exitresult := ExitSetupMsgBox();
-                            if exitresult = true then
-                            begin
-                                CancelWithoutPrompt := true;
-                                cdin := true;
-                                DelTree(expandconstant('{tmp}'), true, true, true);
-                                DeleteFolders();
-                                ExitProcess(5);
-                            end;
-                        end;
-                    end;
-                    if (vmsg = IDIGNORE) then
-                    begin
-                        cdin := true;
-                    end;
-                end
-                else
-                begin
-                    cdin := true; //If the file does exist, then we have the right directory and can continue
-                end;
-            end;
-      end;
-end;
-
-//Check that the D2 files are in the location specified. Same thing as above.
-procedure CheckCD2();
-var
-   exitresult: boolean;
-   cdin: boolean;
-   msg: boolean;
-   vmsg: integer;
-   msgtext: string;
-begin
-cdin := false;
-folder2 := DescentTwo('');
-      if (D2Files()) then
-      begin
-            while (cdin = false) do
-            begin
-                if not (FileExists(DescentTwo('') + '\descent2.hog')) and not (FileExists(DescentTwo('') + '\Data\descent2.hog')) and not (FileExists(DescentTwo('') + '\descent2.sow')) and not (FileExists(DescentTwo('') + '\D2data\descent2.sow')) then
-                begin
-                    msgtext := 'The Descent 2 files could not be found.'#13#10'To continue the installation without the data files click Ignore.'#13#10'To specify a different location click Retry.'#13#10'To exit setup click Abort.';
-                    vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
-                    if (vmsg = IDABORT) then //if they click abort
-                    begin
-                        exitresult := ExitSetupMsgBox(); //exit setup as before
-                        if exitresult = true then
-                        begin
-                            CancelWithoutPrompt := true;
-                            cdin := true;
-                            DelTree(expandconstant('{tmp}'), true, true, true);
-                            DeleteFolders();
-                            ExitProcess(5);
-                        end;
-                    end;
-                    if (vmsg = IDRETRY) then //if they click retry
-                    begin
-                        msgtext := 'Please select the location of the Descent 2 files.'#13#10'If you are installing from a CD, please select the root of your CD drive.';
-                        msg := BrowseForFolder(msgtext, folder2, false); //give them the option to select a location for the D2 files
-                        if msg = false then
-                        begin
-                            exitresult := ExitSetupMsgBox();
-                            if exitresult = true then
-                            begin
-                                CancelWithoutPrompt := true;
-                                cdin := true;
-                                DelTree(expandconstant('{tmp}'), true, true, true);
-                                DeleteFolders();
-                                ExitProcess(5);
-                            end;
-                        end;
-                    end;
-                    if (vmsg = IDIGNORE) then
-                    begin
-                        cdin := true;
-                    end;
-                end
-                else
-                begin
-                    cdin := true;
-                end;
-            end;
-      end;
-end;
-
-//This is similar
-procedure CheckVertigo();
-var
-   exitresult: boolean;
-   cdin: boolean;
-   msg: boolean;
-   msgtext: string;
-   vmsg: integer;
-begin
-cdin := false;
-vertigo1 := Vertigo('');
-      if (VertigoFiles()) then
-      begin
-            while (cdin = false) do
-            begin
-                if not (FileExists(Vertigo('') + '\hoard.ham')) and not (FileExists(Vertigo('') + '\Data\hoard.ham')) and not (FileExists(Vertigo('') + '\Vertigo\hoard.ham')) then
-                begin
-                    msgtext := 'The Vertigo expansion files could not be found.'#13#10'To continue the installation without Vertigo click Ignore.'#13#10'To specify a location click Retry.'#13#10'To exit setup click Abort.';
-                    vmsg := MsgBox(msgtext, mbConfirmation, MB_ABORTRETRYIGNORE or MB_DEFBUTTON3); //Except this time display three options
-                    if (vmsg = IDABORT) then //if they click abort
-                    begin
-                        exitresult := ExitSetupMsgBox(); //exit setup as before
-                        if exitresult = true then
-                        begin
-                            CancelWithoutPrompt := true;
-                            cdin := true;
-                            DelTree(expandconstant('{tmp}'), true, true, true);
-                            DeleteFolders();
-                            ExitProcess(5);
-                        end;
-                    end;
-                    if (vmsg = IDRETRY) then //if they click retry
-                    begin
-                        msgtext := 'Please select the location of the Vertigo files.';
-                        msg := BrowseForFolder(msgtext, vertigo1, false); //give them the option to select a location of Vertigo
-                        if msg = false then
-                        begin
-                            exitresult := ExitSetupMsgBox();
-                            if exitresult = true then
-                            begin
-                                CancelWithoutPrompt := true;
-                                cdin := true;
-                                DelTree(expandconstant('{tmp}'), true, true, true);
-                                DeleteFolders();
-                                ExitProcess(5);
-                            end;
-                        end;
-                    end;
-                    if (vmsg = IDIGNORE) then
-                    begin
-                        cdin := true;
-                    end;
-                end
-                else
-                begin
-                    cdin := true;
-                end;
-            end;
-      end;
 end;
 
 //Check .hog file integrity
@@ -1551,7 +1463,7 @@ begin
 end;
 
 //Check .hog file integrity
-procedure FileCheck2();
+procedure FileCheck2(ran: string);
 var
   size: integer;
 begin
@@ -1568,27 +1480,16 @@ begin
         FileSize(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\d2demo.hog', size);
       end;
     end
-    else //but if we are extracting the .sow
+    else
     begin
-        if (filecheckran = false) and (SowExtract) then //and this is our first time through
+        if (ran = 'first') then // If we're extracting the .sow file, skip the filesize check the first time through (since it's called twice).
         begin
-            filecheckran := true; //tell us it is
-            exit; //and bypass the filesize check.
+            exit;
         end
-        else //otherwise it's the second time through
+        else
         begin
             if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog')) then //If we copied over the data file
             begin
-              if (FileExists(Vertigo('') + '\descent2.hog')) and (IsComponentSelected('d2x\vertigo') = true) then //If we have the vertigo file, and we're installing it
-              begin //then install it
-                 FileCopy(Vertigo('') + '\descent2.hog', ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog', false);
-                 FileCopy(Vertigo('') + '\descent2.ham', ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.ham', false); 
-              end;
-              if (FileExists(Vertigo('') + '\Vertigo\descent2.hog')) and (IsComponentSelected('d2x\vertigo') = true) then //ditto
-              begin
-                  FileCopy(Vertigo('') + '\Vertigo\descent2.hog', ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog', false);
-                  FileCopy(Vertigo('') + '\Vertigo\descent2.ham', ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.ham', false);
-              end;
               FileSize(ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog', size); //Finally, get the size of it.
             end;
         end;
@@ -1604,42 +1505,42 @@ end;
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
 // If the user has selected one demo, and hasn't run the other installer, don't ask what files to copy.
-  if (IsComponentSelected('d1x\demo') and not GogInstalledPage.Values[1]) and (PageID = SampleDataPage.ID) then
+  if (IsComponentSelected('d1x\demo') and not GogRanPage.Values[1]) and (PageID = DataToCopyPage.ID) then
   begin
     result := true;
     exit;
   end;
-  if (IsComponentSelected('d2x\demo') and not GogInstalledPage.Values[0]) and (PageID = SampleDataPage.ID) then
+  if (IsComponentSelected('d2x\demo') and not GogRanPage.Values[0]) and (PageID = DataToCopyPage.ID) then
   begin
     result := true;
     exit;
   end;
   // If the user has run the GOG installers, don't ask for their locations.
-  if (GogInstalledPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID))) then 
+  if (GogRanPage.Values[0] and ((PageID = GogBothPage.ID) or (PageID = Gog1Page.ID))) then 
   begin
     result := true;
     exit;
   end;
-  if (GogInstalledPage.Values[1] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage2.ID))) then 
+  if (GogRanPage.Values[1] and ((PageID = GogBothPage.ID) or (PageID = Gog2Page.ID))) then 
   begin
     result := true;
     exit;
   end;
   // If the user hasn't run the GOG installers, don't ask for the installation directories.
-  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[0] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID))) then
+  if TypeOfInstallPage.Values[0] and (not GogRanPage.Values[0] and ((PageID = BothLocationsPage.ID) or (PageID = D1LocationPage.ID))) then
   begin
     result := true;
     exit;
   end;
-  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID))) then
+  if TypeOfInstallPage.Values[0] and (not GogRanPage.Values[1] and ((PageID = BothLocationsPage.ID) or (PageID = D2LocationPage.ID))) then
   begin
     result := true;
     exit;
   end;
   // If the user is installing D1 and D2 (and not the demos) don't show the single question pages
-  if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not (IsComponentSelected('d1x\demo') or IsComponentSelected('d2x\demo')) and not (GogInstalledPage.Values[0] xor GogInstalledPage.Values[1])) then
+  if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not (IsComponentSelected('d1x\demo') or IsComponentSelected('d2x\demo')) and not (GogRanPage.Values[0] xor GogRanPage.Values[1])) then
   begin
-    if ((PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID)) then
+    if ((PageID = D1LocationPage.ID) or (PageID = D2LocationPage.ID) or (PageID = Gog1Page.ID) or (PageID = Gog2Page.ID)) then
     begin
       result := true;
       exit;
@@ -1648,7 +1549,7 @@ begin
   // If the user is only installing D1, don't show the D2 questions
   if (IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then 
   begin
-    if ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID) or (PageID = GogInstallPage.ID) or (PageID = GogInstallPage2.ID)) then
+    if ((PageID = BothLocationsPage.ID) or (PageID = D2LocationPage.ID) or (PageID = GogBothPage.ID) or (PageID = Gog2Page.ID)) then
     begin
       result := true;
       exit;
@@ -1657,44 +1558,44 @@ begin
   // If the user is only installing D2, don't show the D1 questions
   if (IsComponentSelected('d2x') and not IsComponentSelected('d1x')) then 
   begin
-    if ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID)) then
+    if ((PageID = BothLocationsPage.ID) or (PageID = D1LocationPage.ID) or (PageID = GogBothPage.ID) or (PageID = Gog1Page.ID)) then
     begin
       result := true;
       exit;
     end;
   end;
   // If the user doesn't have a GOG installation, don't show the GOG pages.
-  if (not WhichInstallPage.Values[0] and ((PageID = GogInstallPage.ID) or (PageID = GogInstallPage1.ID) or (PageID = GogInstallPage2.ID) or (PageID = GogInstalledPage.ID))) then
+  if (not TypeOfInstallPage.Values[0] and ((PageID = GogBothPage.ID) or (PageID = Gog1Page.ID) or (PageID = Gog2Page.ID) or (PageID = GogRanPage.ID))) then
   begin
     result := true;
     exit;
   end;
   // If the user doesn't have Descent, don't ask for the data.
-  if ((WhichInstallPage.Values[3] or WhichInstallPage.Values[4]) and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID) or (PageID = DataDirPage2.ID) or (PageID = SampleDataPage.ID))) then
+  if ((TypeOfInstallPage.Values[3] or TypeOfInstallPage.Values[4]) and ((PageID = BothLocationsPage.ID) or (PageID = D1LocationPage.ID) or (PageID = D2LocationPage.ID) or (PageID = DataToCopyPage.ID))) then
   begin
     result := true;
     exit;
   end;
   // If the user hasn't run either Gog installer, don't ask what files to copy.
-  if not (GogInstalledPage.Values[0] or GogInstalledPage.Values[1]) and (PageID = SampleDataPage.ID) then
+  if not (GogRanPage.Values[0] or GogRanPage.Values[1]) and (PageID = DataToCopyPage.ID) then
   begin
     result := true;
     exit;
   end;
   // If D1 demo is being installed, don't ask for D1 files.
-  if (isComponentSelected('d1x\demo') and ((PageID = DataDirPage1.ID) or (PageID = GogInstallPage1.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
+  if (isComponentSelected('d1x\demo') and ((PageID = D1LocationPage.ID) or (PageID = Gog1Page.ID) or (PageID = BothLocationsPage.ID) or (PageID = GogBothPage.ID))) then
   begin
     result := true;
     exit;
   end;
   // If D2 demo is being installed, don't ask for D2 files.
-  if (isComponentSelected('d2x\demo') and ((PageID = DataDirPage2.ID) or (PageID = GogInstallPage2.ID) or (PageID = DataDirPage.ID) or (PageID = GogInstallPage.ID))) then
+  if (isComponentSelected('d2x\demo') and ((PageID = D2LocationPage.ID) or (PageID = Gog2Page.ID) or (PageID = BothLocationsPage.ID) or (PageID = GogBothPage.ID))) then
   begin
     result := true;
     exit;
   end;
   // If both demos are being installed, don't ask for any files.
-  if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) and ((PageID = WhichInstallPage.ID) or (PageID = GogInstalledPage.ID) or (PageID = SampleDataPage.ID))) then
+  if ((isComponentSelected('d1x\demo') and isComponentSelected('d2x\demo')) and ((PageID = TypeOfInstallPage.ID) or (PageID = GogRanPage.ID) or (PageID = DataToCopyPage.ID))) then
   begin
     result := true;
     exit;
@@ -1711,6 +1612,12 @@ begin
     result := true;
     exit;
   end;
+  // If the user isn't installing Vertigo, don't ask for its location.
+  if (PageID = VertigoLocationPage.ID) and not isComponentSelected('d2x\vertigo') then
+  begin
+    result := true;
+    exit;
+  end;
   result := false;    // If we're not on any of the pages we want to skip, then don't skip the page (obviously).
 end;
 
@@ -1719,19 +1626,15 @@ var exitnow:boolean;
 begin
   if CurPageID=wpInstalling then //If we're on the install page
     begin
-     Cancel := false;
-     Confirm := false; //Default to not showing a prompt.
-      if CancelWithoutPrompt = false then //When the user hits cancel, make sure we only give them a confirmation if CancelWithoutPrompt is false.
-      begin
-      exitnow := ExitSetupMsgBox(); //exit setup
-          if exitnow = true then
-           begin
-              CancelWithoutPrompt := true;
-              DelTree(expandconstant('{tmp}'), true, true, true);
-              DeleteFolders();
-              ExitProcess(5);
-          end; 
-      end;
+    Cancel := false;
+    Confirm := false; //Default to not showing a prompt.
+    exitnow := ExitSetupMsgBox(); //exit setup
+    if exitnow = true then
+     begin
+        DelTree(expandconstant('{tmp}'), true, true, true);
+        DeleteFolders();
+        ExitProcess(5);
+    end; 
   end;
 end;
 
@@ -1742,14 +1645,14 @@ begin
   // if the downloader page was just shown, then...
   if CurPageID = wpSelectDir then
   begin
-    if idpFilesDownloaded then
+    if update = true then
     begin
       DownloadFinished();
     end;
   end;
   if CurPageID = wpSelectComponents then
   begin
-    if (defaults = false) and (MsgBox('Would you like to automatically select the recommended components? (If you are unsure of what you need, click yes).', mbConfirmation, MB_YESNO) = IDYES) then
+    if (MsgBox('Would you like to automatically select the recommended components? (If you are unsure of what you need, click yes).', mbConfirmation, MB_YESNO) = IDYES) then
     begin
       Index := WizardForm.ComponentsList.Items.IndexOf('Rangers Anarchy Mission Pack for D1');
       if Index <> -1 then
@@ -1788,7 +1691,6 @@ begin
         WizardForm.ComponentsList.ItemEnabled[Index] := true;
       end;
     end;
-    defaults := true;
   end;
   if CurPageID = wpFinished then
   begin
@@ -1797,6 +1699,7 @@ begin
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var msgresult: integer;
 begin
   case CurUninstallStep of
     usUninstall:
