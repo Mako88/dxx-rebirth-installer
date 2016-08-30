@@ -589,6 +589,7 @@ begin
   False, '');
   VertigoLocationPage.Add(''); // Select a location for data.
 
+  // These soundtrack pages appear if multiple soundtracks were selected
   SoundtrackPage1 := CreateInputOptionPage(wpInstalling,
   'Descent 1 Soundtrack Selection', '',
   'Please select which of the downloaded D1 soundtracks to enable.'#13#10'This will move the .dxa file from the "Soundtracks" folder to the main D1X folder.'#13#10'To enable a different one, simply move this one back to the "Soundtracks"'#13#10'folder, and move a new one to the main D1X folder.'#13#10,
@@ -601,36 +602,12 @@ begin
 end;
 
 // These functions are used to tell the [Files] section where to look for data on the hard drive.
-function DescentTwo(Param: String): String;
-begin
-  if Assigned(BothLocationsPage) then  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
-    begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d1x\demo')) then  // If we're installing both and no demo...
-      begin
-        result := BothLocationsPage.Values[1];  // Use the values from the "both" page. (Where D2 is the second option)
-        exit;
-      end;
-      if (IsComponentSelected('d2x')) then  // If just D2
-      begin
-        result := D2LocationPage.Values[0];  // Use the values from the D2 page (Where D2 is the first option)
-        exit;
-      end;
-      if (not IsComponentSelected('d2x')) then // If just D1
-      begin
-        result := '';  // It doesn't matter, since we won't be installing D2.
-        exit;
-      end;
-    end
-  else 
-   result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
-end;
-
-// Same type of stuff for all this...
 function Descent(Param: String): String;
 begin
-  if Assigned(BothLocationsPage) then
+  if Assigned(BothLocationsPage) then // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
     begin
-      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then  // If we're installing both and no demo...
+       // Both are installed, and not the Descent 2 demo
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then 
       begin
         result := BothLocationsPage.Values[0];
         exit;
@@ -647,9 +624,34 @@ begin
       end;
     end
   else 
-   result := '';
+   result := ''; // The other part of the work around...If the page hasn't been created yet, make this entire function void.
 end;
 
+function DescentTwo(Param: String): String;
+begin
+  if Assigned(BothLocationsPage) then  
+    begin
+      if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d1x\demo')) then
+      begin
+        result := BothLocationsPage.Values[1];
+        exit;
+      end;
+      if (IsComponentSelected('d2x')) then  
+      begin
+        result := D2LocationPage.Values[0];  
+        exit;
+      end;
+      if (not IsComponentSelected('d2x')) then 
+      begin
+        result := '';  
+        exit;
+      end;
+    end
+  else 
+   result := ''; 
+end;
+
+// These add soundtracks to the array of soundtracks and increase the soundtrack index.
 procedure Soundtrack1();
 begin
   SetArrayLength(D1Soundtracks, 10);
