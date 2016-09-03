@@ -456,7 +456,7 @@ function GetGogD1():String;
 begin
   if FindFirst(ExpandConstant('{src}\setup_descent_*'), file) then
   begin
-    result := file.Name;
+    result := ExpandConstant('{src}\') + file.Name;
     FindClose(file);
     exit;
   end
@@ -472,7 +472,7 @@ function GetGogD2():String;
 begin
   if FindFirst(ExpandConstant('{src}\setup_descent2_*'), file) then
   begin
-    result := file.Name;
+    result := ExpandConstant('{src}\') + file.Name;
     FindClose(file);
     exit;
   end
