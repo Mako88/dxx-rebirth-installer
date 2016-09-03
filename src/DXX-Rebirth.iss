@@ -388,6 +388,7 @@ var
   D1SIndex: integer;
   D2SIndex: integer;
   update: boolean;
+  installerurl: string;
 
 
 
@@ -496,12 +497,16 @@ begin
  D1SIndex := 0;
  D2SIndex := 0;
  update := false;
+ installerurl := 'http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/DXX-Rebirth_Setup.exe';
  
 
  {If the download of the new installer fails, we still want to give the
   user the option of continuing with the original installation}
  idpSetOption('AllowContinue', '1');
  idpSetOption('ErrorDialog', 'FileList');
+ idpSetOption('ConnectTimeout', '3000');
+ idpSetOption('SendTimeout', '3000');
+ idpSetOption('ReceiveTimeout', '3000');
 
  //The page to decide what the default data location should be
   TypeOfInstallPage := CreateInputOptionPage(wpSelectComponents,
@@ -860,7 +865,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.47'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.48'; //Add the installer revision to the version
 
         if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then
           begin
@@ -883,7 +888,8 @@ begin
               text:='There is a newer installer available. Your version is ' + ourVersion + ', installer revision ' + oldRevision + ', the new version is ' + serversion + ', installer revision ' + newRevision + '. Would you like to download it?';
               if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then
               begin
-                idpAddFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/DXX-Rebirth_Setup.exe', expandConstant('{tmp}\DXX-Rebirth_Setup.exe'));
+                idpSetOption('ErrorDialog', 'Simple');
+                idpAddFile(installerurl, expandConstant('{tmp}\DXX-Rebirth_Setup.exe'));
                 idpDownloadAfter(wpWelcome); //and we display the download for the installer
                 update := true;
               end
@@ -1651,7 +1657,10 @@ begin
   begin
     if update = true then
     begin
-      DownloadFinished();
+      if idpFileDownloaded(installerurl) then
+      begin
+        DownloadFinished();
+      end;
     end;
   end;
   if CurPageID = wpSelectComponents then
