@@ -5,7 +5,7 @@ This is the Windows Installer for the Descent source port DXX-Rebirth (http://ww
 
 ## Instructions for Compiling Yourself:
 
-1. Unzip the official release to C:\DXX-Rebirth\
+1. Unzip the official release to C:\DXX-Rebirth\D*X
 
 2. Replace the Hi-res addon in the D1 folder with the one in the include\Addons folder
 
