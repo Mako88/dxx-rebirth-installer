@@ -924,7 +924,6 @@ begin
           BothLocationsPage.Values[1] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2'); 
           D1LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
           D2LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
-          VertigoLocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
       end;
       if (TypeOfInstallPage.Values[2]) then
       begin
@@ -932,7 +931,6 @@ begin
           BothLocationsPage.Values[1] := ExpandConstant('{sd}\GAMES\Descent2'); 
           D1LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
           D2LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
-          VertigoLocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
       end;
       if (TypeOfInstallPage.Values[3]) then // If they don't have Descent, install the demo.
       begin
@@ -994,29 +992,26 @@ begin
       if MsgBox('Neither the Descent 1 nor the Descent 2 data files could be found in the locations specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
       begin
         result := false;
-        exit;
-      end
-      else begin
-        result := true;
-        exit;
       end;
-    end;
-    if not CheckD1Location() then
+    end
+    else
     begin
-      if MsgBox('The Descent 1 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+      if not CheckD1Location() then
       begin
-        result := false;
-        exit;
+        if MsgBox('The Descent 1 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+        begin
+          result := false;
+        end;
+      end;
+      if not CheckD2Location() then
+      begin
+        if MsgBox('The Descent 2 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
+        begin
+          result := false;
+        end;
       end;
     end;
-    if not CheckD2Location() then
-    begin
-      if MsgBox('The Descent 2 data files could not be found in the location specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then
-      begin
-        result := false;
-        exit;
-      end;
-    end;
+    VertigoLocationPage.Values[0] := BothLocationsPage.Values[1];
   end;
 
   if CurPageID = D1LocationPage.ID then
@@ -1041,6 +1036,7 @@ begin
         exit;
       end;
     end;
+    VertigoLocationPage.Values[0] := D2LocationPage.Values[0];
   end;
 
   if CurPageID = VertigoLocationPage.ID then
