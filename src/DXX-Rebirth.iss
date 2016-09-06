@@ -790,7 +790,7 @@ begin
     end;
 end;
 
-// When we try to go to the next page...
+
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
     serversion:ansistring;
@@ -971,9 +971,7 @@ begin
             end;
         end;
     end;
-    //...and we're on the component selection page...
     if CurPageID = wpSelectComponents then begin
-        //...and we didn't select anything...
         if (not IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then begin
             MsgBox('Please select to install either D1X-Rebirth, D2X-Rebirth, or both.', mbError, MB_OK); //...spit out an error. ;)
             result := false;
@@ -982,7 +980,7 @@ begin
         if IsComponentSelected('d2xa\max') then begin
             MsgBox('You have selected to install Descent Maximum. This is a total conversion, and replaces the main campaign of Descent 2. To uninstall it, remove or change the extension of D2XR-MAXIMUM.DXA in the main D2X-Rebirth folder.', mbInformation, MB_OK);
         end;
-        result := true; // Otherwise if we're on the components selection page, just keep going.
+        result := true;
     end;
     
     if CurPageID = wpReady then begin
@@ -1182,7 +1180,7 @@ end;
 function GogD1(Param: String): String;
 begin
     if Assigned(GogBothPage) then begin
-        // If we're installing both and no demo...
+        // If we're installing both and no demo
         if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then begin
             result := GogBothPage.Values[0];
             exit;
@@ -1469,10 +1467,10 @@ end;
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
 var exitnow:boolean;
 begin
-    if CurPageID=wpInstalling then begin //If we're on the install page
+    if CurPageID=wpInstalling then begin
         Cancel := false;
-        Confirm := false; //Default to not showing a prompt.
-        exitnow := ExitSetupMsgBox(); //exit setup
+        Confirm := false;
+        exitnow := ExitSetupMsgBox();
         if exitnow = true then begin
             DelTree(expandconstant('{tmp}'), true, true, true);
             DeleteFolders();
@@ -1484,7 +1482,6 @@ end;
 procedure CurPageChanged(CurPageID: Integer);
 var Index: Integer;
 begin
-    // if the downloader page was just shown, then...
     if CurPageID = wpSelectDir then begin
         if update = true then begin
             if idpFileDownloaded(installerurl) then begin
