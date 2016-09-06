@@ -365,30 +365,30 @@ Gog2other=Extracting other-h.mvl from the GOG installer (This may take a few min
 [Code]
 // Global vars
 var
-  DataToCopyPage: TInputOptionWizardPage;
-  BothLocationsPage: TInputDirWizardPage;
-  D1LocationPage: TInputDirWizardPage;
-  D2LocationPage: TInputDirWizardPage;
-  VertigoLocationPage: TInputDirWizardPage;
-  TypeOfInstallPage: TInputOptionWizardPage;
-  GogRanPage: TInputOptionWizardPage;
-  GogBothPage: TInputFileWizardPage;
-  Gog1Page: TInputFileWizardPage;
-  Gog2Page: TInputFileWizardPage;
-  SoundtrackPage1: TInputOptionWizardPage;
-  SoundtrackPage2: TInputOptionWizardPage;
-  RebirthFolderExisted: boolean;
-  D1FolderExisted: boolean;
-  D2FolderExisted: boolean;
-  OldD1FolderExisted: boolean;
-  OldD2FolderExisted: boolean;
-  macdata: boolean;
-  D1Soundtracks: array of string;
-  D2Soundtracks: array of string;
-  D1SIndex: integer;
-  D2SIndex: integer;
-  update: boolean;
-  installerurl: string;
+    DataToCopyPage: TInputOptionWizardPage;
+    BothLocationsPage: TInputDirWizardPage;
+    D1LocationPage: TInputDirWizardPage;
+    D2LocationPage: TInputDirWizardPage;
+    VertigoLocationPage: TInputDirWizardPage;
+    TypeOfInstallPage: TInputOptionWizardPage;
+    GogRanPage: TInputOptionWizardPage;
+    GogBothPage: TInputFileWizardPage;
+    Gog1Page: TInputFileWizardPage;
+    Gog2Page: TInputFileWizardPage;
+    SoundtrackPage1: TInputOptionWizardPage;
+    SoundtrackPage2: TInputOptionWizardPage;
+    RebirthFolderExisted: boolean;
+    D1FolderExisted: boolean;
+    D2FolderExisted: boolean;
+    OldD1FolderExisted: boolean;
+    OldD2FolderExisted: boolean;
+    macdata: boolean;
+    D1Soundtracks: array of string;
+    D2Soundtracks: array of string;
+    D1SIndex: integer;
+    D2SIndex: integer;
+    update: boolean;
+    installerurl: string;
 
 
 
@@ -452,7 +452,7 @@ begin
     result:=0;
 end;
 
-// Attempt to locate the GOG installer in the same directory as this installer.
+// Attempt to locate the D1 GOG installer in the same directory as this installer.
 function GetGogD1():String;
 var file: TFindRec;
 begin
@@ -466,7 +466,7 @@ begin
     end;
 end;
 
-// Attempt to locate the GOG installer in the same directory as this installer.
+// Attempt to locate the D2 GOG installer in the same directory as this installer.
 function GetGogD2():String;
 var file:TFindRec;
 begin
@@ -503,7 +503,7 @@ begin
     idpSetOption('SendTimeout', '3000');
     idpSetOption('ReceiveTimeout', '3000');
 
-    //The page to decide what the default data location should be
+    // The page to decide what the default data location should be
     TypeOfInstallPage := CreateInputOptionPage(wpSelectComponents,
         'Select Installation Type', '',
         'Select what type of Descent installation is currently on your computer.',
@@ -524,7 +524,7 @@ begin
     GogRanPage.Add('I have run the Descent 1 installer');
     GogRanPage.Add('I have run the Descent 2 installer');
 
-    // Ask if they want to install just Rebirth, or copy the data files as well.
+    // The page to select which types of files to copy from the old installation.
     DataToCopyPage := CreateInputOptionPage(GogRanPage.ID,
         'Install Descent Data', '',
         'Select what files from the old Descent installation should be copied over.',
@@ -534,40 +534,37 @@ begin
     DataToCopyPage.Add('Pilot Files');
     DataToCopyPage.Add('Savegames');
     DataToCopyPage.Add('Demos');
-
-    // The default value is to copy the game files only.
     DataToCopyPage.Values[0] := True;
 
-
-    // The page that is displayed when they're installing both D1X and D2X
+    // The page that is displayed when neither GOG installer has been run
     GogBothPage := CreateInputFilePage(GogRanPage.ID,
         'GOG Installer Location', '',
         'Please select the GOG installer locations.'#13#10);
-    GogBothPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
+    GogBothPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');
     GogBothPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
-    GogBothPage.Values[0] := GetGogD1();   //The default values are the current directory.
-    GogBothPage.Values[1] := GetGogD2(); //The default values are the current directory.
+    GogBothPage.Values[0] := GetGogD1();
+    GogBothPage.Values[1] := GetGogD2();
 
-    // The page that is displayed when they're installing both D1X and D2X
+    // The page that is displayed when only the D2 GOG installer has run
     Gog1Page := CreateInputFilePage(GogRanPage.ID,
         'GOG Installer Location', '',
         'Please select the GOG Descent 1 installer location.'#13#10);
-    Gog1Page.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-    Gog1Page.Values[0] := GetGogD1();   //The default values are the current directory.
+    Gog1Page.Add('','Executable Files|*.exe', '.exe');
+    Gog1Page.Values[0] := GetGogD1();
 
-    // The page that is displayed when they're installing both D1X and D2X
+    // The page that is displayed when only the D1 GOG installer has run
     Gog2Page := CreateInputFilePage(GogRanPage.ID,
         'GOG Installer Location', '',
         'Please select the GOG Descent 2 installer locations.'#13#10);
-    Gog2Page.Add('','Executable Files|*.exe', '.exe');  // Add options for selecting where the installers are.
-    Gog2Page.Values[0] := GetGogD2();   //The default values are the current directory.
+    Gog2Page.Add('','Executable Files|*.exe', '.exe');
+    Gog2Page.Values[0] := GetGogD2();
 
     // The page that is displayed when they're installing both D1X and D2X
     BothLocationsPage := CreateInputDirPage(DataToCopyPage.ID,
         'Descent Data Directories', '',
         'Please select the locations of the Descent files.'#13#10#13#10'If you are using the original CDs with one drive, set both locations to that drive. You will have the chance to switch out CDs later in the installation.'#13#10,
         False, '');
-    BothLocationsPage.Add('Descent location.');  // Add options for selecting where to copy the data from.
+    BothLocationsPage.Add('Descent location.');
     BothLocationsPage.Add('Descent 2 location.');
 
     // The page that is displayed when just D1X is being installed.
@@ -575,23 +572,23 @@ begin
         'Descent Data Directory', '',
         'Please select the location of the Descent files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
         False, '');
-    D1LocationPage.Add(''); // Option for selecting data location.
+    D1LocationPage.Add('');
 
     // Page that's shown when just D2X is being installed.
     D2LocationPage := CreateInputDirPage(DataToCopyPage.ID,
         'Descent 2 Data Directory', '',
         'Please select the location of the Descent 2 files.'#13#10#13#10'If you are using a CD, set the location to the root of your CD drive.',
         False, '');
-    D2LocationPage.Add(''); // Select a location for data.
+    D2LocationPage.Add(''); 
 
     // Location of Vertigo
     VertigoLocationPage := CreateInputDirPage(BothLocationsPage.ID,
         'Vertigo Data Directory', '',
         'Please select the location of the Vertigo data files.',
         False, '');
-    VertigoLocationPage.Add(''); // Select a location for data.
+    VertigoLocationPage.Add('');
 
-    // These soundtrack pages appear if multiple soundtracks were selected
+    // These soundtrack pages appear if multiple soundtracks were selected letting them enable just one
     SoundtrackPage1 := CreateInputOptionPage(wpInstalling,
         'Descent 1 Soundtrack Selection', '',
         'Please select which of the downloaded D1 soundtracks to enable.'#13#10'This will move the .dxa file from the "Soundtracks" folder to the main D1X folder.'#13#10'To enable a different one, simply move this one back to the "Soundtracks"'#13#10'folder, and move a new one to the main D1X folder.'#13#10,
@@ -606,10 +603,8 @@ end;
 // These functions are used to tell the [Files] section where to look for data on the hard drive.
 function Descent(Param: String): String;
 begin
-    // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
-    if Assigned(BothLocationsPage) then begin
-        // Both are installed, and not the Descent 2 demo
-        if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then begin
+    if Assigned(BothLocationsPage) then begin  // A work around to make sure the installer is actually started. Otherwise this function is called before the page is actually created, and therefore gives an error.
+        if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then begin // If the demo is selected, we don't need to ask for the data files
             result := BothLocationsPage.Values[0];
             exit;
         end;
@@ -824,7 +819,7 @@ begin
             checkedSuccessfully:=false;
             GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
             ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-            ourVersion := ourVersion + '.48'; //Add the installer revision to the version
+            ourVersion := ourVersion + '.49'; //Add the installer revision to the version
 
             if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then begin
                 { Now read the version from that file and see if it is newer. }
@@ -842,13 +837,13 @@ begin
                         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the revision from version string
                         serversion := ChangeFileExt(serversion, ''); //Remove the revision from version string
                         text:='There is a newer installer available. Your version is ' + ourVersion + ', installer revision ' + oldRevision + ', the new version is ' + serversion + ', installer revision ' + newRevision + '. Would you like to download it?';
-                        if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then begin
+                        if MsgBox(text, mbConfirmation, MB_YESNO)=IDYES then begin // If they want to update, display the download for the installer
                             idpSetOption('ErrorDialog', 'Simple');
                             idpAddFile(installerurl, expandConstant('{tmp}\DXX-Rebirth_Setup.exe'));
-                            idpDownloadAfter(wpWelcome); //and we display the download for the installer
+                            idpDownloadAfter(wpWelcome);
                             update := true;
                         end else begin
-                            yes := false; //Otherwise we display the download for components.
+                            yes := false; // Otherwise we display the download for components.
                         end;
                     end else begin
                         MsgBox('You are running the latest version of this setup.', mbInformation, MB_OK);
@@ -861,28 +856,26 @@ begin
                 serversion := ChangeFileExt(serversion, ''); //Remove the revision from version string
                 text:='I was unable to check for an update. Installation of the current version, ' + ourVersion + ', installer revision ' + oldRevision + ' will continue.';
                 MsgBox(text, mbInformation, MB_OK);
-                yes := false; //and we didn't say yes
+                yes := false;
             end;
         end
     end;
     
-    //If we're on the which install page, check to get default values for the data dir pages.
+    // Set default locations based on type of install (the GOG locations are default)
     if CurPageID = TypeOfInstallPage.ID then begin
-        //If we're installing from Steam
-        if (TypeOfInstallPage.Values[1]) then begin
-            BothLocationsPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent');   //The default values are the Steam install paths.
+        if (TypeOfInstallPage.Values[1]) then begin // Steam
+            BothLocationsPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
             BothLocationsPage.Values[1] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2'); 
             D1LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent'); 
             D2LocationPage.Values[0] := ExpandConstant('{pf}\Steam\steamapps\common\Descent 2');
         end;
-        if (TypeOfInstallPage.Values[2]) then begin
-            BothLocationsPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');   //The default values are the original install paths.
+        if (TypeOfInstallPage.Values[2]) then begin // CD/Other
+            BothLocationsPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent');
             BothLocationsPage.Values[1] := ExpandConstant('{sd}\GAMES\Descent2'); 
             D1LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent'); 
             D2LocationPage.Values[0] := ExpandConstant('{sd}\GAMES\Descent2');
         end;
-        // If they don't have Descent, install the demo.
-        if (TypeOfInstallPage.Values[3]) then begin
+        if (TypeOfInstallPage.Values[3]) then begin // Install the shareware
             if isComponentSelected('d1x') then begin
                 Index := WizardForm.ComponentsList.Items.IndexOf('Shareware demo files for Descent 1');
                 if Index <> -1 then begin
@@ -900,6 +893,7 @@ begin
         end;
     end;
 
+    // Check that the GOG installers exist where the user said they are.
     if CurPageID = GogBothPage.ID then begin
         if not (FileExists(GogBothPage.Values[0]) and FileExists(GogBothPage.Values[1])) then begin
             MsgBox('Please select the location of both GOG installers.', mbInformation, MB_OK);
@@ -924,6 +918,7 @@ begin
         end;
     end;
 
+    // Check that the data files exist before continuing
     if CurPageID = BothLocationsPage.ID then begin
         if not (CheckD1Location() or CheckD2Location()) then begin
             if MsgBox('Neither the Descent 1 nor the Descent 2 data files could be found in the locations specified. Click Retry to try again, or Cancel to continue.', mbInformation, MB_RETRYCANCEL) = IDRETRY then begin
@@ -971,9 +966,11 @@ begin
             end;
         end;
     end;
+
+
     if CurPageID = wpSelectComponents then begin
         if (not IsComponentSelected('d1x') and not IsComponentSelected('d2x')) then begin
-            MsgBox('Please select to install either D1X-Rebirth, D2X-Rebirth, or both.', mbError, MB_OK); //...spit out an error. ;)
+            MsgBox('Please select to install either D1X-Rebirth, D2X-Rebirth, or both.', mbError, MB_OK);
             result := false;
             exit;
         end;
@@ -983,6 +980,7 @@ begin
         result := true;
     end;
     
+    // Right before install check what folders existed beforehand (The ones that existed will be copied over in the [Files] section. So these will just be deleted.)
     if CurPageID = wpReady then begin
         if DirExists(ExpandConstant('{app}\DXX-Rebirth')) then begin
             RebirthFolderExisted := true;
@@ -1008,9 +1006,9 @@ begin
         if OldD1FolderExisted or OldD2FolderExisted then begin
             MsgBox('It looks like you have a Rebirth installation created with an old version of the installer. The installer will move your installation into a "DXX-Rebirth" subfolder.', mbInformation, MB_OK);
         end;
-        Soundtrack1();
+        Soundtrack1(); // Get list of soundtracks to install
         Soundtrack2();
-        if D1SIndex > 0 then begin
+        if D1SIndex > 0 then begin // Create a Soundtracks folder to store downloaded soundtracks that aren't active.
             ForceDirectories(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks'));
         end;
         if D2SIndex > 0 then begin
@@ -1021,12 +1019,12 @@ begin
             DataToCopyPage.Values[0] := false;
         end;
 
-        //Check all the subcomponents, and add the ones that are selected.
         //if we're not updating, then the download page needs to be after the install screen
         if yes = false then begin
             idpDownloadAfter(wpReady); //Put the download page after the installation so we can download the AddOns directly to their final locations.
         end;
 
+        // Check all the downloadable subcomponents, and add the ones that are selected.
         // D1 Addons
         idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-anarchy.zip'), 'd1xa\mission\rangeranarchy');
         idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-coop.zip'), 'd1xa\mission\rangercoop');
@@ -1063,40 +1061,34 @@ begin
     end;
     
     if CurPageID = wpFinished then begin
-        // If they only downloaded one soundtrack
+        // If they only downloaded one soundtrack then activate
         if (D1SIndex = 1) then begin
-            // Activate it
             RenameFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\' + D1Soundtracks[0]), ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\' + D1Soundtracks[0]));
         end;
-        // If they downloaded more than one
+        // If they downloaded more than one, then activate the one they selected on the soundtrack page
         if (D1SIndex > 1) then begin
             for i := 0 to (D1SIndex - 1) do begin
                 if SoundtrackPage1.Values[i] = true then begin
-                    // Activate the one they selected.
                     RenameFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\' + D1Soundtracks[i]), ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\' + D1Soundtracks[i]));
                 end;
             end;
         end;
 
-        // If they only downloaded one soundtrack
         if (D2SIndex = 1) then begin
-            // Activate it
             RenameFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\' + D2Soundtracks[0]), ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\' + D2Soundtracks[0]));
         end;
-        // If they downloaded more than one
         if (D2SIndex > 1) then begin
             for i := 0 to (D2SIndex - 1) do begin
                 if SoundtrackPage2.Values[i] = true then begin
-                    // Activate the one they selected.
                     RenameFile(ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\' + D2Soundtracks[i]), ExpandConstant('{app}\DXX-Rebirth\D2X-Rebirth\' + D2Soundtracks[i]));
                 end;
             end;
         end;
     end;
-    result := true;   // And keep going if we're on any other page as well.
+    result := true; // By default allow next button.
 end;
 
-//Use this to delete the original install directory if needed.
+// This deletes the original install directories if needed.
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
     if CurStep = ssPostInstall then begin
@@ -1113,9 +1105,10 @@ begin
     end;
 end;
 
-// IF we haven't run the installer and we're not installing demos, then we're using the GOG installer.
+// These functions check if we're using the GOG installers
 function GogInstaller1(): Boolean;
 begin
+    // If we're using GOG, the installer hasn't been run, and we're not installing a demo.
     if TypeOfInstallPage.Values[0] and (not GogRanPage.Values[0] and not IsComponentSelected('d1x\demo')) then begin
         result := true;
     end;
@@ -1156,31 +1149,30 @@ begin
     end;
 end; 
 
-function Missions(): Boolean;  // If we just want to install missions.
+function Missions(): Boolean;
 begin
-    Result := DataToCopyPage.Values[1]; // Then we checked to install missions.
+    Result := DataToCopyPage.Values[1]; 
 end;
 
-function PlayerFiles(): Boolean;  // If we want to install pilot files
+function PlayerFiles(): Boolean;  
 begin
-    Result := DataToCopyPage.Values[2];  // You know the drill by now...
+    Result := DataToCopyPage.Values[2]; 
 end;
 
-function SaveGames(): Boolean;  // And savegames
+function SaveGames(): Boolean;  
 begin
-    Result := DataToCopyPage.Values[3];  // This is getting old...
+    Result := DataToCopyPage.Values[3]; 
 end;
 
-function Demos(): Boolean;  // Same for demos
+function Demos(): Boolean; 
 begin
-    Result := DataToCopyPage.Values[4];  // You don't say??
+    Result := DataToCopyPage.Values[4];
 end;
 
-
+// These functions return the correct location of the GOG installers
 function GogD1(Param: String): String;
 begin
     if Assigned(GogBothPage) then begin
-        // If we're installing both and no demo
         if (IsComponentSelected('d1x') and IsComponentSelected('d2x') and not IsComponentSelected('d2x\demo')) then begin
             result := GogBothPage.Values[0];
             exit;
@@ -1221,13 +1213,14 @@ end;
 //Function for deciding whether or not we should extract the descent2.sow file.
 function SowExtract(): Boolean;
 begin
-    if (FileExists(ExpandConstant('{tmp}\descent2.sow'))) and (D2Files()) then begin //Make sure we want to install data
+    if (FileExists(ExpandConstant('{tmp}\descent2.sow'))) and (D2Files()) then begin // Make sure we want to install data
         result := true;
     end else begin
         result := false;
     end;
 end;
 
+// Procedure for patching the descent data to the latest version.
 procedure PatchData();
 var ResultCode: integer;
 begin
@@ -1246,7 +1239,7 @@ begin
     DeleteFile(ExpandConstant('{app}\DXX-Rebirth\D1X-Rebirth\Data\descent.pig.diff'));
 end;
 
-//Procedure for deleting the folders auto-created at start of install if the install is cancelled.
+// Procedure for deleting the folders auto-created at start of install if the install is cancelled.
 procedure DeleteFolders();
 begin
     if D1FolderExisted = false then begin
@@ -1260,7 +1253,7 @@ begin
     end;
 end;
 
-//Create backups of the user's d1x.ini file
+// Create backups of the user's d1x.ini file
 procedure D1Xini();
 var
     myini: string;
@@ -1282,7 +1275,7 @@ begin
     end;
 end;
 
-//Create backups of the user's d2x.ini file
+// Create backups of the user's d2x.ini file
 procedure D2Xini();
 var
     myini: string;
@@ -1304,6 +1297,7 @@ begin
     end;
 end;
 
+// macdata is set if the filesize check detects the Mac data files. If that is the case, install the Mac Patch .dxa files
 function MacPatch(): Boolean;
 begin
     result := macdata;
@@ -1331,6 +1325,7 @@ begin
             PatchData();
         end;
     end;
+    // If it's the mac data, set macdata to true.
     if size = 7456179 then begin
         macdata := true;
     end;
@@ -1354,7 +1349,7 @@ begin
         if (ran = 'first') then begin // If we're extracting the .sow file, skip the filesize check the first time through (since it's called twice).
             exit;
         end else begin
-            if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog')) then begin //If we copied over the data file
+            if (FileExists(ExpandConstant('{app}') + '\DXX-Rebirth\D2X-Rebirth\Data\descent2.hog')) then begin //Make sure we copied over the data file
                 FileSize(ExpandConstant('{app}') + '\D2X-Rebirth\Data\descent2.hog', size); //Finally, get the size of it.
             end;
         end;
@@ -1464,6 +1459,7 @@ begin
     result := false;    // If we're not on any of the pages we want to skip, then don't skip the page (obviously).
 end;
 
+// Use a custom cancel button function in order to delete the folders if they didn't already exist.
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
 var exitnow:boolean;
 begin
@@ -1485,12 +1481,14 @@ begin
     if CurPageID = wpSelectDir then begin
         if update = true then begin
             if idpFileDownloaded(installerurl) then begin
+                // If we're running and update and the updated installer downloaded successful, start the new install.
                 DownloadFinished();
             end;
         end;
     end;
     
     if CurPageID = wpSelectComponents then begin
+        // Noobie selection box.
         if (MsgBox('Would you like to automatically select the recommended components? (If you are unsure of what you need, click yes).', mbConfirmation, MB_YESNO) = IDYES) then begin
             Index := WizardForm.ComponentsList.Items.IndexOf('Rangers Anarchy Mission Pack for D1');
             if Index <> -1 then begin
