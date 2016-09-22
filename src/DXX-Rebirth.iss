@@ -452,31 +452,27 @@ begin
     result:=0;
 end;
 
-// Attempt to locate the D1 GOG installer in the same directory as this installer.
-function GetGogD1():String;
-var file: TFindRec;
+// Attempt to locate the GOG installers in the same directory as this installer.
+function GetGogInstaller(descent: string):String;
+var
+    file: TFindRec;
+    initial: string;
+    default: string;
 begin
-    if FindFirst(ExpandConstant('{src}\setup_descent_*'), file) then begin
-        result := ExpandConstant('{src}\') + file.Name;
-        FindClose(file);
-        exit;
-    end else begin
-        result := ExpandConstant('{src}\setup_descent_2.1.0.8.exe');
-        exit;
+    if descent = '1' then begin
+        initial := ExpandConstant('{src}\setup_descent_*');
+        default := ExpandConstant('{src}\setup_descent_2.1.0.8.exe');
+    end else if descent = '2' then begin
+        initial := ExpandConstant('{src}\setup_descent2_*');
+        default := ExpandConstant('{src}\setup_descent2_2.1.0.10.exe');
     end;
-end;
-
-// Attempt to locate the D2 GOG installer in the same directory as this installer.
-function GetGogD2():String;
-var file:TFindRec;
-begin
-    if FindFirst(ExpandConstant('{src}\setup_descent2_*'), file) then begin
+    
+    if FindFirst(initial, file) then begin
         result := ExpandConstant('{src}\') + file.Name;
         FindClose(file);
         exit;
     end else begin
-        result := ExpandConstant('{src}\setup_descent2_2.1.0.10.exe');
-        FindClose(file);
+        result := default;
         exit;
     end;
 end;
@@ -542,22 +538,22 @@ begin
         'Please select the GOG installer locations.'#13#10);
     GogBothPage.Add('Descent installer location.','Executable Files|*.exe', '.exe');
     GogBothPage.Add('Descent 2 installer location.','Executable Files|*.exe', '.exe');
-    GogBothPage.Values[0] := GetGogD1();
-    GogBothPage.Values[1] := GetGogD2();
+    GogBothPage.Values[0] := GetGogInstaller('1');
+    GogBothPage.Values[1] := GetGogInstaller('2');
 
     // The page that is displayed when only the D2 GOG installer has run
     Gog1Page := CreateInputFilePage(GogRanPage.ID,
         'GOG Installer Location', '',
         'Please select the GOG Descent 1 installer location.'#13#10);
     Gog1Page.Add('','Executable Files|*.exe', '.exe');
-    Gog1Page.Values[0] := GetGogD1();
+    Gog1Page.Values[0] := GetGogInstaller('1');
 
     // The page that is displayed when only the D1 GOG installer has run
     Gog2Page := CreateInputFilePage(GogRanPage.ID,
         'GOG Installer Location', '',
         'Please select the GOG Descent 2 installer locations.'#13#10);
     Gog2Page.Add('','Executable Files|*.exe', '.exe');
-    Gog2Page.Values[0] := GetGogD2();
+    Gog2Page.Values[0] := GetGogInstaller('2');
 
     // The page that is displayed when they're installing both D1X and D2X
     BothLocationsPage := CreateInputDirPage(DataToCopyPage.ID,
