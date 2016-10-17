@@ -116,6 +116,8 @@ Source: "{code:Descent}\Data\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebir
 Source: "{code:Descent}\Data\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\Descent\descent.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\Descent\descent.pig"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Data"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall; AfterInstall: FileCheck1
+;D1 High Scores
+Source: "{code:Descent}\descent.hi"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth"; Components: "d1x"; Check: D1Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D1 Missions
 Source: "{code:Descent}\*.hog"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Descent}\*.msn"; DestDir: "{app}\DXX-Rebirth\D1X-Rebirth\Missions"; Components: "d1x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -205,6 +207,8 @@ Source: "{code:DescentTwo}\Data\other-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Re
 Source: "{code:DescentTwo}\Data\other-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\robots-h.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\Data\robots-l.mvl"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Data"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
+;D2 High Scores
+Source: "{code:DescentTwo}\descent.hi"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth"; Components: "d2x"; Check: D2Files; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 Missions
 Source: "{code:DescentTwo}\*.hog"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:DescentTwo}\*.mn2"; DestDir: "{app}\DXX-Rebirth\D2X-Rebirth\Missions"; Components: "d2x"; Check: Missions; Flags: external skipifsourcedoesntexist uninsneveruninstall
@@ -815,7 +819,7 @@ begin
             checkedSuccessfully:=false;
             GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
             ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-            ourVersion := ourVersion + '.49'; //Add the installer revision to the version
+            ourVersion := ourVersion + '.50'; //Add the installer revision to the version
 
             if idpDownloadFile('http://www.dxx-rebirth.com/download/dxx/user/afuturepilot/version2.txt',expandconstant('{tmp}\version2.txt'))then begin
                 { Now read the version from that file and see if it is newer. }
