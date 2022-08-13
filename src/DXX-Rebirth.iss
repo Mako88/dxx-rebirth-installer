@@ -1025,38 +1025,38 @@ begin
         end;
 
         // Check all the downloadable subcomponents, and add the ones that are selected.
-        // D1 Addons
-        idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-anarchy.zip'), 'd1xa\mission\rangeranarchy');
-        idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-coop.zip'), 'd1xa\mission\rangercoop');
-        idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission\dcl');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
-        idpAddFileComp('https://www.dropbox.com/s/2z0wcvlc3ofovpu/D1CDA-MAC.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1cda-mac.dxa'), 'd1xa\addon\mac');
-        idpAddFileComp('https://www.dropbox.com/s/wot0bfkvxgnrmuj/d1-playstation.dxa?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-playstation.dxa'), 'd1xa\addon\playstation');
-        idpAddFileComp('https://www.dropbox.com/s/ajnsexd9nqdw8dd/D1MIDI-AWE32.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
-        idpAddFileComp('https://www.dropbox.com/s/rnrphmvmio3vaj6/D1MIDI-AWE64.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
-        idpAddFileComp('https://www.dropbox.com/s/nt1vvvgylwml4vj/D1MIDI-ENSONIQ2M.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
-        idpAddFileComp('https://www.dropbox.com/s/6bm2apyeidy0cb7/D1MIDI-ENSONIQ8M.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
-        idpAddFileComp('https://www.dropbox.com/s/w2mka6bd35vpw2w/D1MIDI-ROLANDSC.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
-        idpAddFileComp('https://www.dropbox.com/s/2fz9ns04lxhp6sk/d1-finn.dxa?dl=1', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-finn.dxa'), 'd1xa\addon\finn');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon\german');
-        // D2 Addons
-        idpAddFileComp('https://www.dropbox.com/s/08sab7s0md2l7v7/D2XR-MAXIMUM.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-maximum.dxa'), 'd2xa\max');      
-        idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-anarchy.zip'), 'd2xa\mission\rangeranarchy');
-        idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-coop.zip'), 'd2xa\mission\rangercoop');
-        idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{tmp}\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
-        idpAddFileComp('https://www.dropbox.com/s/z0bfzy76681b9oq/D2CDA-MAC.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
-        idpAddFileComp('https://www.dropbox.com/s/j8noxufr7uny1hf/D2MIDI-AWE32.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
-        idpAddFileComp('https://www.dropbox.com/s/t7eg48iaiw7a6pw/D2MIDI-AWE64.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
-        idpAddFileComp('https://www.dropbox.com/s/mr74xk9ezm8hbj9/D2MIDI-ENSONIQ2M.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
-        idpAddFileComp('https://www.dropbox.com/s/r78n7yyzhfpmfy5/D2MIDI-ENSONIQ8M.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
-        idpAddFileComp('https://www.dropbox.com/s/lwd2i79rc33oq4x/D2MIDI-ROLANDSC.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
-        idpAddFileComp('https://www.dropbox.com/s/0yyfj01a18xva8u/d2-finn.dxa?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2-finn.dxa'), 'd2xa\addon\finn');
-        idpAddFileComp('https://www.dropbox.com/s/fruhrsvulvzxs3e/D2CDA-MAX.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
-        idpAddFileComp('https://www.dropbox.com/s/w7gc0qmpxq4tc42/D2CDA-TDC.DXA?dl=1', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
-        idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
+      // D1 Addons
+      idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-anarchy.zip'), 'd1xa\mission\rangeranarchy');
+      idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D1%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d1-coop.zip'), 'd1xa\mission\rangercoop');
+      idpAddFileComp('http://descentchampions.org/missions/dcl_d1_missions.zip', expandconstant('{tmp}\dcl_d1_missions.zip'), 'd1xa\mission\dcl');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-sc55-music.dxa'), 'd1xa\addon\sc55');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1xr-opl3-music.dxa'), 'd1xa\addon\opl3');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1cda-mac.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1cda-mac.dxa'), 'd1xa\addon\mac');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1-playstation.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-playstation.dxa'), 'd1xa\addon\playstation');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1midi-awe32.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe32.dxa'), 'd1xa\addon\awe32');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1midi-awe64.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-awe64.dxa'), 'd1xa\addon\awe64');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1midi-ensoniq2m.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq2m.dxa'), 'd1xa\addon\2m');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1midi-ensoniq8m.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-ensoniq8m.dxa'), 'd1xa\addon\8m');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1midi-rolandsc.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1midi-rolandsc.dxa'), 'd1xa\addon\sc');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d1-finn.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\Soundtracks\d1-finn.dxa'), 'd1xa\addon\finn');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d1xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D1X-Rebirth\d1xr-briefings-ger.dxa'), 'd1xa\addon\german');
+      // D2 Addons
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2xr-maximum.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-maximum.dxa'), 'd2xa\max');      
+      idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Anarchy%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-anarchy.zip'), 'd2xa\mission\rangeranarchy');
+      idpAddFileComp('http://www.descentrangers.com/Assets/RangerMissionPacks/D2%20Coop%20Ranger%20Pack.zip', expandconstant('{tmp}\d2-coop.zip'), 'd2xa\mission\rangercoop');
+      idpAddFileComp('http://descentchampions.org/missions/dcl_d2_missions.zip', expandconstant('{tmp}\dcl_d2_missions.zip'), 'd2xa\mission\dcl');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-sc55-music.dxa'), 'd2xa\addon\sc55');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-opl3-music.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2xr-opl3-music.dxa'), 'd2xa\addon\opl3');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2cda-mac.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-mac.dxa'), 'd2xa\addon\mac');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2midi-awe32.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe32.dxa'), 'd2xa\addon\awe32');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2midi-awe64.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-awe64.dxa'), 'd2xa\addon\awe64');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2midi-ensoniq2m.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq2m.dxa'), 'd2xa\addon\2m');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2midi-ensoniq8m.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-ensoniq8m.dxa'), 'd2xa\addon\8m');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2midi-rolandsc.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2midi-rolandsc.dxa'), 'd2xa\addon\sc');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2-finn.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2-finn.dxa'), 'd2xa\addon\finn');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2cda-max.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-max.dxa'), 'd2xa\addon\max');
+      idpAddFileComp('https://github.com/pudlez/dxx-addons/releases/download/v1.0/d2cda-tdc.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\Soundtracks\d2cda-tdc.dxa'), 'd2xa\addon\tdc');
+      idpAddFileComp('http://www.dxx-rebirth.com/download/dxx/res/d2xr-briefings-ger.dxa', expandconstant('{app}\DXX-Rebirth\D2X-Rebirth\d2xr-briefings-ger.dxa'), 'd2xa\addon\german');
 
     end;
     
